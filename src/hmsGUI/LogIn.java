@@ -62,7 +62,8 @@ public class LogIn {
 		frame.getContentPane().add(logInbtn);
 		logInbtn.addActionListener(l -> {
 			Connector connector = new Connector();
-			connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+			//connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+			connector.Connect("root", "m@L@K2002");
 			if(connector.connected){
 				frame.dispose();
 				ManipulationOps.createFrame();

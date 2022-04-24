@@ -54,6 +54,8 @@ public class ManipulationOps {
       JButton btnInsertJanitor = new JButton("Insert a new Janitor");
       btnInsertJanitor.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
+            StaffInsertion.create();
+
          }
       });
       btnInsertJanitor.setBounds(22, 66, 141, 23);
@@ -62,6 +64,8 @@ public class ManipulationOps {
       JButton btnInsertDoctor = new JButton("Insert a new Doctor");
       btnInsertDoctor.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
+            StaffInsertion.create();
+
          }
       });
       btnInsertDoctor.setBounds(22, 100, 141, 23);
@@ -99,9 +103,11 @@ public class ManipulationOps {
       btnInsertMedicine.setBounds(22, 236, 141, 23);
       contentPane.add(btnInsertMedicine);
 
-      JButton btnInsertRecord = new JButton("Insert a new Record");
+      JButton btnInsertRecord = new JButton("Insert a new Cachier");
       btnInsertRecord.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
+            StaffInsertion.create();
+
          }
       });
       btnInsertRecord.setBounds(22, 270, 141, 23);

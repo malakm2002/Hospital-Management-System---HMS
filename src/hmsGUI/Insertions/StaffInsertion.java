@@ -21,7 +21,7 @@ public class StaffInsertion {
 		frame.pack();
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -30,11 +30,13 @@ public class StaffInsertion {
 		}
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 700, 394);
+		frame.setBounds(100, 100, 600, 260);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
-		frame.getContentPane().setLayout(null);
+		contentPane.setLayout(null);
+		
+
 
 		JLabel lblFN = new JLabel("First Name*");
 		lblFN.setBounds(10, 11, 96, 14);
@@ -113,25 +115,43 @@ public class StaffInsertion {
 
 			}
 		});
-		btnOk.setBounds(99, 229, 89, 23);
+		btnOk.setBounds(250, 150, 89, 23);
 		contentPane.add(btnOk);
 
 		JLabel lblPatientIDN = new JLabel("PatientID");
-		lblPatientIDN.setBounds(10, 117, 49, 14);
+		lblPatientIDN.setBounds(10, 100, 49, 14);
 		contentPane.add(lblPatientIDN);
 		
 		JLabel lblStaffIDN = new JLabel("Staff ID");
-		lblStaffIDN.setBounds(122, 117, 49, 14);
+		lblStaffIDN.setBounds(122, 100, 49, 14);
 		contentPane.add(lblStaffIDN);
 		
 		JTextField textFieldpatientIDN = new JTextField();
-		textFieldpatientIDN.setBounds(10, 133, 96, 20);
+		textFieldpatientIDN.setBounds(10, 114, 96, 20);
 		contentPane.add(textFieldpatientIDN);
 		textFieldpatientIDN.setColumns(10);
 		
 		JTextField textFieldStaffIDN = new JTextField();
 		textFieldStaffIDN.setColumns(10);
-		textFieldStaffIDN.setBounds(120, 133, 96, 20);
+		textFieldStaffIDN.setBounds(120, 114, 96, 20);
 		contentPane.add(textFieldStaffIDN);
+
+		JLabel lblJobType = new JLabel("Job Type*");
+		lblJobType.setBounds(10, 140, 96, 14);
+		contentPane.add(lblJobType);
+		
+		JTextField textFieldJobType = new JTextField();
+		textFieldJobType.setBounds(10, 155, 96, 20);
+		contentPane.add(textFieldJobType);
+		textFieldJobType.setColumns(10);
+		
+		JLabel lblSupervisorID = new JLabel("Supervisor ID*");
+		lblSupervisorID.setBounds(120, 140, 96, 14);
+		contentPane.add(lblSupervisorID);
+		
+		JTextField textFieldSupervisorID = new JTextField();
+		textFieldSupervisorID.setColumns(10);
+		textFieldSupervisorID.setBounds(122, 155, 96, 20);
+		contentPane.add(textFieldSupervisorID);
 	}
 }
