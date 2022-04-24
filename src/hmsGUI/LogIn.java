@@ -3,6 +3,7 @@ package hmsGUI;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import javax.swing.JButton;
@@ -11,10 +12,10 @@ public class LogIn {
 
 	private JFrame frame;
 	private JTextField usernameField;
-	private JTextField passwordField;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 	private JButton logInbtn;
+	private JPasswordField passwordField;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -52,17 +53,16 @@ public class LogIn {
 		frame.getContentPane().add(usernameField);
 		usernameField.setColumns(10);
 
-		passwordField = new JTextField();
-		passwordField.setBounds(162, 36, 96, 20);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(162, 36, 79, 20);
 		frame.getContentPane().add(passwordField);
-		passwordField.setColumns(10);
 
 		logInbtn = new JButton("LogIn");
 		logInbtn.setBounds(89, 75, 89, 23);
 		frame.getContentPane().add(logInbtn);
 		logInbtn.addActionListener(l -> {
 			Connector connector = new Connector();
-			connector.Connect(usernameField.getText(), passwordField.getText());
+			connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
 			if(connector.connected){
 				frame.dispose();
 				ManipulationOps.createFrame();
