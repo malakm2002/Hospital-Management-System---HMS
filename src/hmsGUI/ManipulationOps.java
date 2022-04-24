@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import hmsGUI.Insertions.StaffInsertion;
+
 
 public class ManipulationOps {
    public static void createFrame() {
@@ -43,6 +45,7 @@ public class ManipulationOps {
 
          @Override
          public void actionPerformed(ActionEvent e) {
+            StaffInsertion.create();
          }
       });
       btnInsertNurse.setBounds(22, 32, 141, 23);

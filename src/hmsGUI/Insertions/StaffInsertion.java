@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 public class StaffInsertion {
 	public static void create() {
 		JFrame frame = new JFrame("Hospital Management System - Operations");
@@ -90,7 +92,7 @@ public class StaffInsertion {
 		JLabel lblDischarge = new JLabel("Discharge Date");
 		lblDischarge.setBounds(260, 73, 89, 14);
 		contentPane.add(lblDischarge);
-/*
+
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(360, 37, 124, 20);
 		contentPane.add(dateChooser);
@@ -98,13 +100,13 @@ public class StaffInsertion {
 		JDateChooser dateChooser_1 = new JDateChooser();
 		dateChooser_1.setBounds(360, 73, 124, 20);
 		contentPane.add(dateChooser_1);
-*/
+
 		JButton btnOk = new JButton("ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				//	System.out.println("ad: " + dateChooser.getDate().toString());
-				//	System.out.println("dis: " + dateChooser_1.getDate().toString());
+					System.out.println("ad: " + dateChooser.getDate().toString());
+					System.out.println("dis: " + dateChooser_1.getDate().toString());
 				} catch (Exception e1) {
 					System.out.print("No date added");
 				}
