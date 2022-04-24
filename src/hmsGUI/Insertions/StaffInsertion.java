@@ -36,7 +36,7 @@ public class StaffInsertion {
 		frame.setContentPane(contentPane);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblFN = new JLabel("First Name");
+		JLabel lblFN = new JLabel("First Name*");
 		lblFN.setBounds(10, 11, 96, 14);
 		contentPane.add(lblFN);
 
@@ -45,7 +45,7 @@ public class StaffInsertion {
 		contentPane.add(textFieldFN);
 		textFieldFN.setColumns(10);
 
-		JLabel lblLN = new JLabel("Last Name");
+		JLabel lblLN = new JLabel("Last Name*");
 		lblLN.setBounds(122, 11, 94, 14);
 		contentPane.add(lblLN);
 
@@ -54,7 +54,7 @@ public class StaffInsertion {
 		textFieldLN.setBounds(120, 27, 96, 20);
 		contentPane.add(textFieldLN);
 
-		JLabel lblGender = new JLabel("Sex");
+		JLabel lblGender = new JLabel("Sex*");
 		lblGender.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGender.setBounds(245, 11, 49, 14);
 		contentPane.add(lblGender);
@@ -67,7 +67,7 @@ public class StaffInsertion {
 		chckbxFemale.setBounds(350, 7, 72, 23);
 		contentPane.add(chckbxFemale);
 
-		JLabel lblAddr = new JLabel("Address");
+		JLabel lblAddr = new JLabel("Address*");
 		lblAddr.setBounds(10, 58, 96, 14);
 		contentPane.add(lblAddr);
 
@@ -76,7 +76,7 @@ public class StaffInsertion {
 		textFieldAddress.setBounds(10, 73, 96, 20);
 		contentPane.add(textFieldAddress);
 
-		JLabel lblPhone = new JLabel("Phone Number");
+		JLabel lblPhone = new JLabel("Phone Number*");
 		lblPhone.setBounds(122, 58, 94, 14);
 		contentPane.add(lblPhone);
 
@@ -85,7 +85,7 @@ public class StaffInsertion {
 		contentPane.add(textFieldPhone);
 		textFieldPhone.setColumns(10);
 
-		JLabel lblAdmission = new JLabel("Admission Date");
+		JLabel lblAdmission = new JLabel("Admission Date*");
 		lblAdmission.setBounds(260, 40, 111, 14);
 		contentPane.add(lblAdmission);
 
@@ -115,5 +115,23 @@ public class StaffInsertion {
 		});
 		btnOk.setBounds(99, 229, 89, 23);
 		contentPane.add(btnOk);
+
+		JLabel lblPatientIDN = new JLabel("PatientID");
+		lblPatientIDN.setBounds(10, 117, 49, 14);
+		contentPane.add(lblPatientIDN);
+		
+		JLabel lblStaffIDN = new JLabel("Staff ID");
+		lblStaffIDN.setBounds(122, 117, 49, 14);
+		contentPane.add(lblStaffIDN);
+		
+		JTextField textFieldpatientIDN = new JTextField();
+		textFieldpatientIDN.setBounds(10, 133, 96, 20);
+		contentPane.add(textFieldpatientIDN);
+		textFieldpatientIDN.setColumns(10);
+		
+		JTextField textFieldStaffIDN = new JTextField();
+		textFieldStaffIDN.setColumns(10);
+		textFieldStaffIDN.setBounds(120, 133, 96, 20);
+		contentPane.add(textFieldStaffIDN);
 	}
 }
