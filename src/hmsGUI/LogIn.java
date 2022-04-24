@@ -1,6 +1,8 @@
 package hmsGUI;
 
 import java.awt.EventQueue;
+import java.sql.Connection;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -9,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class LogIn {
+	public static Connection connection;
 
 	private JFrame frame;
 	private JTextField usernameField;
@@ -65,6 +68,7 @@ public class LogIn {
 			//connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
 			connector.Connect("root", "m@L@K2002");
 			if(connector.connected){
+				LogIn.connection = connector.connection;
 				frame.dispose();
 				ManipulationOps.createFrame();
 			}

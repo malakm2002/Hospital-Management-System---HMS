@@ -9,7 +9,7 @@ public class Connector {
     public boolean connected = true;
 	private final static String sqlUrl = "jdbc:mysql://localhost:3306/hms";
 	public Connection connection;
-	public void Connect(String dbUserName, String cs) {
+	public void Connect(String dbUserName, String dbPassword) {
 
         // loading the driver class
         try {
@@ -21,7 +21,7 @@ public class Connector {
 
         // connecting to the database
         try {
-            connection = DriverManager.getConnection(sqlUrl, dbUserName, cs);
+            connection = DriverManager.getConnection(sqlUrl, dbUserName, dbPassword);
             System.out.println("Connecting...");
 
         } catch (SQLException error) {

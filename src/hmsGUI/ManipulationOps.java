@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import hmsGUI.Insertions.StaffInsertion;
+import hmsGUI.Insertions.NurseInsertion;
 
 
 public class ManipulationOps {
@@ -45,7 +45,7 @@ public class ManipulationOps {
 
          @Override
          public void actionPerformed(ActionEvent e) {
-            StaffInsertion.create();
+            NurseInsertion.create();
          }
       });
       btnInsertNurse.setBounds(22, 32, 141, 23);
@@ -54,7 +54,6 @@ public class ManipulationOps {
       JButton btnInsertJanitor = new JButton("Insert a new Janitor");
       btnInsertJanitor.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            StaffInsertion.create();
 
          }
       });
@@ -64,7 +63,6 @@ public class ManipulationOps {
       JButton btnInsertDoctor = new JButton("Insert a new Doctor");
       btnInsertDoctor.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            StaffInsertion.create();
 
          }
       });
@@ -106,7 +104,7 @@ public class ManipulationOps {
       JButton btnInsertRecord = new JButton("Insert a new Cachier");
       btnInsertRecord.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            StaffInsertion.create();
+            NurseInsertion.create();
 
          }
       });

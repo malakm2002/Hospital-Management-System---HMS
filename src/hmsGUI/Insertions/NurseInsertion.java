@@ -2,14 +2,21 @@ package hmsGUI.Insertions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import com.mysql.cj.conf.PropertyDefinitions.AuthMech;
 import com.toedter.calendar.JDateChooser;
 
-public class StaffInsertion {
+import hmsGUI.LogIn;
+
+public class NurseInsertion {
 	public static void create() {
+
 		JFrame frame = new JFrame("Hospital Management System - Operations");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		try {
@@ -35,8 +42,6 @@ public class StaffInsertion {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-
 
 		JLabel lblFN = new JLabel("First Name*");
 		lblFN.setBounds(10, 11, 96, 14);
@@ -103,55 +108,115 @@ public class StaffInsertion {
 		dateChooser_1.setBounds(360, 73, 124, 20);
 		contentPane.add(dateChooser_1);
 
-		JButton btnOk = new JButton("Add");
-		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					System.out.println("ad: " + dateChooser.getDate().toString());
-					System.out.println("dis: " + dateChooser_1.getDate().toString());
-				} catch (Exception e1) {
-					System.out.print("No date added");
-				}
-
-			}
-		});
-		btnOk.setBounds(250, 150, 89, 23);
-		contentPane.add(btnOk);
-
 		JLabel lblPatientIDN = new JLabel("PatientID");
 		lblPatientIDN.setBounds(10, 100, 49, 14);
 		contentPane.add(lblPatientIDN);
-		
+
 		JLabel lblStaffIDN = new JLabel("Staff ID");
 		lblStaffIDN.setBounds(122, 100, 49, 14);
 		contentPane.add(lblStaffIDN);
-		
+
 		JTextField textFieldpatientIDN = new JTextField();
 		textFieldpatientIDN.setBounds(10, 114, 96, 20);
 		contentPane.add(textFieldpatientIDN);
 		textFieldpatientIDN.setColumns(10);
-		
+
 		JTextField textFieldStaffIDN = new JTextField();
 		textFieldStaffIDN.setColumns(10);
 		textFieldStaffIDN.setBounds(120, 114, 96, 20);
 		contentPane.add(textFieldStaffIDN);
 
-		JLabel lblJobType = new JLabel("Job Type*");
+		JLabel lblJobType = new JLabel("Job Type");
 		lblJobType.setBounds(10, 140, 96, 14);
 		contentPane.add(lblJobType);
-		
+
 		JTextField textFieldJobType = new JTextField();
 		textFieldJobType.setBounds(10, 155, 96, 20);
 		contentPane.add(textFieldJobType);
 		textFieldJobType.setColumns(10);
-		
+
 		JLabel lblSupervisorID = new JLabel("Supervisor ID*");
 		lblSupervisorID.setBounds(120, 140, 96, 14);
 		contentPane.add(lblSupervisorID);
-		
+
 		JTextField textFieldSupervisorID = new JTextField();
 		textFieldSupervisorID.setColumns(10);
 		textFieldSupervisorID.setBounds(122, 155, 96, 20);
 		contentPane.add(textFieldSupervisorID);
+
+		JButton btnADD = new JButton("Add");
+		btnADD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String staffID = "";
+					char gender;
+					if (chckbxMale.isSelected()) {
+						gender = 'M';
+					} else {
+						gender = 'F';
+					}
+System.out.println(parseDateTime(dateChooser.getDate()).toString());
+					Statement stmt = LogIn.connection.createStatement();
+				//	ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
+					//		+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
+					//ResultSet res1 = stmt.executeQuery(
+				//			"SELECT staffID from HMS.STAFF WHERE staffID =(SELECT MAX(staffID) FROM STAFF )");
+				//	while (res1.next()) {
+				//		staffID += res1.getString("staffID");
+					}
+					//res = stmt.executeQuery(
+					//		"CALL HMS.InsertRecord('" + textFieldFN.getText() + "','" + textFieldLN.getText() + "','");
+				 catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		btnADD.setBounds(250, 150, 89, 23);
+		contentPane.add(btnADD);
 	}
+	public static LocalDateTime parseDateTime(java.util.Date date){
+		String[] parts = date.toString().split(" ");
+		String[] time = parts[3].split(":");
+		return LocalDateTime.of(Integer.parseInt(parts[parts.length-1]), parseMonth(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1]), Integer.parseInt(time[2]));
+		//return null;
+	}
+	public static Month parseMonth(String month){
+	if(month.equalsIgnoreCase("jan")){
+		return Month.JANUARY;
+	}
+	if(month.equalsIgnoreCase("feb")){
+		return Month.FEBRUARY;
+	}
+	if(month.equalsIgnoreCase("mar")){
+		return Month.MARCH;
+	}
+	if(month.equalsIgnoreCase("apr")){
+		return Month.APRIL;
+	}
+	if(month.equalsIgnoreCase("may")){
+		return Month.MAY;
+	}
+	if(month.equalsIgnoreCase("jun")){
+		return Month.JUNE;
+	}
+	if(month.equalsIgnoreCase("jul")){
+		return Month.JULY;
+	}
+	if(month.equalsIgnoreCase("aug")){
+		return Month.AUGUST;
+	}
+	if(month.equalsIgnoreCase("sep")){
+		return Month.SEPTEMBER;
+	}
+	if(month.equalsIgnoreCase("oct")){
+		return Month.OCTOBER;
+	}
+	if(month.equalsIgnoreCase("nov")){
+		return Month.NOVEMBER;
+	}
+	if(month.equalsIgnoreCase("dec")){
+		return Month.DECEMBER;
+	}
+	return null;}
 }
