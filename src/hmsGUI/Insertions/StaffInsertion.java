@@ -101,7 +101,7 @@ public class StaffInsertion {
 		dateChooser_1.setBounds(360, 73, 124, 20);
 		contentPane.add(dateChooser_1);
 
-		JButton btnOk = new JButton("ok");
+		JButton btnOk = new JButton("Add");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
