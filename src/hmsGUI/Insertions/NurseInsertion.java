@@ -139,20 +139,20 @@ public class NurseInsertion {
 					} else {
 						gender = 'F';
 					}
-					//LocalDateTime addmissionLocalDateTime = LocalDateTime.parse(dateChooser.getDate().toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-					//LocalDateTime dischargDateTime = LocalDateTime.parse(dateChooser_1.getDate().toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+					System.out.print(parseDateTime(dateChooser.getDate()));
 					Statement stmt = LogIn.connection.createStatement();
-					ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
+					/*ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
 					ResultSet res1 = stmt.executeQuery(
 							"SELECT staffID from HMS.STAFF WHERE staffID =(SELECT MAX(staffID) FROM STAFF )");
 					while (res1.next()) {
-					//	staffID += res1.getString("staffID");
+						staffID += res1.getString("staffID");
 					}
 					//in the following query: 
-					res = stmt.executeQuery("CALL HMS.InsertRecord('" + textFieldFN.getText() + "','"
+					ResultSet res = stmt.executeQuery("CALL HMS.InsertRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
 							+ textFieldPhone.getText() + ",NULL,NULL"+ "," + "NULL" + ",2");
+							*/
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -163,13 +163,9 @@ public class NurseInsertion {
 		contentPane.add(btnADD);
 	}
 
-	public static LocalDateTime parseDateTime(java.util.Date date) {
-		Date dt = new Date();
-		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+	public static String parseDateTime(java.util.Date date) {
 		String[] parts = date.toString().split(" ");
-		return LocalDateTime.parse(parts[5]+"-"+parseMonth(parts[1])+"-"+parts[2] + " " + parts[3], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-		// return null;
+		return parts[5] +"-"+ parseMonth(parts[1]) + "-" + parts[2] +" " + parts[3] ;
 	}
 
 	public static String parseMonth(String month) {
