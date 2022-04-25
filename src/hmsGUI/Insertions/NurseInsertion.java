@@ -139,9 +139,8 @@ public class NurseInsertion {
 					} else {
 						gender = 'F';
 					}
-					System.out.print(parseDateTime(dateChooser.getDate()));
 					Statement stmt = LogIn.connection.createStatement();
-					/*ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
+					ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
 					ResultSet res1 = stmt.executeQuery(
 							"SELECT staffID from HMS.STAFF WHERE staffID =(SELECT MAX(staffID) FROM STAFF )");
@@ -149,10 +148,14 @@ public class NurseInsertion {
 						staffID += res1.getString("staffID");
 					}
 					//in the following query: 
-					ResultSet res = stmt.executeQuery("CALL HMS.InsertRecord('" + textFieldFN.getText() + "','"
+					
+					res = stmt.executeQuery("CALL HMS.InsertRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
-							+ textFieldPhone.getText() + ",NULL,NULL"+ "," + "NULL" + ",2");
-							*/
+							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+Types.NULL+","+staffID+")");
+							
+					System.out.println("CALL HMS.InsertRecord('" + textFieldFN.getText() + "','"
+							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
+							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+Types.NULL+","+staffID+")");		
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
