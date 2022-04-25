@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -108,24 +110,6 @@ public class NurseInsertion {
 		dateChooser_1.setBounds(360, 73, 124, 20);
 		contentPane.add(dateChooser_1);
 
-		JLabel lblPatientIDN = new JLabel("PatientID");
-		lblPatientIDN.setBounds(10, 100, 49, 14);
-		contentPane.add(lblPatientIDN);
-
-		JLabel lblStaffIDN = new JLabel("Staff ID");
-		lblStaffIDN.setBounds(122, 100, 49, 14);
-		contentPane.add(lblStaffIDN);
-
-		JTextField textFieldpatientIDN = new JTextField();
-		textFieldpatientIDN.setBounds(10, 114, 96, 20);
-		contentPane.add(textFieldpatientIDN);
-		textFieldpatientIDN.setColumns(10);
-
-		JTextField textFieldStaffIDN = new JTextField();
-		textFieldStaffIDN.setColumns(10);
-		textFieldStaffIDN.setBounds(120, 114, 96, 20);
-		contentPane.add(textFieldStaffIDN);
-
 		JLabel lblJobType = new JLabel("Job Type");
 		lblJobType.setBounds(10, 140, 96, 14);
 		contentPane.add(lblJobType);
@@ -155,18 +139,21 @@ public class NurseInsertion {
 					} else {
 						gender = 'F';
 					}
-System.out.println(parseDateTime(dateChooser.getDate()).toString());
+					//LocalDateTime addmissionLocalDateTime = LocalDateTime.parse(dateChooser.getDate().toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+					//LocalDateTime dischargDateTime = LocalDateTime.parse(dateChooser_1.getDate().toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 					Statement stmt = LogIn.connection.createStatement();
-				//	ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
-					//		+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
-					//ResultSet res1 = stmt.executeQuery(
-				//			"SELECT staffID from HMS.STAFF WHERE staffID =(SELECT MAX(staffID) FROM STAFF )");
-				//	while (res1.next()) {
-				//		staffID += res1.getString("staffID");
+					ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
+							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
+					ResultSet res1 = stmt.executeQuery(
+							"SELECT staffID from HMS.STAFF WHERE staffID =(SELECT MAX(staffID) FROM STAFF )");
+					while (res1.next()) {
+					//	staffID += res1.getString("staffID");
 					}
-					//res = stmt.executeQuery(
-					//		"CALL HMS.InsertRecord('" + textFieldFN.getText() + "','" + textFieldLN.getText() + "','");
-				 catch (SQLException e1) {
+					//in the following query: 
+					res = stmt.executeQuery("CALL HMS.InsertRecord('" + textFieldFN.getText() + "','"
+							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
+							+ textFieldPhone.getText() + ",NULL,NULL"+ "," + "NULL" + ",2");
+				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
 
@@ -175,48 +162,53 @@ System.out.println(parseDateTime(dateChooser.getDate()).toString());
 		btnADD.setBounds(250, 150, 89, 23);
 		contentPane.add(btnADD);
 	}
-	public static LocalDateTime parseDateTime(java.util.Date date){
+
+	public static LocalDateTime parseDateTime(java.util.Date date) {
+		Date dt = new Date();
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 		String[] parts = date.toString().split(" ");
-		String[] time = parts[3].split(":");
-		return LocalDateTime.of(Integer.parseInt(parts[parts.length-1]), parseMonth(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1]), Integer.parseInt(time[2]));
-		//return null;
+		return LocalDateTime.parse(parts[5]+"-"+parseMonth(parts[1])+"-"+parts[2] + " " + parts[3], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		// return null;
 	}
-	public static Month parseMonth(String month){
-	if(month.equalsIgnoreCase("jan")){
-		return Month.JANUARY;
+
+	public static String parseMonth(String month) {
+		if (month.equalsIgnoreCase("jan")) {
+			return "01";
+		}
+		if (month.equalsIgnoreCase("feb")) {
+			return "02";
+		}
+		if (month.equalsIgnoreCase("mar")) {
+			return "03";
+		}
+		if (month.equalsIgnoreCase("apr")) {
+			return "04";
+		}
+		if (month.equalsIgnoreCase("may")) {
+			return "05";
+		}
+		if (month.equalsIgnoreCase("jun")) {
+			return "06";
+		}
+		if (month.equalsIgnoreCase("jul")) {
+			return "07";
+		}
+		if (month.equalsIgnoreCase("aug")) {
+			return "08";
+		}
+		if (month.equalsIgnoreCase("sep")) {
+			return "09";
+		}
+		if (month.equalsIgnoreCase("oct")) {
+			return "10";
+		}
+		if (month.equalsIgnoreCase("nov")) {
+			return "11";
+		}
+		if (month.equalsIgnoreCase("dec")) {
+			return "12";
+		}
+		return null;
 	}
-	if(month.equalsIgnoreCase("feb")){
-		return Month.FEBRUARY;
-	}
-	if(month.equalsIgnoreCase("mar")){
-		return Month.MARCH;
-	}
-	if(month.equalsIgnoreCase("apr")){
-		return Month.APRIL;
-	}
-	if(month.equalsIgnoreCase("may")){
-		return Month.MAY;
-	}
-	if(month.equalsIgnoreCase("jun")){
-		return Month.JUNE;
-	}
-	if(month.equalsIgnoreCase("jul")){
-		return Month.JULY;
-	}
-	if(month.equalsIgnoreCase("aug")){
-		return Month.AUGUST;
-	}
-	if(month.equalsIgnoreCase("sep")){
-		return Month.SEPTEMBER;
-	}
-	if(month.equalsIgnoreCase("oct")){
-		return Month.OCTOBER;
-	}
-	if(month.equalsIgnoreCase("nov")){
-		return Month.NOVEMBER;
-	}
-	if(month.equalsIgnoreCase("dec")){
-		return Month.DECEMBER;
-	}
-	return null;}
 }
