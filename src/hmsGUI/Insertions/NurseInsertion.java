@@ -3,15 +3,10 @@ package hmsGUI.Insertions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import com.mysql.cj.conf.PropertyDefinitions.AuthMech;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;

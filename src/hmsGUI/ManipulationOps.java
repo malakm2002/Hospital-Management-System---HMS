@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import hmsGUI.Deletions.Delete;
 import hmsGUI.Insertions.NurseInsertion;
 
 
@@ -101,7 +102,7 @@ public class ManipulationOps {
       btnInsertMedicine.setBounds(22, 236, 141, 23);
       contentPane.add(btnInsertMedicine);
 
-      JButton btnInsertRecord = new JButton("Insert a new Cachier");
+      JButton btnInsertRecord = new JButton("Insert a new Cashier");
       btnInsertRecord.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             NurseInsertion.create();
@@ -111,12 +112,22 @@ public class ManipulationOps {
       btnInsertRecord.setBounds(22, 270, 141, 23);
       contentPane.add(btnInsertRecord);
 
-      JButton btnInsertTreatment = new JButton("Insert a new Treat");
+      JButton btnInsertTreatment = new JButton("Insert a new Treatment record");
       btnInsertTreatment.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
          }
       });
       btnInsertTreatment.setBounds(22, 304, 141, 23);
       contentPane.add(btnInsertTreatment);
+
+      JButton btnDelete = new JButton("Delete a value");
+      btnInsertTreatment.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           Delete.create();
+        }
+      });
+      btnDelete.setBounds(222, 32, 141, 23);
+      contentPane.add(btnDelete);
    }
 }

@@ -66,8 +66,9 @@ public class LogIn {
 		logInbtn.addActionListener(l -> {
 			Connector connector = new Connector();
 			//connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
-			connector.Connect("root", "m@L@K2002");
-			if(connector.connected){
+			//connector.Connect("root", "m@L@K2002");
+            connector.Connect("root", "HalfmylifeSQL3!");
+            if(connector.connected){
 				LogIn.connection = connector.connection;
 				frame.dispose();
 				ManipulationOps.createFrame();
