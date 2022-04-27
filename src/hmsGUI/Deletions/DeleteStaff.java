@@ -115,8 +115,8 @@ public class DeleteStaff {
 
         } catch (SQLException error) {
             error.printStackTrace();
-        }
-    }
+        }}
+    
 
     static String getStaffTable(String table) {
         String result = "";
