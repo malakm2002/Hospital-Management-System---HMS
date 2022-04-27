@@ -110,6 +110,7 @@ public class DeleteStaff {
                     break;
             }
 
+            
             statement.setString(1, ID);
 
             statement.execute();
