@@ -1,9 +1,9 @@
 USE HMS;
 
 -- POPULATE STAFF
-INSERT INTO STAFF VALUES -- supervisors
-	(1, 'Dean', null),
-    (2, 'Adminstrator', 1);
+-- INSERT INTO STAFF VALUES -- supervisors
+-- 	(1, 'Dean', null),
+--     (2, 'Adminstrator', 1);
 
 CALL InsertNurse('Cardiac nurse', 1);
 CALL InsertNurse('Anesthetist nurse', 1);

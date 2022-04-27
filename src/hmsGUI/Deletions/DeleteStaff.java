@@ -2,31 +2,21 @@ package hmsGUI.Deletions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import hmsGUI.Connector;
 import hmsGUI.LogIn;
 
-public class Delete {
-    public static void main(String[] args) {
-        Connector connector = new Connector();
-        // connector.Connect(usernameField.getText(),
-        // String.valueOf(passwordField.getPassword()));
-        // connector.Connect("root", "m@L@K2002");
-        connector.Connect("root", "HalfmylifeSQL3!");
-        if (connector.connected) {
-            LogIn.connection = connector.connection;
-        }
-        create();
-    }
-
+public class DeleteStaff {
     public static void create() {
         String[] options = { "Nurse", "Janitor", "Cashier", "Doctor" };
 
@@ -67,12 +57,18 @@ public class Delete {
 
         JButton jButton = new JButton("Delete");
         jButton.setBounds(20, 110, 90, 20);
+        jButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete(idInput.getText(), comboBox.getSelectedItem().toString());
+            }
+        });
 
         JTextArea jTextArea = new JTextArea(getStaffTable(comboBox.getSelectedItem().toString()));
         jTextArea.setLineWrap(true);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
 
-        scrollPane.setBounds(180, 20, 150, 150);
+        scrollPane.setBounds(180, 20, 250, 150);
 
         comboBox.addActionListener(new ActionListener() {
             @Override
@@ -81,16 +77,47 @@ public class Delete {
             }
         });
 
-        frame.add(jButton);
-        frame.add(comboBox);
-        frame.add(label);
-        frame.add(idInput);
-        frame.add(scrollPane);
+        contentPane.add(jButton);
+        contentPane.add(comboBox);
+        contentPane.add(label);
+        contentPane.add(idInput);
+        contentPane.add(scrollPane);
 
         frame.setLayout(null);
-        frame.setSize(365, 250);
+        frame.setSize(465, 250);
         frame.setVisible(true);
 
+    }
+
+    static void delete(String ID, String type) {
+        try {
+            CallableStatement statement;
+            switch (type) {
+                case "Nurse":
+                    statement = LogIn.connection.prepareCall("{call DeleteNurse(?)}");
+                    break;
+                case "Janitor":
+                    statement = LogIn.connection.prepareCall("{call DeleteJanitor(?)}");
+                    break;
+                case "Cashier":
+                    statement = LogIn.connection.prepareCall("{call DeleteCashier(?)}");
+                    break;
+                case "Doctor":
+                    statement = LogIn.connection.prepareCall("{call DeleteDoctor(?)}");
+                    break;
+                default:
+                    statement = LogIn.connection.prepareCall("{call DeleteNurse(?)}");
+                    break;
+            }
+
+            statement.setString(1, ID);
+
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
     }
 
     static String getStaffTable(String table) {
@@ -115,23 +142,43 @@ public class Delete {
 
             Statement tableStmt = LogIn.connection.createStatement();
             Statement staffStmt = LogIn.connection.createStatement();
+            Statement recordStmt = LogIn.connection.createStatement();
 
             ResultSet tableRes = tableStmt.executeQuery("SELECT * FROM " + table);
             ResultSet staffRes = staffStmt.executeQuery("SELECT * FROM STAFF");
+            ResultSet recordRes = recordStmt.executeQuery("SELECT * FROM RECORD");
 
             TreeMap<String, String> staffMap = new TreeMap<>();
             while (staffRes.next()) {
                 staffMap.put(staffRes.getString("staffID"), staffRes.getString("jobType"));
             }
 
-            Map<String, String> tableMap = new TreeMap<>();
-            String temp;
-            while (tableRes.next()) {
-                temp = tableRes.getString(accessID);
-                tableMap.put(temp, staffMap.get(temp));
+            TreeMap<String, String> recordMap = new TreeMap<>();
+            while (recordRes.next()) {
+                recordMap.put(recordRes.getString("staffID"),
+                        recordRes.getString("firstName") + " " + recordRes.getString("lastName"));
             }
-            for (Map.Entry<String, String> entry : tableMap.entrySet()) {
-                result += entry.getKey() + ", " + entry.getValue() + "\n";
+
+            Map<String, List<String>> tableMap = new TreeMap<>();
+            String temp;
+
+            while (tableRes.next()) {
+                ArrayList<String> tempList = new ArrayList<>();
+
+                temp = tableRes.getString(accessID);
+                tempList.add(temp);
+
+                tempList.add(staffMap.get(temp));
+
+                tempList.add(recordMap.get(temp));
+                tableMap.put(temp, tempList);
+            }
+
+            for (Map.Entry<String, List<String>> entry : tableMap.entrySet()) {
+                for (String i : entry.getValue())
+                    result += i + ", ";
+
+                result += "\n";
             }
 
             tableStmt.close();
@@ -146,4 +193,5 @@ public class Delete {
 
         return result;
     }
+
 }
