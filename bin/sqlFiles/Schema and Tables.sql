@@ -4,7 +4,7 @@ USE HMS;
 
 CREATE TABLE IF NOT EXISTS STAFF (
 	staffID INT NOT NULL AUTO_INCREMENT,
-    jobType VARCHAR(20) NOT NULL,
+    jobType VARCHAR(50) NOT NULL,
     supervisorID INT,
     PRIMARY KEY (staffID),
     FOREIGN KEY (supervisorID) REFERENCES STAFF (staffID) ON DELETE CASCADE
@@ -80,11 +80,10 @@ CREATE TABLE IF NOT EXISTS RECORD (
     phoneNumber INT,
     admissionDate DATETIME,
     dischargeDate DATETIME,
-    patientID INT  ,
-    staffID INT ,
+    isPatient BOOLEAN  ,
+    isStaff BOOLEAN ,
     PRIMARY KEY (recordID),
-    FOREIGN KEY (patientID) REFERENCES PATIENT (patientID) ON DELETE CASCADE,
-    FOREIGN KEY (staffID) REFERENCES STAFF (staffID) ON DELETE CASCADE
+    
 );
 
 CREATE TABLE IF NOT EXISTS TREAT (

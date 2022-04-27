@@ -107,11 +107,11 @@ CREATE PROCEDURE InsertRecord (
     IN phoneNumber INT,
     IN admissionDate DATETIME,
      IN dischargeDate DATETIME,
-     IN patientID INT,
-     IN staffID INT
+     IN isPatient BOOLEAN,
+     IN isStaff BOOLEAN
 )
 BEGIN
-	INSERT INTO RECORD VALUES (LAST_INSERT_ID(),firstName,lastName,gender,address,phoneNumber,admissionDate,dischargeDate,patientID,staffID);
+	INSERT INTO RECORD VALUES (LAST_INSERT_ID(),firstName,lastName,gender,address,phoneNumber,admissionDate,dischargeDate,isPatient,isStaff);
 END %%
 DELIMITER ;
 
