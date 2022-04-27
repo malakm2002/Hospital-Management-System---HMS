@@ -14,19 +14,7 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.Connector;
 import hmsGUI.LogIn;
 
-public class Delete {
-    public static void main(String[] args) {
-        Connector connector = new Connector();
-        // connector.Connect(usernameField.getText(),
-        // String.valueOf(passwordField.getPassword()));
-        // connector.Connect("root", "m@L@K2002");
-        connector.Connect("root", "HalfmylifeSQL3!");
-        if (connector.connected) {
-            LogIn.connection = connector.connection;
-        }
-        create();
-    }
-
+public class DeleteStaff {
     public static void create() {
         String[] options = { "Nurse", "Janitor", "Cashier", "Doctor" };
 
@@ -37,7 +25,7 @@ public class Delete {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
@@ -48,7 +36,8 @@ public class Delete {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
+        frame.setSize(365, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
         JPanel contentPane = new JPanel();
@@ -58,42 +47,39 @@ public class Delete {
 
         JComboBox<String> comboBox = new JComboBox<>(options);
         comboBox.setBounds(20, 20, 140, 20);
+        contentPane.add(comboBox);
 
         JLabel label = new JLabel("Enter ID:");
         label.setBounds(20, 50, 140, 20);
+        contentPane.add(label);
 
         JTextField idInput = new JTextField();
         idInput.setBounds(20, 70, 140, 20);
+        contentPane.add(idInput);
 
         JButton jButton = new JButton("Delete");
         jButton.setBounds(20, 110, 90, 20);
+        contentPane.add(jButton);
 
-        JTextArea jTextArea = new JTextArea(getStaffTable(comboBox.getSelectedItem().toString()));
-        jTextArea.setLineWrap(true);
-        JScrollPane scrollPane = new JScrollPane(jTextArea);
+        JTextArea tAreaCurrentTable = new JTextArea(getStaffTable(comboBox.getSelectedItem().toString()));
+        tAreaCurrentTable.setLineWrap(true);
+        contentPane.add(tAreaCurrentTable);
+
+        JScrollPane scrollPane = new JScrollPane(tAreaCurrentTable);
 
         scrollPane.setBounds(180, 20, 150, 150);
-
+        contentPane.add(scrollPane);
         comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jTextArea.setText(getStaffTable(comboBox.getSelectedItem().toString()));
+                tAreaCurrentTable.setText(getStaffTable(comboBox.getSelectedItem().toString()));
             }
         });
 
-        frame.add(jButton);
-        frame.add(comboBox);
-        frame.add(label);
-        frame.add(idInput);
-        frame.add(scrollPane);
-
-        frame.setLayout(null);
-        frame.setSize(365, 250);
-        frame.setVisible(true);
 
     }
 
-    static String getStaffTable(String table) {
+    public static String getStaffTable(String table) {
         String result = "";
         String accessID = "nurseID";
 
