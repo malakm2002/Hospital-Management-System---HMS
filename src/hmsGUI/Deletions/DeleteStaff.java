@@ -25,19 +25,19 @@ public class DeleteStaff {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(365, 250);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        frame.setSize(365, 250);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
         JPanel contentPane = new JPanel();

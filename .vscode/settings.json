@@ -5,6 +5,11 @@
         "lib/**/*.jar",
         "c:\\Users\\Malak\\Desktop\\AUB\\Spring 2022\\CMPS 277\\projectDemo\\mysql-connector-java-8.0.28.jar",
         "c:\\Users\\Malak\\Desktop\\AUB\\Spring 2022\\CMPS 277\\projectDemo\\jcalendar-1.4.jar",
-        "c:\\Users\\Malak\\Desktop\\AUB\\Spring 2022\\CMPS 277\\projectDemo\\jdatepicker-1.3.2.jar"
+        "c:\\Users\\Malak\\Desktop\\AUB\\Spring 2022\\CMPS 277\\projectDemo\\jdatepicker-1.3.2.jar",
+        "c:\\Users\\Samer Abdul Baki\\VSCode Projects\\jcalendar-1.4.jar",
+        "c:\\Users\\Samer Abdul Baki\\VSCode Projects\\jgoodies-common-1.2.0.jar",
+        "c:\\Users\\Samer Abdul Baki\\VSCode Projects\\jgoodies-looks-2.4.1.jar",
+        "c:\\Users\\Samer Abdul Baki\\VSCode Projects\\junit-4.6.jar",
+        "src/hmsGUI/mysql-connector-java-8.0.28.jar"
     ]
 }
