@@ -79,7 +79,43 @@ public class DeleteStaff {
 
     }
 
+<<<<<<< HEAD
     public static String getStaffTable(String table) {
+=======
+    static void delete(String ID, String type) {
+        try {
+            CallableStatement statement;
+            switch (type) {
+                case "Nurse":
+                    statement = LogIn.connection.prepareCall("{call DeleteNurse(?)}");
+                    break;
+                case "Janitor":
+                    statement = LogIn.connection.prepareCall("{call DeleteJanitor(?)}");
+                    break;
+                case "Cashier":
+                    statement = LogIn.connection.prepareCall("{call DeleteCashier(?)}");
+                    break;
+                case "Doctor":
+                    statement = LogIn.connection.prepareCall("{call DeleteDoctor(?)}");
+                    break;
+                default:
+                    statement = LogIn.connection.prepareCall("{call DeleteNurse(?)}");
+                    break;
+            }
+
+            
+            statement.setString(1, ID);
+
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
+    }
+
+    static String getStaffTable(String table) {
+>>>>>>> ecdbcd925a623f6f01b25edeae0997b1d33efb89
         String result = "";
         String accessID = "nurseID";
 
