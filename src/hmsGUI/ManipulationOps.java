@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
 import hmsGUI.Insertions.NurseInsertion;
 
@@ -119,14 +120,24 @@ public class ManipulationOps {
         btnInsertTreatment.setBounds(22, 304, 141, 23);
         contentPane.add(btnInsertTreatment);
 
-        JButton btnDelete = new JButton("Delete a value");
-        btnDelete.addActionListener(new ActionListener() {
+        JButton btnDeleteOtherStaff = new JButton("Delete staff");
+        btnDeleteOtherStaff.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DeleteStaff.create();
             }
         });
-        btnDelete.setBounds(222, 32, 141, 23);
-        contentPane.add(btnDelete);
+        btnDeleteOtherStaff.setBounds(222, 32, 141, 23);
+        contentPane.add(btnDeleteOtherStaff);
+
+        JButton btnDeleteOther = new JButton("Delete other values");
+        btnDeleteOther.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DeleteOther.create();
+            }
+        });
+        btnDeleteOther.setBounds(222, 66, 141, 23);
+        contentPane.add(btnDeleteOther);
     }
 }

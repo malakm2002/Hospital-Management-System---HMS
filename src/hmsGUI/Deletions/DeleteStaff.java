@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.mysql.cj.jdbc.CallableStatement;
 
-import hmsGUI.Connector;
 import hmsGUI.LogIn;
 
 public class DeleteStaff {
@@ -67,6 +66,14 @@ public class DeleteStaff {
         tAreaCurrentTable.setLineWrap(true);
         contentPane.add(tAreaCurrentTable);
 
+        jButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete(idInput.getText(), comboBox.getSelectedItem().toString());
+                tAreaCurrentTable.setText(getStaffTable(comboBox.getSelectedItem().toString()));
+            }
+        });
+
         JScrollPane scrollPane = new JScrollPane(tAreaCurrentTable);
 
         scrollPane.setBounds(180, 20, 150, 150);
@@ -77,7 +84,6 @@ public class DeleteStaff {
                 tAreaCurrentTable.setText(getStaffTable(comboBox.getSelectedItem().toString()));
             }
         });
-
 
     }
 
@@ -102,7 +108,6 @@ public class DeleteStaff {
                     break;
             }
 
-            
             statement.setString(1, ID);
 
             statement.execute();
