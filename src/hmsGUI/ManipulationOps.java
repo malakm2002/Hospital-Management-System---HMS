@@ -14,6 +14,7 @@ import hmsGUI.Deletions.DeleteStaff;
 import hmsGUI.Insertions.NurseInsertion;
 import hmsGUI.Queries.DoctorsFromSpecialty;
 import hmsGUI.Queries.PatientOnDay;
+import hmsGUI.Queries.PatientsOfADoctor;
 
 public class ManipulationOps {
     public static void createFrame() {
@@ -161,5 +162,15 @@ public class ManipulationOps {
         });
         btnDoctorsFromSPecialty.setBounds(222, 134, 141, 23);
         contentPane.add(btnDoctorsFromSPecialty);
+
+        JButton btnPatientsFromDoctor = new JButton("View doctor patients");
+        btnPatientsFromDoctor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PatientsOfADoctor.create();
+            }
+        });
+        btnPatientsFromDoctor.setBounds(222, 168, 141, 23);
+        contentPane.add(btnPatientsFromDoctor);
     }
 }

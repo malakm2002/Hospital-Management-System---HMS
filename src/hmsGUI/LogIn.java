@@ -67,7 +67,8 @@ public class LogIn {
 			Connector connector = new Connector();
 			//connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
 			//connector.Connect("root", "m@L@K2002");
-            connector.Connect("root", "HalfmylifeSQL3!");
+            //connector.Connect("root", "HalfmylifeSQL3!");
+			connector.Connect("root", "Ivyleague123");
             if(connector.connected){
 				LogIn.connection = connector.connection;
 				frame.dispose();
