@@ -1,0 +1,161 @@
+package hmsGUI.Queries;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JDateChooser;
+
+import hmsGUI.LogIn;
+
+public class PatientOnDay {
+
+    public static void create() {
+        JFrame frame = new JFrame("Hospital Management System - Operations");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        frame.pack();
+        frame.setLocationByPlatform(true);
+        frame.setVisible(true);
+        frame.setResizable(true);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBounds(100, 100, 600, 260);
+        JPanel contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        frame.setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JLabel lblAdmission = new JLabel("Admission Date");
+        lblAdmission.setBounds(20, 20, 111, 14);
+        contentPane.add(lblAdmission);
+
+        JDateChooser dateChooser = new JDateChooser();
+        dateChooser.setBounds(120, 20, 124, 20);
+        contentPane.add(dateChooser);
+
+        JButton button = new JButton("Find");
+        button.setBounds(20, 50, 100, 30);
+        contentPane.add(button);
+
+        JTextArea textArea = new JTextArea();
+        textArea.setLineWrap(true);
+        contentPane.add(textArea);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (dateChooser.getDate() == null) {
+                    textArea.setText("Please choose a date");
+                } else {
+                    textArea.setText(getPatients(parseDate(dateChooser.getDate())));
+                }
+            }
+        });
+
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        scrollPane.setBounds(260, 20, 300, 180);
+        contentPane.add(scrollPane);
+    }
+
+    static String getPatients(String date) {
+        String result = "";
+
+        try {
+            Statement staffStmt = LogIn.connection.createStatement();
+
+            ResultSet staffRes = staffStmt.executeQuery("SELECT * FROM PATIENTRECORD");
+
+            String temp;
+            while (staffRes.next()) {
+                temp = staffRes.getString("admissionDate");
+                String[] tempList = temp.split(" ");
+                if (tempList[0].compareTo(date) == 0) {
+                    result += staffRes.getString("recordID") + ", ";
+                    result += staffRes.getString("firstName") + " " + staffRes.getString("lastName") + ", ";
+                    result += staffRes.getString("gender") + ", ";
+                    result += staffRes.getString("address") + ", ";
+                    result += staffRes.getString("phoneNumber") + ", ";
+                    result += "discharge date: " + staffRes.getString("dischargeDate") + "\n";
+                }
+            }
+
+            staffStmt.close();
+
+            staffRes.close();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+            result = e1.getMessage();
+        }
+
+        return result;
+    }
+
+    public static String parseDate(java.util.Date date) {
+        String[] parts = date.toString().split(" ");
+        return parts[5] + "-" + parseMonth(parts[1]) + "-" + parts[2];
+    }
+
+    public static String parseMonth(String month) {
+        if (month.equalsIgnoreCase("jan")) {
+            return "01";
+        }
+        if (month.equalsIgnoreCase("feb")) {
+            return "02";
+        }
+        if (month.equalsIgnoreCase("mar")) {
+            return "03";
+        }
+        if (month.equalsIgnoreCase("apr")) {
+            return "04";
+        }
+        if (month.equalsIgnoreCase("may")) {
+            return "05";
+        }
+        if (month.equalsIgnoreCase("jun")) {
+            return "06";
+        }
+        if (month.equalsIgnoreCase("jul")) {
+            return "07";
+        }
+        if (month.equalsIgnoreCase("aug")) {
+            return "08";
+        }
+        if (month.equalsIgnoreCase("sep")) {
+            return "09";
+        }
+        if (month.equalsIgnoreCase("oct")) {
+            return "10";
+        }
+        if (month.equalsIgnoreCase("nov")) {
+            return "11";
+        }
+        if (month.equalsIgnoreCase("dec")) {
+            return "12";
+        }
+        return null;
+    }
+}

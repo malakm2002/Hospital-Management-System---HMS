@@ -15,7 +15,7 @@ import hmsGUI.LogIn;
 
 public class DeleteOther {
     public static void create() {
-        String[] options = { "Room", "Bill", "Patient", "Medicine", "Record" };
+        String[] options = { "Room", "Bill", "Patient", "Medicine", };
 
         JFrame frame = new JFrame("Hospital Management System - Operations");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -101,9 +101,6 @@ public class DeleteOther {
                 case "Medicine":
                     statement = (CallableStatement) LogIn.connection.prepareCall("{call DeleteMedicine(?)}");
                     break;
-                case "Record":
-                    statement = (CallableStatement) LogIn.connection.prepareCall("{call DeleteRecord(?)}");
-                    break;
                 default:
                     statement = (CallableStatement) LogIn.connection.prepareCall("{call DeleteRoom(?)}");
                     break;
@@ -159,19 +156,6 @@ public class DeleteOther {
                         result += tableRes.getString("medicineName") + ", ";
                         result += tableRes.getString("quantity") + ", ";
                         result += "$" + tableRes.getString("price") + "\n";
-                    }
-                    break;
-                case "Record":
-                    while (tableRes.next()) {
-                        result += tableRes.getString("recordID") + ", ";
-                        result += tableRes.getString("firstName") + " " + tableRes.getString("lastName") + ", ";
-                        result += tableRes.getString("gender") + ", ";
-                        result += tableRes.getString("address") + ", ";
-                        result += tableRes.getString("phoneNumber") + ", ";
-                        result += tableRes.getString("admissionDate") + ", ";
-                        result += tableRes.getString("dischargeDate") + ", ";
-                        result += "patient: " + tableRes.getString("patientID") + ", ";
-                        result += "staff: " + tableRes.getString("staffID") + "\n";
                     }
                     break;
             }

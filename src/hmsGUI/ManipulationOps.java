@@ -12,6 +12,8 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
 import hmsGUI.Insertions.NurseInsertion;
+import hmsGUI.Queries.DoctorsFromSpecialty;
+import hmsGUI.Queries.PatientOnDay;
 
 public class ManipulationOps {
     public static void createFrame() {
@@ -139,5 +141,25 @@ public class ManipulationOps {
         });
         btnDeleteOther.setBounds(222, 66, 141, 23);
         contentPane.add(btnDeleteOther);
+
+        JButton btnPatientOnDay = new JButton("View patient on date");
+        btnPatientOnDay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PatientOnDay.create();
+            }
+        });
+        btnPatientOnDay.setBounds(222, 100, 141, 23);
+        contentPane.add(btnPatientOnDay);
+
+        JButton btnDoctorsFromSPecialty = new JButton("View specialty doctors");
+        btnDoctorsFromSPecialty.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DoctorsFromSpecialty.create();
+            }
+        });
+        btnDoctorsFromSPecialty.setBounds(222, 134, 141, 23);
+        contentPane.add(btnDoctorsFromSPecialty);
     }
 }
