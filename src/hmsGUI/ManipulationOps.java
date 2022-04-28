@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
 import hmsGUI.Insertions.NurseInsertion;
-import hmsGUI.Queries.CreatePatientRecord;
+import hmsGUI.Queries.CheckPatientExistence;
 import hmsGUI.Queries.DoctorsFromSpecialty;
 import hmsGUI.Queries.MedicationsOfAPatient;
 import hmsGUI.Queries.PatientOnDay;
@@ -196,11 +196,11 @@ public class ManipulationOps {
         btnMedsFromPatient.setBounds(222, 236, 141, 23);
         contentPane.add(btnMedsFromPatient);
 
-        JButton btnPatientRecord = new JButton("Create Patient Record");
+        JButton btnPatientRecord = new JButton("Check patient existence");
         btnPatientRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreatePatientRecord.create();
+                CheckPatientExistence.create();
             }
         });
         btnPatientRecord.setBounds(222, 270, 141, 23);

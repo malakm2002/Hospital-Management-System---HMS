@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import hmsGUI.LogIn;
 
-public class MedicationsOfAPatient {
+public class CheckPatientExistence {
     public static void create() {
         JFrame frame = new JFrame("Hospital Management System - Operations");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -97,15 +97,14 @@ public class MedicationsOfAPatient {
             Statement medicineStmt = LogIn.connection.createStatement();
 
             ResultSet medicineRes = medicineStmt.executeQuery(
-                    "SELECT MEDICINE.medicineID, MEDICINE.medicineName, MEDICINE.price, MEDICINE.quantity FROM PATIENTRECORD JOIN TREAT JOIN MEDICINE WHERE PATIENTRECORD.firstName = '"
-                            + firstName + "' AND PATIENTRECORD.lastName = '" + lastName
-                            + "' AND PATIENTRECORD.patientID = TREAT.patientID AND TREAT.medicineID = MEDICINE.medicineID");
+                    "SELECT firstName, lastName, phoneNumber, address, admissionDate, dischargeDate FROM PATIENTRECORD WHERE PATIENTRECORD.firstName = '" + firstName + "' AND PATIENTRECORD.lastName = '" + lastName + "'");
 
             while (medicineRes.next()) {
-                result += medicineRes.getString("medicineID") + ", ";
-                result += medicineRes.getString("medicineName") + ", ";
-                result += medicineRes.getString("quantity") + ", ";
-                result += "$" + medicineRes.getString("price") + "\n";
+                result += medicineRes.getString("firstName") + medicineRes.getString("lastName") + ", ";
+                result += medicineRes.getString("phoneNumber") + ", ";
+                result += medicineRes.getString("address") + "\n";
+                result += "    Admission date: " + medicineRes.getString("admissionDate") + "\n";
+                result += "    Discharge date: " + medicineRes.getString("dischargeDate") + "\n\n";
             }
 
             medicineStmt.close();

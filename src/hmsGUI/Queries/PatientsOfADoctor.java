@@ -48,7 +48,7 @@ public class PatientsOfADoctor {
         frame.setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblDoctorFirstName = new JLabel("Doctor First Name:");
+        JLabel lblDoctorFirstName = new JLabel("Doctor's First Name:");
         lblDoctorFirstName.setBounds(20, 20, 111, 14);
         contentPane.add(lblDoctorFirstName);
 
@@ -56,7 +56,7 @@ public class PatientsOfADoctor {
         input1.setBounds(20, 50, 124, 20);
         contentPane.add(input1);
 
-        JLabel lblDoctorLastName = new JLabel("Doctor Last Name:");
+        JLabel lblDoctorLastName = new JLabel("Doctor's Last Name:");
         lblDoctorLastName.setBounds(20, 80, 111, 14);
         contentPane.add(lblDoctorLastName);
 
@@ -94,22 +94,27 @@ public class PatientsOfADoctor {
         contentPane.add(scrollPane);
     }
 
-    static String getPatients(String FirstName, String LastName) {
+    static String getPatients(String firstName, String lastName) {
         String result = "";
 
         try {
-            Statement PatientStmt = LogIn.connection.createStatement();
+            Statement patientStmt = LogIn.connection.createStatement();
 
-            ResultSet PatientRes = PatientStmt.executeQuery("SELECT PatientRecord.firstName FROM StaffRecord INNER JOIN PatientRecord ON StaffRecord.staffID = PatientRecord.staffID WHERE StaffRecord.firstName ='" + FirstName +  "'AND StaffRecord.lastName ='" + LastName +"'");
+            ResultSet patientRes = patientStmt.executeQuery("SELECT patientRecord.firstName, patientRecord.lastName, patientRecord.gender, patientRecord.address, patientRecord.phoneNumber, patientRecord.admissionDate, patientRecord.dischargeDate FROM staffRecord INNER JOIN patientRecord ON staffRecord.staffID = patientRecord.staffID WHERE staffRecord.firstName = '" + firstName + "' AND staffRecord.lastName = '" + lastName + "'");
 
-            while (PatientRes.next()) {
-                    result += PatientRes.getString("firstName" + "\n");
-                
+            while (patientRes.next()) {
+                result += patientRes.getString("firstName") + ", ";
+                result += patientRes.getString("lastName") + ", ";
+                result += patientRes.getString("gender") + ", ";
+                result += patientRes.getString("address") + ", ";
+                result += patientRes.getString("phoneNumber") + ", ";
+                result += patientRes.getString("admissionDate") + ", ";
+                result += patientRes.getString("dischargeDate") + "\n";
             }
 
-            PatientStmt.close();
+            patientStmt.close();
 
-            PatientRes.close();
+            patientRes.close();
         } catch (SQLException e1) {
             e1.printStackTrace();
             result = e1.getMessage();

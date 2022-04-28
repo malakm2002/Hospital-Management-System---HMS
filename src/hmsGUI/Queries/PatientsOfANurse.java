@@ -19,6 +19,8 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.LogIn;
 
 public class PatientsOfANurse {
+    /* SELECT patientRecord.firstName FROM staffRecord INNER JOIN patientRecord ON staffRecord.staffID = patientRecord.staffID
+	WHERE staffRecord.firstName = 'Ali' AND staffRecord.lastName = 'Hamad' */
     public static void create() {
         JFrame frame = new JFrame("Hospital Management System - Operations");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -46,17 +48,17 @@ public class PatientsOfANurse {
         frame.setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNurseFirstName = new JLabel("Nurse First Name:");
-        lblNurseFirstName.setBounds(20, 20, 111, 14);
-        contentPane.add(lblNurseFirstName);
+        JLabel lblDoctorFirstName = new JLabel("Nurse's First Name:");
+        lblDoctorFirstName.setBounds(20, 20, 111, 14);
+        contentPane.add(lblDoctorFirstName);
 
         JTextField input1 = new JTextField();
         input1.setBounds(20, 50, 124, 20);
         contentPane.add(input1);
 
-        JLabel lblNurseLastName = new JLabel("Nurse Last Name:");
-        lblNurseLastName.setBounds(20, 80, 111, 14);
-        contentPane.add(lblNurseLastName);
+        JLabel lblDoctorLastName = new JLabel("Nurse's Last Name:");
+        lblDoctorLastName.setBounds(20, 80, 111, 14);
+        contentPane.add(lblDoctorLastName);
 
         JTextField input2 = new JTextField();
         input2.setBounds(20, 110, 124, 20);
@@ -92,22 +94,27 @@ public class PatientsOfANurse {
         contentPane.add(scrollPane);
     }
 
-    static String getPatients(String FirstName, String LastName) {
+    static String getPatients(String firstName, String lastName) {
         String result = "";
 
         try {
-            Statement MedsStmt = LogIn.connection.createStatement();
+            Statement patientStmt = LogIn.connection.createStatement();
 
-            ResultSet PatientRes = MedsStmt.executeQuery("");
+            ResultSet patientRes = patientStmt.executeQuery("SELECT patientRecord.firstName, patientRecord.lastName, patientRecord.gender, patientRecord.address, patientRecord.phoneNumber, patientRecord.admissionDate, patientRecord.dischargeDate FROM staffRecord INNER JOIN patientRecord ON staffRecord.staffID = patientRecord.staffID WHERE staffRecord.firstName = '" + firstName + "' AND staffRecord.lastName = '" + lastName + "'");
 
-            while (PatientRes.next()) {
-                    result += PatientRes.getString("firstName" + "\n");
-                
+            while (patientRes.next()) {
+                result += patientRes.getString("firstName") + ", ";
+                result += patientRes.getString("lastName") + ", ";
+                result += patientRes.getString("gender") + ", ";
+                result += patientRes.getString("address") + ", ";
+                result += patientRes.getString("phoneNumber") + ", ";
+                result += patientRes.getString("admissionDate") + ", ";
+                result += patientRes.getString("dischargeDate") + "\n";
             }
 
-            MedsStmt.close();
+            patientStmt.close();
 
-            PatientRes.close();
+            patientRes.close();
         } catch (SQLException e1) {
             e1.printStackTrace();
             result = e1.getMessage();
