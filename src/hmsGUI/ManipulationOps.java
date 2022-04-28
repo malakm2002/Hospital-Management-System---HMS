@@ -12,9 +12,12 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
 import hmsGUI.Insertions.NurseInsertion;
+import hmsGUI.Queries.CreatePatientRecord;
 import hmsGUI.Queries.DoctorsFromSpecialty;
+import hmsGUI.Queries.MedicationsOfAPatient;
 import hmsGUI.Queries.PatientOnDay;
 import hmsGUI.Queries.PatientsOfADoctor;
+import hmsGUI.Queries.PatientsOfANurse;
 
 public class ManipulationOps {
     public static void createFrame() {
@@ -172,5 +175,35 @@ public class ManipulationOps {
         });
         btnPatientsFromDoctor.setBounds(222, 168, 141, 23);
         contentPane.add(btnPatientsFromDoctor);
+
+        JButton btnPatientsFromNurse = new JButton("View nurse patients");
+        btnPatientsFromNurse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PatientsOfANurse.create();
+            }
+        });
+        btnPatientsFromNurse.setBounds(222, 202, 141, 23);
+        contentPane.add(btnPatientsFromNurse);
+
+        JButton btnMedsFromPatient = new JButton("View patient medications");
+        btnMedsFromPatient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MedicationsOfAPatient.create();
+            }
+        });
+        btnMedsFromPatient.setBounds(222, 236, 141, 23);
+        contentPane.add(btnMedsFromPatient);
+
+        JButton btnPatientRecord = new JButton("Create Patient Record");
+        btnPatientRecord.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreatePatientRecord.create();
+            }
+        });
+        btnPatientRecord.setBounds(222, 270, 141, 23);
+        contentPane.add(btnPatientRecord);
     }
 }
