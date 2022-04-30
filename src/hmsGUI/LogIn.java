@@ -65,24 +65,18 @@ public class LogIn {
 		frame.getContentPane().add(logInbtn);
 		logInbtn.addActionListener(l -> {
 			Connector connector = new Connector();
-			//connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
-<<<<<<< HEAD
-			connector.Connect("root", "m@L@K2002");
-            //connector.Connect("root", "HalfmylifeSQL3!");
-=======
-			//connector.Connect("root", "m@L@K2002");
-            connector.Connect("root", "HalfmylifeSQL3!");
-			//connector.Connect("root", "Ivyleague123");
->>>>>>> bccdfa0a1639d9ee51542d0a4786b48830e29d92
-            if(connector.connected){
+			// connector.Connect(usernameField.getText(),
+			// String.valueOf(passwordField.getPassword()));
+			connector.Connect("root", "okay");
+			// connector.Connect("root", "HalfmylifeSQL3!");
+			if (connector.connected) {
 				LogIn.connection = connector.connection;
 				frame.dispose();
 				ManipulationOps.createFrame();
-			}
-			else{
+			} else {
 				ErrorFrame.Create();
 			}
-			
+
 		});
 
 	}
