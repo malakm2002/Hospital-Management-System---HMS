@@ -1,5 +1,3 @@
-USE HMS;
-
 DROP Procedure IF EXISTS InsertNurse;
 DELIMITER %%
 CREATE PROCEDURE InsertNurse (
@@ -97,9 +95,25 @@ BEGIN
 END %%
 DELIMITER ;
 
-DROP Procedure IF EXISTS InsertRecord;
+DROP Procedure IF EXISTS InsertStaffRecord;
 DELIMITER %%
-CREATE PROCEDURE InsertRecord (
+CREATE PROCEDURE InsertStaffRecord (
+	IN firstName VARCHAR(20),
+	IN lastName VARCHAR(20),
+    IN gender CHAR,
+	IN address VARCHAR(30),
+    IN phoneNumber INT,
+    IN startDate DATETIME,
+     IN endDate DATETIME,
+     IN staffID INT)
+BEGIN
+	INSERT INTO STAFFRECORD VALUES (LAST_INSERT_ID(),firstName,lastName,gender,address,phoneNumber,startDate,endDate,staffID);
+END %%
+DELIMITER ;
+
+DROP Procedure IF EXISTS InsertPatientRecord;
+DELIMITER %%
+CREATE PROCEDURE InsertPatientRecord (
 	IN firstName VARCHAR(20),
 	IN lastName VARCHAR(20),
     IN gender CHAR,
@@ -107,11 +121,10 @@ CREATE PROCEDURE InsertRecord (
     IN phoneNumber INT,
     IN admissionDate DATETIME,
      IN dischargeDate DATETIME,
-     IN isPatient BOOLEAN,
-     IN isStaff BOOLEAN
-)
+     IN patientID INT,
+     IN staffID INT)
 BEGIN
-	INSERT INTO RECORD VALUES (LAST_INSERT_ID(),firstName,lastName,gender,address,phoneNumber,admissionDate,dischargeDate,isPatient,isStaff);
+	INSERT INTO PATIENTRECORD VALUES (LAST_INSERT_ID(),firstName,lastName,gender,address,phoneNumber,admissionDate,dischargeDate,patientID, staffID);
 END %%
 DELIMITER ;
 
