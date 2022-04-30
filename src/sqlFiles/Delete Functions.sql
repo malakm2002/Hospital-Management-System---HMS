@@ -3,48 +3,61 @@ USE HMS;
 DROP Procedure IF EXISTS DeleteNurse;
 DELIMITER %%
 CREATE PROCEDURE DeleteNurse (
-	ID INT
+	ID INT, 
+    FN VARCHAR(20),
+    LN VARCHAR(20)
 )
 BEGIN
 	DELETE FROM NURSE WHERE nurseID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-    DELETE FROM RECORD WHERE isStaff = true AND isPatient=false;
+    DELETE FROM staffRecord WHERE isStaff = true AND isPatient=false AND staffID=ID AND firstName = FN AND lastName=LN;
+
 END %%
 DELIMITER ;
 
 DROP Procedure IF EXISTS DeleteJanitor;
 DELIMITER %%
 CREATE PROCEDURE DeleteJanitor (
-	ID INT
+	ID INT, 
+    FN VARCHAR(20),
+    LN VARCHAR(20)
 )
 BEGIN
 	DELETE FROM JANITOR WHERE janitorID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-    DELETE FROM RECORD WHERE isStaff = true AND isPatient=false;
+    DELETE FROM staffRecord WHERE isStaff = true AND isPatient=false AND staffID=ID AND firstName = FN AND lastName=LN;
+
 END %%
 DELIMITER ;
 
 DROP Procedure IF EXISTS DeleteCashier;
 DELIMITER %%
 CREATE PROCEDURE DeleteCashier (
-	ID INT
+	ID INT, 
+    FN VARCHAR(20),
+    LN VARCHAR(20)
 )
 BEGIN
 	DELETE FROM CASHIER WHERE cashierID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-    DELETE FROM RECORD WHERE isStaff = true AND isPatient=false;
+    DELETE FROM staffRecord WHERE isStaff = true AND isPatient=false AND staffID=ID AND firstName = FN AND lastName=LN;
+
 END %%
 DELIMITER ;
+
 
 DROP Procedure IF EXISTS DeleteDoctor;
 DELIMITER %%
 CREATE PROCEDURE DeleteDoctor (
-	ID INT
+	ID INT, 
+    FN VARCHAR(20),
+    LN VARCHAR(20)
 )
 BEGIN
 	DELETE FROM DOCTOR WHERE doctorID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-    DELETE FROM RECORD WHERE isStaff = true AND isPatient=false;
+    DELETE FROM staffRecord WHERE isStaff = true AND isPatient=false AND staffID=ID AND firstName = FN AND lastName=LN;
+
 END %%
 DELIMITER ;
 

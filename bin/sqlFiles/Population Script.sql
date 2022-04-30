@@ -69,13 +69,13 @@ INSERT INTO MEDICINE (medicineName, price, quantity) VALUES
     ('Aspirin', 3, 47); -- 6
 
 -- POPULATE RECORD
-INSERT INTO RECORD (firstName, lastName, gender, address, phoneNumber, admissionDate, dischargeDate, patientID, staffID) VALUES
-	('Charles', 'Dickens', 'M', 'London', 08774655, '2022-04-10 11:23:14', '2022-06-11 11:17:69', 2, 1), -- 1
-    ('Tala', 'Mohsen', 'F', 'Ras Beirut', 03445945, '2022-06-12 09:16:17', '2022-08-11 15:54:25', 2, 1), -- 2
-    ('Zeina', 'Breish', 'F', 'Achrafieh', 01337465, '2022-02-24 08:11:29', '2022-03-11 18:26:26', 2, 1), -- 3
-    ('Charbel', 'Manara', 'M', 'Aley', 05987758, '2022-02-02 06:57:34', '2022-04-11 14:35:87', 2, 1), -- 4
-    ('Jay', 'Z', 'M', 'USA', 01232487, '2022-05-03 08:34:55', '2022-04-11 03:59:13', 2, 1), -- 5
-    ('Manar', 'Ghobeiri', 'F', 'Baakline', 25667465, '2021-09-30 06:23:55', '2021-10-4 05:44:19', 1, 8); -- 6
+INSERT INTO RECORD (firstName, lastName, gender, address, phoneNumber, admissionDate, dischargeDate, isPatient, isStaff) VALUES
+	('Charles', 'Dickens', 'M', 'London', 08774655, '2022-04-10 11:23:14', '2022-06-11 12:17:59', true,false), -- 1
+    ('Tala', 'Mohsen', 'F', 'Ras Beirut', 03445945, '2022-06-12 09:16:17', '2022-08-11 15:54:25', true,false), -- 2
+    ('Zeina', 'Breish', 'F', 'Achrafieh', 01337465, '2022-02-24 08:11:29', '2022-03-11 18:26:26', true, false), -- 3
+    ('Charbel', 'Manara', 'M', 'Aley', 05987758, '2022-02-02 06:57:34', '2022-04-11 14:35:45', false,true), -- 4
+    ('Jay', 'Z', 'M', 'USA', 01232487, '2022-05-03 08:34:55', '2022-04-11 03:59:13', false,true), -- 5
+    ('Manar', 'Ghobeiri', 'F', 'Baakline', 25667465, '2021-09-30 06:23:55', '2021-10-4 05:44:19', false,true); -- 6
 
 -- POPULATE TREAT
 INSERT INTO TREAT VALUES 

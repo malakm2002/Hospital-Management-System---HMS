@@ -141,16 +141,12 @@ public class NurseInsertion {
 							"SELECT staffID from HMS.STAFF WHERE staffID =(SELECT MAX(staffID) FROM STAFF )");
 					while (res1.next()) {
 						staffID += res1.getString("staffID");
-					}
-					//in the following query: 
-					
-					res = stmt.executeQuery("CALL HMS.InsertRecord('" + textFieldFN.getText() + "','"
+					}					
+					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
-							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+Types.NULL+","+staffID+")");
+							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+staffID+")");
 							
-					System.out.println("CALL HMS.InsertRecord('" + textFieldFN.getText() + "','"
-							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
-							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+Types.NULL+","+staffID+")");		
+					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

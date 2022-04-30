@@ -64,8 +64,6 @@ public class DeleteStaff {
 
         JTextArea tAreaCurrentTable = new JTextArea(getStaffTable(comboBox.getSelectedItem().toString()));
         tAreaCurrentTable.setLineWrap(true);
-        contentPane.add(tAreaCurrentTable);
-
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,6 +71,8 @@ public class DeleteStaff {
                 tAreaCurrentTable.setText(getStaffTable(comboBox.getSelectedItem().toString()));
             }
         });
+        contentPane.add(tAreaCurrentTable);
+
 
         JScrollPane scrollPane = new JScrollPane(tAreaCurrentTable);
 
