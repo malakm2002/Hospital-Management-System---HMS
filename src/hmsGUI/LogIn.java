@@ -73,11 +73,10 @@ public class LogIn {
 				LogIn.connection = connector.connection;
 				frame.dispose();
 				ManipulationOps.createFrame();
-			}
-			else{
+			} else {
 				ErrorFrame.Create();
 			}
-			
+
 		});
 
 	}
