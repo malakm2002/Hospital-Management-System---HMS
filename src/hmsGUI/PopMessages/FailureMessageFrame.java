@@ -9,7 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class SuccessMessageFrame {
+
+public class FailureMessageFrame {
     public static void create(){
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,7 +21,7 @@ public class SuccessMessageFrame {
 		contentPane.setLayout(null);
         frame.setVisible(true);
 		
-		JLabel lblAddedSuccesfully = new JLabel("Operation is done Successfully !");
+		JLabel lblAddedSuccesfully = new JLabel("Operation Failed!");
 		lblAddedSuccesfully.setBounds(42, 60, 134, 19);
 		contentPane.add(lblAddedSuccesfully);
 		

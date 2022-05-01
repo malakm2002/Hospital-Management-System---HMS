@@ -1,11 +1,12 @@
 package hmsGUI.Insertions;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -15,7 +16,8 @@ import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
 import hmsGUI.helpers.lastStaffID;
 
-public class NurseInsertion {
+public class JanitorInsertion {
+    
 	public static void create() {
 
 		JFrame frame = new JFrame("Hospital Management System - Operations");
@@ -30,7 +32,7 @@ public class NurseInsertion {
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
 		frame.setResizable(true);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -93,9 +95,10 @@ public class NurseInsertion {
 		contentPane.add(textFieldPhone);
 		textFieldPhone.setColumns(10);
 
-		JLabel lblstartDate = new JLabel("start Date*");
-		lblstartDate.setBounds(260, 40, 111, 14);
-		contentPane.add(lblstartDate);
+		JLabel lblAdmission = new JLabel("Start Date*");
+		lblAdmission.setBounds(260, 40, 111, 14);
+		contentPane.add(lblAdmission);
+		
 
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(360, 37, 124, 20);
@@ -124,23 +127,20 @@ public class NurseInsertion {
 		btnADD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					genderChecker gChecker = new genderChecker(chckbxMale, chckbxFemale);
-					char gender = gChecker.getGender();
+					genderChecker gendercChecker = new genderChecker(chckbxMale, chckbxFemale);
 					Statement stmt = LogIn.connection.createStatement();
-					ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
+					ResultSet res = stmt.executeQuery("CALL hms.InsertJanitor('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
-					lastStaffID staffID = new lastStaffID();			
+					lastStaffID lstIDS = new lastStaffID();					
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
-							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
-							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"',"+Types.NULL+","+staffID.getlastSID()+")");
+							+ textFieldLN.getText() + "','" + gendercChecker.getGender() + "','" + textFieldAddress.getText() + "',"
+							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"',"+Types.NULL+","+lstIDS.getlastSID()+")");
 					SuccessMessageFrame.create();
 					frame.setVisible(false);	
 	
 					
 				} catch (Exception e1) {
-					FailureMessageFrame.create();				
-
-				}
+FailureMessageFrame.create();				}
 
 			}
 		});

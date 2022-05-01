@@ -1,5 +1,4 @@
 package hmsGUI.Insertions;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -11,13 +10,12 @@ import java.sql.*;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
+import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
 import hmsGUI.helpers.lastStaffID;
-
-public class JanitorInsertions {
-    
-	public static void create() {
+public class DoctorInsertion {
+    public static void create() {
 
 		JFrame frame = new JFrame("Hospital Management System - Operations");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -31,7 +29,7 @@ public class JanitorInsertions {
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
 		frame.setResizable(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -39,7 +37,7 @@ public class JanitorInsertions {
 		}
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 600, 260);
+		frame.setBounds(100, 100, 600, 300);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
@@ -94,25 +92,25 @@ public class JanitorInsertions {
 		contentPane.add(textFieldPhone);
 		textFieldPhone.setColumns(10);
 
-		JLabel lblAdmission = new JLabel("Admission Date*");
-		lblAdmission.setBounds(260, 40, 111, 14);
-		contentPane.add(lblAdmission);
-
-		JLabel lblDischarge = new JLabel("Discharge Date");
-		lblDischarge.setBounds(260, 73, 89, 14);
-		contentPane.add(lblDischarge);
+		JLabel lblstartDate = new JLabel("start Date*");
+		lblstartDate.setBounds(260, 40, 111, 14);
+		contentPane.add(lblstartDate);
 
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(360, 37, 124, 20);
 		contentPane.add(dateChooser);
 
-		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(360, 73, 124, 20);
-		contentPane.add(dateChooser_1);
 
 		JLabel lblJobType = new JLabel("Job Type");
 		lblJobType.setBounds(10, 140, 96, 14);
 		contentPane.add(lblJobType);
+        JLabel lblSpecialty = new JLabel("Specialty");
+		lblSpecialty.setBounds(10, 180, 96, 14);
+		contentPane.add(lblSpecialty);
+        JTextField textFieldSpecialty = new JTextField();
+		textFieldSpecialty.setBounds(10, 195, 96, 20);
+		contentPane.add(textFieldSpecialty);
+		textFieldSpecialty.setColumns(10);
 
 		JTextField textFieldJobType = new JTextField();
 		textFieldJobType.setBounds(10, 155, 96, 20);
@@ -132,25 +130,27 @@ public class JanitorInsertions {
 		btnADD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					genderChecker gendercChecker = new genderChecker(chckbxMale, chckbxFemale);
+					genderChecker gChecker = new genderChecker(chckbxMale, chckbxFemale);
+					char gender = gChecker.getGender();
 					Statement stmt = LogIn.connection.createStatement();
-					ResultSet res = stmt.executeQuery("CALL hms.InsertJanitor('" + textFieldJobType.getText() + "',"
+					ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
-					lastStaffID lstIDS = new lastStaffID();					
+					lastStaffID staffID = new lastStaffID();			
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
-							+ textFieldLN.getText() + "','" + gendercChecker.getGender() + "','" + textFieldAddress.getText() + "',"
-							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+lstIDS.getlastSID()+")");
+							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
+							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"',"+Types.NULL+","+staffID.getlastSID()+")");
 					SuccessMessageFrame.create();
 					frame.setVisible(false);	
 	
 					
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				} catch (Exception e1) {
+					FailureMessageFrame.create();				
+
 				}
 
 			}
 		});
-		btnADD.setBounds(250, 150, 89, 23);
+		btnADD.setBounds(270, 150, 89, 23);
 		contentPane.add(btnADD);
 	}
 

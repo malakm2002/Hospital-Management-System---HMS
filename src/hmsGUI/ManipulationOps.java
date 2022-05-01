@@ -11,7 +11,8 @@ import javax.swing.border.EmptyBorder;
 
 import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
-import hmsGUI.Insertions.JanitorInsertions;
+import hmsGUI.Insertions.DoctorInsertion;
+import hmsGUI.Insertions.JanitorInsertion;
 import hmsGUI.Insertions.NurseInsertion;
 import hmsGUI.Queries.CheckPatientExistence;
 import hmsGUI.Queries.DoctorsFromSpecialty;
@@ -56,30 +57,31 @@ public class ManipulationOps {
                 NurseInsertion.create();
             }
         });
-        btnInsertNurse.setBounds(22, 32, 141, 23);
+        btnInsertNurse.setBounds(22, 32, 165, 23);
         contentPane.add(btnInsertNurse);
 
         JButton btnInsertJanitor = new JButton("Insert a new Janitor");
         btnInsertJanitor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    JanitorInsertions.create();                    
+                    JanitorInsertion.create();                    
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
 
             }
         });
-        btnInsertJanitor.setBounds(22, 66, 141, 23);
+        btnInsertJanitor.setBounds(22, 66, 165, 23);
         contentPane.add(btnInsertJanitor);
 
         JButton btnInsertDoctor = new JButton("Insert a new Doctor");
         btnInsertDoctor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                DoctorInsertion.create();
 
             }
         });
-        btnInsertDoctor.setBounds(22, 100, 141, 23);
+        btnInsertDoctor.setBounds(22, 100, 165, 23);
         contentPane.add(btnInsertDoctor);
 
         JButton btnInsertRoom = new JButton("Insert a new Room");
@@ -87,7 +89,7 @@ public class ManipulationOps {
             public void actionPerformed(ActionEvent e) {
             }
         });
-        btnInsertRoom.setBounds(22, 134, 141, 23);
+        btnInsertRoom.setBounds(22, 134, 165, 23);
         contentPane.add(btnInsertRoom);
 
         JButton btnInsertBill = new JButton("Insert a new Bill");
@@ -95,7 +97,7 @@ public class ManipulationOps {
             public void actionPerformed(ActionEvent e) {
             }
         });
-        btnInsertBill.setBounds(22, 168, 141, 23);
+        btnInsertBill.setBounds(22, 168, 165, 23);
         contentPane.add(btnInsertBill);
 
         JButton btnInsertPatient = new JButton("Insert a new Patient");
@@ -103,7 +105,7 @@ public class ManipulationOps {
             public void actionPerformed(ActionEvent e) {
             }
         });
-        btnInsertPatient.setBounds(22, 202, 141, 23);
+        btnInsertPatient.setBounds(22, 202, 165, 23);
         contentPane.add(btnInsertPatient);
 
         JButton btnInsertMedicine = new JButton("Insert a new Medicine");
@@ -111,7 +113,7 @@ public class ManipulationOps {
             public void actionPerformed(ActionEvent e) {
             }
         });
-        btnInsertMedicine.setBounds(22, 236, 141, 23);
+        btnInsertMedicine.setBounds(22, 236, 165, 23);
         contentPane.add(btnInsertMedicine);
 
         JButton btnInsertRecord = new JButton("Insert a new Cashier");
@@ -121,15 +123,15 @@ public class ManipulationOps {
 
             }
         });
-        btnInsertRecord.setBounds(22, 270, 141, 23);
+        btnInsertRecord.setBounds(22, 270, 165, 23);
         contentPane.add(btnInsertRecord);
 
-        JButton btnInsertTreatment = new JButton("Insert a new Treatment record");
+        JButton btnInsertTreatment = new JButton("Insert a new Treatment");
         btnInsertTreatment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             }
         });
-        btnInsertTreatment.setBounds(22, 304, 141, 23);
+        btnInsertTreatment.setBounds(22, 304, 165, 23);
         contentPane.add(btnInsertTreatment);
 
         JButton btnDeleteOtherStaff = new JButton("Delete staff");
@@ -139,7 +141,7 @@ public class ManipulationOps {
                 DeleteStaff.create();
             }
         });
-        btnDeleteOtherStaff.setBounds(222, 32, 141, 23);
+        btnDeleteOtherStaff.setBounds(222, 32, 165, 23);
         contentPane.add(btnDeleteOtherStaff);
 
         JButton btnDeleteOther = new JButton("Delete other values");
@@ -149,7 +151,7 @@ public class ManipulationOps {
                 DeleteOther.create();
             }
         });
-        btnDeleteOther.setBounds(222, 66, 141, 23);
+        btnDeleteOther.setBounds(222, 66, 165, 23);
         contentPane.add(btnDeleteOther);
 
         JButton btnPatientOnDay = new JButton("View patient on date");
@@ -159,7 +161,7 @@ public class ManipulationOps {
                 PatientOnDay.create();
             }
         });
-        btnPatientOnDay.setBounds(222, 100, 141, 23);
+        btnPatientOnDay.setBounds(222, 100, 165, 23);
         contentPane.add(btnPatientOnDay);
 
         JButton btnDoctorsFromSPecialty = new JButton("View specialty doctors");
@@ -169,7 +171,7 @@ public class ManipulationOps {
                 DoctorsFromSpecialty.create();
             }
         });
-        btnDoctorsFromSPecialty.setBounds(222, 134, 141, 23);
+        btnDoctorsFromSPecialty.setBounds(222, 134, 165, 23);
         contentPane.add(btnDoctorsFromSPecialty);
 
         JButton btnPatientsFromDoctor = new JButton("View doctor patients");
@@ -179,7 +181,7 @@ public class ManipulationOps {
                 PatientsOfADoctor.create();
             }
         });
-        btnPatientsFromDoctor.setBounds(222, 168, 141, 23);
+        btnPatientsFromDoctor.setBounds(222, 168, 165, 23);
         contentPane.add(btnPatientsFromDoctor);
 
         JButton btnPatientsFromNurse = new JButton("View nurse patients");
@@ -189,7 +191,7 @@ public class ManipulationOps {
                 PatientsOfANurse.create();
             }
         });
-        btnPatientsFromNurse.setBounds(222, 202, 141, 23);
+        btnPatientsFromNurse.setBounds(222, 202, 165, 23);
         contentPane.add(btnPatientsFromNurse);
 
         JButton btnMedsFromPatient = new JButton("View patient medications");
@@ -199,7 +201,7 @@ public class ManipulationOps {
                 MedicationsOfAPatient.create();
             }
         });
-        btnMedsFromPatient.setBounds(222, 236, 141, 23);
+        btnMedsFromPatient.setBounds(222, 236, 165, 23);
         contentPane.add(btnMedsFromPatient);
 
         JButton btnPatientRecord = new JButton("Check patient existence");
@@ -209,7 +211,7 @@ public class ManipulationOps {
                 CheckPatientExistence.create();
             }
         });
-        btnPatientRecord.setBounds(222, 270, 141, 23);
+        btnPatientRecord.setBounds(222, 270, 165, 23);
         contentPane.add(btnPatientRecord);
     }
 }
