@@ -28,7 +28,6 @@ import hmsGUI.Queries.PatientsOfADoctor;
 import hmsGUI.Queries.PatientsOfANurse;
 import hmsGUI.Updates.NurseUpdate;
 import hmsGUI.Updates.UpdateNurse;
-import hmsGUI.Updates.UpdateStaff;
 
 public class ManipulationOps {
     public static void createFrame() {
