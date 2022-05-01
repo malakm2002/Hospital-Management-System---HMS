@@ -62,7 +62,11 @@ public class ManipulationOps {
         JButton btnInsertJanitor = new JButton("Insert a new Janitor");
         btnInsertJanitor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JanitorInsertions.create();
+                try {
+                    JanitorInsertions.create();                    
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
 
             }
         });

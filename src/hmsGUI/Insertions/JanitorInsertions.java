@@ -11,6 +11,8 @@ import java.sql.*;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
+import hmsGUI.PopMessages.SuccessMessageFrame;
+import hmsGUI.helpers.genderChecker;
 import hmsGUI.helpers.lastStaffID;
 
 public class JanitorInsertions {
@@ -29,7 +31,7 @@ public class JanitorInsertions {
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
 		frame.setResizable(true);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -130,21 +132,17 @@ public class JanitorInsertions {
 		btnADD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String staffID = "";
-					char gender;
-					if (chckbxMale.isSelected()) {
-						gender = 'M';
-					} else {
-						gender = 'F';
-					}
+					genderChecker gendercChecker = new genderChecker(chckbxMale, chckbxFemale);
 					Statement stmt = LogIn.connection.createStatement();
 					ResultSet res = stmt.executeQuery("CALL hms.InsertJanitor('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
 					lastStaffID lstIDS = new lastStaffID();					
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
-							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
+							+ textFieldLN.getText() + "','" + gendercChecker.getGender() + "','" + textFieldAddress.getText() + "',"
 							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+lstIDS.getlastSID()+")");
-							
+					SuccessMessageFrame.create();
+					frame.setVisible(false);	
+	
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();

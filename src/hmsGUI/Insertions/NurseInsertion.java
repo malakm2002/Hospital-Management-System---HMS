@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
+import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
 import hmsGUI.helpers.lastStaffID;
 
@@ -95,17 +96,10 @@ public class NurseInsertion {
 		lblstartDate.setBounds(260, 40, 111, 14);
 		contentPane.add(lblstartDate);
 
-		JLabel lblEndDate = new JLabel("end Date");
-		lblEndDate.setBounds(260, 73, 89, 14);
-		contentPane.add(lblEndDate);
-
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(360, 37, 124, 20);
 		contentPane.add(dateChooser);
 
-		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(360, 73, 124, 20);
-		contentPane.add(dateChooser_1);
 
 		JLabel lblJobType = new JLabel("Job Type");
 		lblJobType.setBounds(10, 140, 96, 14);
@@ -137,8 +131,10 @@ public class NurseInsertion {
 					lastStaffID staffID = new lastStaffID();			
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
-							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+staffID.getlastSID()+")");
-							
+							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"',"+Types.NULL+","+staffID.getlastSID()+")");
+					SuccessMessageFrame.create();
+					frame.setVisible(false);	
+	
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();

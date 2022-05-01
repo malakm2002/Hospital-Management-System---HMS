@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import hmsGUI.PopMessages.ConnectionErrorFrame;
+
 import javax.swing.JButton;
 
 public class LogIn {
@@ -20,6 +22,7 @@ public class LogIn {
 	private JButton logInbtn;
 	private JPasswordField passwordField;
 
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -32,7 +35,6 @@ public class LogIn {
 			}
 		});
 	}
-
 	public LogIn() {
 		initialize();
 	}
@@ -74,7 +76,7 @@ public class LogIn {
 				frame.dispose();
 				ManipulationOps.createFrame();
 			} else {
-				ErrorFrame.Create();
+				ConnectionErrorFrame.Create();
 			}
 
 		});
