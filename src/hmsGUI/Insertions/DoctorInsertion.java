@@ -133,8 +133,8 @@ public class DoctorInsertion {
 					genderChecker gChecker = new genderChecker(chckbxMale, chckbxFemale);
 					char gender = gChecker.getGender();
 					Statement stmt = LogIn.connection.createStatement();
-					ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
-							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
+					ResultSet res = stmt.executeQuery("CALL hms.InsertDoctor('" + textFieldJobType.getText() + "',"
+							+ Integer.parseInt(textFieldSupervisorID.getText()) + ",'"+textFieldSpecialty.getText()+"')");
 					lastStaffID staffID = new lastStaffID();			
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"

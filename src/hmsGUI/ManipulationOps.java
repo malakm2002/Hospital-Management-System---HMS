@@ -11,9 +11,11 @@ import javax.swing.border.EmptyBorder;
 
 import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
+import hmsGUI.Insertions.BillInsertion;
 import hmsGUI.Insertions.DoctorInsertion;
 import hmsGUI.Insertions.JanitorInsertion;
 import hmsGUI.Insertions.NurseInsertion;
+import hmsGUI.Insertions.RoomInsertion;
 import hmsGUI.Queries.CheckPatientExistence;
 import hmsGUI.Queries.DoctorsFromSpecialty;
 import hmsGUI.Queries.MedicationsOfAPatient;
@@ -87,6 +89,7 @@ public class ManipulationOps {
         JButton btnInsertRoom = new JButton("Insert a new Room");
         btnInsertRoom.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                RoomInsertion.create();
             }
         });
         btnInsertRoom.setBounds(22, 134, 165, 23);
@@ -95,6 +98,7 @@ public class ManipulationOps {
         JButton btnInsertBill = new JButton("Insert a new Bill");
         btnInsertBill.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                BillInsertion.create();
             }
         });
         btnInsertBill.setBounds(22, 168, 165, 23);

@@ -21,7 +21,7 @@ public class SuccessMessageFrame {
         frame.setVisible(true);
 		
 		JLabel lblAddedSuccesfully = new JLabel("Operation is done Successfully !");
-		lblAddedSuccesfully.setBounds(42, 60, 134, 19);
+		lblAddedSuccesfully.setBounds(42, 60, 170, 19);
 		contentPane.add(lblAddedSuccesfully);
 		
 		JButton lblOK = new JButton("Ok");
