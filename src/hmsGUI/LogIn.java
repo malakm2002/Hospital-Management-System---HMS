@@ -2,6 +2,8 @@ package hmsGUI;
 
 import java.awt.EventQueue;
 import java.sql.Connection;
+import java.util.*;
+import java.util.TreeMap;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,15 +16,16 @@ import javax.swing.JButton;
 
 public class LogIn {
 	public static Connection connection;
-
+	
+	
+	
 	private JFrame frame;
 	private JTextField usernameField;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 	private JButton logInbtn;
 	private JPasswordField passwordField;
-
-	
+		
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

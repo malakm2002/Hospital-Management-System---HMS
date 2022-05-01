@@ -31,7 +31,6 @@ public class DeleteStaff {
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
         frame.setResizable(true);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(365, 250);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
