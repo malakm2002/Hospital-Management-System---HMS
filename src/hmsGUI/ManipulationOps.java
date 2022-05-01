@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
 import hmsGUI.Insertions.BillInsertion;
+import hmsGUI.Insertions.CashierInsertion;
 import hmsGUI.Insertions.DoctorInsertion;
 import hmsGUI.Insertions.JanitorInsertion;
 import hmsGUI.Insertions.MedicineInsertion;
@@ -127,7 +128,7 @@ public class ManipulationOps {
         JButton btnInsertRecord = new JButton("Insert a new Cashier");
         btnInsertRecord.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                NurseInsertion.create();
+                 CashierInsertion.create();
 
             }
         });
