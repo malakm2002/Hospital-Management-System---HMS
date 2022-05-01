@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
+import hmsGUI.Insertions.JanitorInsertions;
 import hmsGUI.Insertions.NurseInsertion;
 import hmsGUI.Queries.CheckPatientExistence;
 import hmsGUI.Queries.DoctorsFromSpecialty;
@@ -61,6 +62,7 @@ public class ManipulationOps {
         JButton btnInsertJanitor = new JButton("Insert a new Janitor");
         btnInsertJanitor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                JanitorInsertions.create();
 
             }
         });

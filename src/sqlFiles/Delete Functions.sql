@@ -7,13 +7,8 @@ CREATE PROCEDURE DeleteNurse (
 )
 BEGIN
     DELETE FROM STAFF WHERE staffID = ID;
-<<<<<<< HEAD
-    DELETE FROM staffRecord WHERE isStaff = true AND isPatient=false AND staffID=ID AND firstName = FN AND lastName=LN;
-
-=======
     DELETE FROM NURSE WHERE nurseID = ID;
     DELETE FROM staffRecord WHERE staffID = ID;
->>>>>>> bccdfa0a1639d9ee51542d0a4786b48830e29d92
 END %%
 DELIMITER ;
 
@@ -27,11 +22,7 @@ CREATE PROCEDURE DeleteJanitor (
 BEGIN
 	DELETE FROM JANITOR WHERE janitorID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-<<<<<<< HEAD
-    DELETE FROM staffRecord WHERE isStaff = true AND isPatient=false AND staffID=ID AND firstName = FN AND lastName=LN;
-=======
    DELETE FROM staffRecord WHERE staffID = ID;
->>>>>>> bccdfa0a1639d9ee51542d0a4786b48830e29d92
 
 END %%
 DELIMITER ;
@@ -39,22 +30,12 @@ DELIMITER ;
 DROP Procedure IF EXISTS DeleteCashier;
 DELIMITER %%
 CREATE PROCEDURE DeleteCashier (
-<<<<<<< HEAD
-	ID INT, 
-    FN VARCHAR(20),
-    LN VARCHAR(20)
-=======
 	ID INT   
->>>>>>> bccdfa0a1639d9ee51542d0a4786b48830e29d92
 )
 BEGIN
 	DELETE FROM CASHIER WHERE cashierID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-<<<<<<< HEAD
-    DELETE FROM staffRecord WHERE isStaff = true AND isPatient=false AND staffID=ID AND firstName = FN AND lastName=LN;
-=======
     DELETE FROM staffRecord WHERE staffID=ID;
->>>>>>> bccdfa0a1639d9ee51542d0a4786b48830e29d92
 
 END %%
 DELIMITER ;
@@ -70,11 +51,7 @@ CREATE PROCEDURE DeleteDoctor (
 BEGIN
 	DELETE FROM DOCTOR WHERE doctorID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-<<<<<<< HEAD
-    DELETE FROM staffRecord WHERE isStaff = true AND isPatient=false AND staffID=ID AND firstName = FN AND lastName=LN;
-=======
    DELETE FROM staffRecord WHERE staffID = ID;
->>>>>>> bccdfa0a1639d9ee51542d0a4786b48830e29d92
 
 END %%
 DELIMITER ;

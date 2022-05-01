@@ -11,6 +11,7 @@ import java.sql.*;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
+import hmsGUI.helpers.lastStaffID;
 
 public class JanitorInsertions {
     
@@ -139,14 +140,10 @@ public class JanitorInsertions {
 					Statement stmt = LogIn.connection.createStatement();
 					ResultSet res = stmt.executeQuery("CALL hms.InsertJanitor('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
-					ResultSet res1 = stmt.executeQuery(
-							"SELECT staffID from HMS.STAFF WHERE staffID =(SELECT MAX(staffID) FROM STAFF )");
-					while (res1.next()) {
-						staffID += res1.getString("staffID");
-					}					
+					lastStaffID lstIDS = new lastStaffID();					
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
-							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+staffID+")");
+							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+lstIDS.getlastSID()+")");
 							
 					
 				} catch (SQLException e1) {

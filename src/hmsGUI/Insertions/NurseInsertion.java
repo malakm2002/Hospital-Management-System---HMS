@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
+import hmsGUI.helpers.genderChecker;
+import hmsGUI.helpers.lastStaffID;
 
 public class NurseInsertion {
 	public static void create() {
@@ -89,13 +91,13 @@ public class NurseInsertion {
 		contentPane.add(textFieldPhone);
 		textFieldPhone.setColumns(10);
 
-		JLabel lblAdmission = new JLabel("Admission Date*");
-		lblAdmission.setBounds(260, 40, 111, 14);
-		contentPane.add(lblAdmission);
+		JLabel lblstartDate = new JLabel("start Date*");
+		lblstartDate.setBounds(260, 40, 111, 14);
+		contentPane.add(lblstartDate);
 
-		JLabel lblDischarge = new JLabel("Discharge Date");
-		lblDischarge.setBounds(260, 73, 89, 14);
-		contentPane.add(lblDischarge);
+		JLabel lblEndDate = new JLabel("end Date");
+		lblEndDate.setBounds(260, 73, 89, 14);
+		contentPane.add(lblEndDate);
 
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(360, 37, 124, 20);
@@ -127,24 +129,15 @@ public class NurseInsertion {
 		btnADD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String staffID = "";
-					char gender;
-					if (chckbxMale.isSelected()) {
-						gender = 'M';
-					} else {
-						gender = 'F';
-					}
+					genderChecker gChecker = new genderChecker(chckbxMale, chckbxFemale);
+					char gender = gChecker.getGender();
 					Statement stmt = LogIn.connection.createStatement();
 					ResultSet res = stmt.executeQuery("CALL hms.InsertNurse('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
-					ResultSet res1 = stmt.executeQuery(
-							"SELECT staffID from HMS.STAFF WHERE staffID =(SELECT MAX(staffID) FROM STAFF )");
-					while (res1.next()) {
-						staffID += res1.getString("staffID");
-					}					
+					lastStaffID staffID = new lastStaffID();			
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
-							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+staffID+")");
+							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"','"+parseDateTime(dateChooser_1.getDate())+"',"+staffID.getlastSID()+")");
 							
 					
 				} catch (SQLException e1) {

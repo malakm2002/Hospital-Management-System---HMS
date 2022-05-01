@@ -80,11 +80,9 @@ CREATE TABLE IF NOT EXISTS PatientRecord (
     phoneNumber INT,
     admissionDate DATETIME,
     dischargeDate DATETIME,
-    patientID INT,
-    staffID INT,
+    patientID INT  ,
     PRIMARY KEY (recordID),
-    FOREIGN KEY(patientID) REFERENCES PATIENT(patientID) ON DELETE CASCADE,
-    FOREIGN KEY(staffID) REFERENCES STAFF(staffID) ON DELETE CASCADE
+    FOREIGN KEY(patientID) REFERENCES PATIENT(patientID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS StaffRecord (
@@ -94,13 +92,12 @@ CREATE TABLE IF NOT EXISTS StaffRecord (
     gender CHAR NOT NULL,
     address VARCHAR(30),
     phoneNumber INT,
-    startDate DATETIME,
-    endDate DATETIME,
+    admissionDate DATETIME,
+    dischargeDate DATETIME,
     staffID INT  ,
     PRIMARY KEY (recordID),
     FOREIGN KEY(staffID) REFERENCES STAFF(staffID) ON DELETE CASCADE
 );
-
 CREATE TABLE IF NOT EXISTS TREAT (
 	patientID INT NOT NULL,
     doctorID INT NOT NULL,
