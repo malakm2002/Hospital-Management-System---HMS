@@ -14,7 +14,9 @@ import hmsGUI.Deletions.DeleteStaff;
 import hmsGUI.Insertions.BillInsertion;
 import hmsGUI.Insertions.DoctorInsertion;
 import hmsGUI.Insertions.JanitorInsertion;
+import hmsGUI.Insertions.MedicineInsertion;
 import hmsGUI.Insertions.NurseInsertion;
+import hmsGUI.Insertions.PatientInsertion;
 import hmsGUI.Insertions.RoomInsertion;
 import hmsGUI.Queries.CheckPatientExistence;
 import hmsGUI.Queries.DoctorsFromSpecialty;
@@ -107,6 +109,7 @@ public class ManipulationOps {
         JButton btnInsertPatient = new JButton("Insert a new Patient");
         btnInsertPatient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                PatientInsertion.create();
             }
         });
         btnInsertPatient.setBounds(22, 202, 165, 23);
@@ -115,6 +118,7 @@ public class ManipulationOps {
         JButton btnInsertMedicine = new JButton("Insert a new Medicine");
         btnInsertMedicine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                MedicineInsertion.create();
             }
         });
         btnInsertMedicine.setBounds(22, 236, 165, 23);
