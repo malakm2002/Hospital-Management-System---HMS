@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 
@@ -17,7 +18,7 @@ public class BillInsertion {
      */
     public static void create() {
         // title
-        JFrame frame = new JFrame("Hospital Management System - Operations");
+        JFrame frame = new JFrame("HMS - Bill Insertion");
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
@@ -29,7 +30,7 @@ public class BillInsertion {
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -38,50 +39,51 @@ public class BillInsertion {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 600, 200);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        frame.setBounds(100, 100, 400, 200);
+        
+        JLabel label = new JLabel(ManipulationOps.insertionback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
 
         JLabel lblBillStatus = new JLabel("Bill Status*");
 		lblBillStatus.setBounds(10, 11, 96, 14);
-		contentPane.add(lblBillStatus);
+		frame.add(lblBillStatus);
 
         // input for the bill's status
 		JTextField txtFldstatus = new JTextField();
 		txtFldstatus.setBounds(10, 27, 96, 20);
-		contentPane.add(txtFldstatus);
+		frame.add(txtFldstatus);
 		txtFldstatus.setColumns(10);
 
 		JLabel lblField = new JLabel("Field*");
 		lblField.setBounds(122, 11, 94, 14);
-		contentPane.add(lblField);
+		frame.add(lblField);
 
         // input for the bill's field
 		JTextField txtField = new JTextField();
 		txtField.setColumns(10);
 		txtField.setBounds(120, 27, 96, 20);
-		contentPane.add(txtField);
+		frame.add(txtField);
 
         JLabel lblCharge = new JLabel("Charge*");
 		lblCharge.setBounds(10, 58, 96, 14);
-		contentPane.add(lblCharge);
+		frame.add(lblCharge);
 
         // input for the bill's charge
 		JTextField txtfieldCharge = new JTextField();
 		txtfieldCharge.setColumns(10);
 		txtfieldCharge.setBounds(10, 73, 96, 20);
-		contentPane.add(txtfieldCharge);
+		frame.add(txtfieldCharge);
 
 		JLabel lblCashier = new JLabel("Cashier ID*");
 		lblCashier.setBounds(122, 58, 94, 14);
-		contentPane.add(lblCashier);
+		frame.add(lblCashier);
 
         // input for the responsible cashier's ID
 		JTextField txtFieldCashier = new JTextField();
 		txtFieldCashier.setBounds(120, 73, 96, 20);
-		contentPane.add(txtFieldCashier);
+		frame.add(txtFieldCashier);
 		txtFieldCashier.setColumns(10);
 
         JButton btnADD = new JButton("Add");
@@ -102,7 +104,7 @@ public class BillInsertion {
 
             }
         });
-        btnADD.setBounds(250, 60, 89, 23);
-        contentPane.add(btnADD);
+        btnADD.setBounds(220, 110, 89, 23);
+        frame.add(btnADD);
     }
 }

@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 
@@ -18,7 +19,7 @@ public class MedicineInsertion {
      */
     public static void create() {
         // title
-        JFrame frame = new JFrame("Hospital Management System - Operations");
+        JFrame frame = new JFrame("HMS - Medicine Insertion");
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
@@ -30,7 +31,7 @@ public class MedicineInsertion {
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -39,42 +40,42 @@ public class MedicineInsertion {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 600, 200);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        frame.setBounds(100, 100, 455, 200);
+        JLabel label = new JLabel(ManipulationOps.insertionback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
 
         JLabel lblMedName = new JLabel("Medicine Name*");
         lblMedName.setBounds(10, 11, 96, 14);
-        contentPane.add(lblMedName);
+        frame.add(lblMedName);
 
         // input for the medicine name
         JTextField txtMedName = new JTextField();
         txtMedName.setBounds(10, 27, 96, 20);
-        contentPane.add(txtMedName);
+        frame.add(txtMedName);
         txtMedName.setColumns(10);
 
         JLabel lblMedPrice = new JLabel("Medicine Price*");
         lblMedPrice.setBounds(122, 11, 94, 14);
-        contentPane.add(lblMedPrice);
+        frame.add(lblMedPrice);
 
         // input for the medicine price
         JTextField txtMedPrice = new JTextField();
         txtMedPrice.setColumns(10);
         txtMedPrice.setBounds(120, 27, 96, 20);
-        contentPane.add(txtMedPrice);
+        frame.add(txtMedPrice);
         
         JLabel lblMedQty = new JLabel("Medicine Quantity*");
         lblMedQty.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMedQty.setBounds(260, 11, 55, 14);
-        contentPane.add(lblMedQty);
+        lblMedQty.setBounds(10, 50, 100, 14);
+        frame.add(lblMedQty);
 
         // input for the medicine quantity
         JTextField txtMedQty = new JTextField();
         txtMedQty.setColumns(10);
-        txtMedQty.setBounds(260, 27, 96, 20);
-        contentPane.add(txtMedQty);
+        txtMedQty.setBounds(10, 65, 96, 20);
+        frame.add(txtMedQty);
 
         JButton btnADD = new JButton("Add");
         btnADD.addActionListener(new ActionListener() {
@@ -95,6 +96,6 @@ public class MedicineInsertion {
             }
         });
         btnADD.setBounds(250, 60, 89, 23);
-        contentPane.add(btnADD);
+        frame.add(btnADD);
     }
 }

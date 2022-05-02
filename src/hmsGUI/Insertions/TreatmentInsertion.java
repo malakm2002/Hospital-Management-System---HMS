@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 
@@ -17,7 +18,7 @@ public class TreatmentInsertion {
      */
     public static void create() {
         // title
-        JFrame frame = new JFrame("Hospital Management System - Operations");
+        JFrame frame = new JFrame("HMS - Treatment Insertion");
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
@@ -38,42 +39,42 @@ public class TreatmentInsertion {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 600, 200);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        frame.setBounds(100, 100, 455, 200);
+        JLabel label = new JLabel(ManipulationOps.insertionback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
 
         JLabel lblPatient = new JLabel("Patient ID*");
         lblPatient.setBounds(10, 11, 96, 14);
-        contentPane.add(lblPatient);
+        frame.add(lblPatient);
 
         // input for the patient's ID
         JTextField txtPatient = new JTextField();
         txtPatient.setBounds(10, 27, 96, 20);
-        contentPane.add(txtPatient);
+        frame.add(txtPatient);
         txtPatient.setColumns(10);
 
         JLabel lbldoctor = new JLabel("Doctor ID*");
         lbldoctor.setBounds(122, 11, 94, 14);
-        contentPane.add(lbldoctor);
+        frame.add(lbldoctor);
 
         // input for the patient's doctor (ID)
         JTextField txtDoctor = new JTextField();
         txtDoctor.setColumns(10);
         txtDoctor.setBounds(120, 27, 96, 20);
-        contentPane.add(txtDoctor);
+        frame.add(txtDoctor);
 
         JLabel lblMed = new JLabel("Medicine ID*");
         lblMed.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMed.setBounds(260, 11, 80, 14);
-        contentPane.add(lblMed);
+        lblMed.setBounds(10, 50, 80, 14);
+        frame.add(lblMed);
 
         // input for the patient's medicine (ID)
         JTextField txtMed = new JTextField();
         txtMed.setColumns(10);
-        txtMed.setBounds(260, 27, 96, 20);
-        contentPane.add(txtMed);
+        txtMed.setBounds(10, 65, 96, 20);
+        frame.add(txtMed);
 
         JButton btnADD = new JButton("Add");
         btnADD.addActionListener(new ActionListener() {
@@ -94,6 +95,6 @@ public class TreatmentInsertion {
             }
         });
         btnADD.setBounds(250, 60, 89, 23);
-        contentPane.add(btnADD);
+        frame.add(btnADD);
     } 
 }

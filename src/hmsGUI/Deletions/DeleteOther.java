@@ -35,7 +35,7 @@ public class DeleteOther {
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(365, 250);
         try {
@@ -46,7 +46,7 @@ public class DeleteOther {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JLabel label = new JLabel(ManipulationOps.background);
+        JLabel label = new JLabel(ManipulationOps.deletionback);
         label.setBounds(0, 0, 400, 300);
         label.setOpaque(false);
         frame.setContentPane(label);

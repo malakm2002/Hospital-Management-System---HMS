@@ -36,7 +36,7 @@ public class DeleteStaff {
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setSize(365, 250);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -46,7 +46,7 @@ public class DeleteStaff {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JLabel label = new JLabel(ManipulationOps.background);
+        JLabel label = new JLabel(ManipulationOps.deletionback);
         label.setBounds(0, 0, 700, 400);
         label.setOpaque(false);
         frame.setContentPane(label);
