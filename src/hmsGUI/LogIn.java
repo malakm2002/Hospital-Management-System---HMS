@@ -46,7 +46,7 @@ public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 
 	}
 
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Hospital Management System - HMS");
 		frame.setBounds(100, 100, 700, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel contentPane = new JPanel();
