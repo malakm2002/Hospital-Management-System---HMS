@@ -15,9 +15,13 @@ import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
 
 public class patientRecUpdate {
+    /**
+     * Creates the page allowing patient record updates
+     */
     public static void create() {
-
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -46,22 +50,26 @@ public class patientRecUpdate {
         JLabel lblID = new JLabel("ID");
         lblID.setBounds(287, 40, 140, 20);
         contentPane.add(lblID);
+
         JTextField txtID = new JTextField();
         txtID.setBounds(305, 41, 96, 20);
         contentPane.add(txtID);
+
         JLabel lblFN = new JLabel("First Name*");
         lblFN.setBounds(40, 71, 96, 14);
         contentPane.add(lblFN);
-
-        JTextField textFieldFN = new JTextField();
-        textFieldFN.setBounds(40, 87, 96, 20);
-        contentPane.add(textFieldFN);
-        textFieldFN.setColumns(10);
 
         JLabel lblLN = new JLabel("Last Name*");
         lblLN.setBounds(152, 71, 94, 14);
         contentPane.add(lblLN);
 
+        // input for the patient's first name
+        JTextField textFieldFN = new JTextField();
+        textFieldFN.setBounds(40, 87, 96, 20);
+        contentPane.add(textFieldFN);
+        textFieldFN.setColumns(10);
+
+        // input for the patient's last name
         JTextField textFieldLN = new JTextField();
         textFieldLN.setColumns(10);
         textFieldLN.setBounds(150, 87, 96, 20);
@@ -72,6 +80,7 @@ public class patientRecUpdate {
         lblGender.setBounds(275, 71, 49, 14);
         contentPane.add(lblGender);
 
+        // check boxes for the patient's sex
         JCheckBox chckbxMale = new JCheckBox("Male");
         chckbxMale.setBounds(320, 67, 54, 23);
         contentPane.add(chckbxMale);
@@ -84,6 +93,7 @@ public class patientRecUpdate {
         lblAddr.setBounds(40, 108, 96, 14);
         contentPane.add(lblAddr);
 
+        // input for the patients address
         JTextField textFieldAddress = new JTextField();
         textFieldAddress.setColumns(10);
         textFieldAddress.setBounds(40, 133, 96, 20);
@@ -93,6 +103,7 @@ public class patientRecUpdate {
         lblPhone.setBounds(152, 118, 104, 14);
         contentPane.add(lblPhone);
 
+        // input for the patient's phone number
         JTextField textFieldPhone = new JTextField();
         textFieldPhone.setBounds(150, 133, 96, 20);
         contentPane.add(textFieldPhone);
@@ -106,6 +117,7 @@ public class patientRecUpdate {
         lblDischargeDate.setBounds(290, 130, 111, 14);
         contentPane.add(lblDischargeDate);
 
+        // choices for the admission and discharge dates
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setBounds(390, 97, 124, 20);
         contentPane.add(dateChooser);
@@ -118,6 +130,7 @@ public class patientRecUpdate {
         lblDiag.setBounds(40, 170, 96, 14);
         contentPane.add(lblDiag);
 
+        // input for the patient's diagnosis
         JTextField txtDiag = new JTextField();
         txtDiag.setBounds(40, 185, 96, 20);
         contentPane.add(txtDiag);
@@ -127,6 +140,7 @@ public class patientRecUpdate {
         lblroomID.setBounds(150, 170, 96, 14);
         contentPane.add(lblroomID);
 
+        // input for the patient's room ID
         JTextField txtRoomID = new JTextField();
         txtRoomID.setColumns(10);
         txtRoomID.setBounds(152, 185, 96, 20);
@@ -137,8 +151,12 @@ public class patientRecUpdate {
             public void actionPerformed(ActionEvent e) {
                 try {
 
+                    // to contain the SQL query
                     CallableStatement statment;
+                    
                     char gender;
+
+                    // updates the patients first name if not empty 
                     if (!textFieldFN.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
                                 .prepareCall("UPDATE patientInfo SET firstName = \"" + textFieldFN.getText() + "\" "
@@ -146,6 +164,8 @@ public class patientRecUpdate {
                         statment.execute();
 
                     }
+
+                    // updates the patient's last name if not empty
                     if (!textFieldLN.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
                                 .prepareCall("UPDATE patientInfo SET lastName = \"" + textFieldLN.getText() + "\" "
@@ -153,6 +173,8 @@ public class patientRecUpdate {
                         statment.execute();
 
                     }
+
+                    // updates the patient's address if not empty
                     if (!textFieldAddress.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
                                 .prepareCall("UPDATE patientInfo SET address = \"" + textFieldAddress.getText() + "\" "
@@ -160,6 +182,8 @@ public class patientRecUpdate {
                         statment.execute();
 
                     }
+
+                    // updates the patient's phone number if not empty
                     if (!textFieldPhone.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
                                 .prepareCall("UPDATE patientInfo SET phoneNumber = " + textFieldPhone.getText()
@@ -167,6 +191,8 @@ public class patientRecUpdate {
                         statment.execute();
 
                     }
+
+                    // updates the patient;s diagnosis if not empty
                     if (!txtDiag.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
                                 .prepareCall("UPDATE patientInfo SET diagnosis = \""
@@ -174,26 +200,33 @@ public class patientRecUpdate {
                         statment.execute();
 
                     }
+
+                    // updates the patient's room if not empty 
                     if (!txtRoomID.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection.prepareCall("UPDATE patientInfo SET roomID = "
                                 + txtRoomID.getText() + " WHERE patientID = " + txtID.getText());
                         statment.execute();
 
                     }
-                    if (dateChooser.getDate() != null) {
 
+                    // updates the patient's addmission date if not empty (null)
+                    if (dateChooser.getDate() != null) {
                         statment = (CallableStatement) LogIn.connection.prepareCall(
                                 "UPDATE patientInfo SET admissionDate = '" + parseDate(dateChooser.getDate())
                                         + "' WHERE patientID = " + txtID.getText());
                         statment.execute();
-
                     }
+
+                    // updates the patient's discharge date if not empty (null)
                     if (dateChooser_1.getDate() != null) {
                         statment = (CallableStatement) LogIn.connection.prepareCall(
                                 "UPDATE patientInfo SET dischargeDate = '" + parseDate(dateChooser_1.getDate())
                                         + "' WHERE patientID = " + txtID.getText());
                         statment.execute();
-                    } else {
+                    }
+                    
+                    // updates the patient's sex
+                    if {
                         genderChecker genderChecker = new genderChecker(chckbxMale, chckbxFemale);
                         gender = genderChecker.getGender();
                         statment = (CallableStatement) LogIn.connection.prepareCall(
@@ -218,11 +251,13 @@ public class patientRecUpdate {
         contentPane.add(btnADD);
     }
 
+    // parses the date retrieved from MySQL into a format recognized by JAVA
     public static String parseDate(java.util.Date date) {
         String[] parts = date.toString().split(" ");
         return parts[5] + "-" + parseMonth(parts[1]) + "-" + parts[2] + " " + parts[3];
     }
 
+    // returns the month as a number
     public static String parseMonth(String month) {
         if (month.equalsIgnoreCase("jan")) {
             return "01";

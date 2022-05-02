@@ -14,10 +14,15 @@ import com.mysql.cj.jdbc.CallableStatement;
 import hmsGUI.LogIn;
 
 public class DeleteOther {
+    /**
+     * Creates the page allowing pateint deletions of patients, rooms, bills, etc.
+     */
     public static void create() {
-        String[] options = { "Room", "Bill", "Patient", "Medicine", };
-
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+        
+        String[] options = { "Room", "Bill", "Patient", "Medicine" };
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -52,6 +57,7 @@ public class DeleteOther {
         label.setBounds(20, 50, 140, 20);
         contentPane.add(label);
 
+        // input for the ID
         JTextField idInput = new JTextField();
         idInput.setBounds(20, 70, 140, 20);
         contentPane.add(idInput);
@@ -60,6 +66,7 @@ public class DeleteOther {
         jButton.setBounds(20, 110, 90, 20);
         contentPane.add(jButton);
 
+        // displays the initial result (of the first element in the list)
         JTextArea jArea = new JTextArea(getTable(comboBox.getSelectedItem().toString()));
         jArea.setLineWrap(true);
         contentPane.add(jArea);
@@ -68,6 +75,8 @@ public class DeleteOther {
             @Override
             public void actionPerformed(ActionEvent e) {
                 delete(idInput.getText(), comboBox.getSelectedItem().toString());
+
+                // displays the selected item
                 jArea.setText(getTable(comboBox.getSelectedItem().toString()));
             }
         });
@@ -79,15 +88,19 @@ public class DeleteOther {
         comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // displays the result
                 jArea.setText(getTable(comboBox.getSelectedItem().toString()));
             }
         });
 
     }
 
+    // deletes the selected record
     static void delete(String ID, String type) {
         try {
             CallableStatement statement;
+
+            // chooses the required stored procedure
             switch (type) {
                 case "Room":
                     statement = (CallableStatement) LogIn.connection.prepareCall("{call DeleteRoom(?)}");
@@ -108,9 +121,10 @@ public class DeleteOther {
 
             statement.setString(1, ID);
 
+            // executes the deletion
             statement.execute();
-            statement.close();
 
+            statement.close();
         } catch (SQLException error) {
             error.printStackTrace();
         }
@@ -123,8 +137,10 @@ public class DeleteOther {
 
             Statement tableStmt = LogIn.connection.createStatement();
 
+            // returns all records from the provided input
             ResultSet tableRes = tableStmt.executeQuery("SELECT * FROM " + table);
 
+            // chooses attributes specific to the provided input
             switch (table) {
                 case "Room":
                     while (tableRes.next()) {

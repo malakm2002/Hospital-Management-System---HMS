@@ -19,8 +19,13 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.LogIn;
 
 public class CheckPatientExistence {
+    /**
+     * Creates the page allowing checking for the existence of a petient
+     */
     public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -50,6 +55,7 @@ public class CheckPatientExistence {
         lblPatientFirstName.setBounds(20, 20, 111, 14);
         contentPane.add(lblPatientFirstName);
 
+        // input for the patient's first name
         JTextField input1 = new JTextField();
         input1.setBounds(20, 50, 124, 20);
         contentPane.add(input1);
@@ -58,6 +64,7 @@ public class CheckPatientExistence {
         lblPatientLastName.setBounds(20, 80, 111, 14);
         contentPane.add(lblPatientLastName);
 
+        // input for the patient's last name
         JTextField input2 = new JTextField();
         input2.setBounds(20, 110, 124, 20);
         contentPane.add(input2);
@@ -79,7 +86,8 @@ public class CheckPatientExistence {
                 if (input2.getText() == null) {
                     textArea.setText("Please input the patient's last name");
                 } else {
-                    textArea.setText(getMeds(input1.getText(), input2.getText()));
+                    // displays the results
+                    textArea.setText(getPatient(input1.getText(), input2.getText()));
                 }
             }
         });
@@ -90,26 +98,28 @@ public class CheckPatientExistence {
         contentPane.add(scrollPane);
     }
 
-    static String getMeds(String firstName, String lastName) {
+    static String getPatient(String firstName, String lastName) {
         String result = "";
 
         try {
-            Statement medicineStmt = LogIn.connection.createStatement();
+            Statement patientStmt = LogIn.connection.createStatement();
 
-            ResultSet medicineRes = medicineStmt.executeQuery(
+            // retrieves infotmation about a specific patient
+            ResultSet patientRes = patientStmt.executeQuery(
                     "SELECT firstName, lastName, phoneNumber, address, admissionDate, dischargeDate FROM PATIENTRECORD WHERE PATIENTRECORD.firstName = '" + firstName + "' AND PATIENTRECORD.lastName = '" + lastName + "'");
 
-            while (medicineRes.next()) {
-                result += medicineRes.getString("firstName") + medicineRes.getString("lastName") + ", ";
-                result += medicineRes.getString("phoneNumber") + ", ";
-                result += medicineRes.getString("address") + "\n";
-                result += "    Admission date: " + medicineRes.getString("admissionDate") + "\n";
-                result += "    Discharge date: " + medicineRes.getString("dischargeDate") + "\n\n";
+            // displays the information retrieved above 
+            while (patientRes.next()) {
+                result += patientRes.getString("firstName") + patientRes.getString("lastName") + ", ";
+                result += patientRes.getString("phoneNumber") + ", ";
+                result += patientRes.getString("address") + "\n";
+                result += "    Admission date: " + patientRes.getString("admissionDate") + "\n";
+                result += "    Discharge date: " + patientRes.getString("dischargeDate") + "\n\n";
             }
 
-            medicineStmt.close();
+            patientStmt.close();
 
-            medicineRes.close();
+            patientRes.close();
         } catch (SQLException e1) {
             e1.printStackTrace();
             result = e1.getMessage();

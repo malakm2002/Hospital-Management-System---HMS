@@ -13,10 +13,15 @@ import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
 import hmsGUI.helpers.lastStaffID;
-public class CashierInsertion {
-    public static void create() {
 
+public class CashierInsertion {
+    /**
+     * Creates the page allowing pateint cashier insertions
+     */
+    public static void create() {
+        // title
 		JFrame frame = new JFrame("Hospital Management System - Operations");
+
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -46,6 +51,7 @@ public class CashierInsertion {
 		lblFN.setBounds(10, 11, 96, 14);
 		contentPane.add(lblFN);
 
+        // input for the cashier's first name
 		JTextField textFieldFN = new JTextField();
 		textFieldFN.setBounds(10, 27, 96, 20);
 		contentPane.add(textFieldFN);
@@ -55,6 +61,7 @@ public class CashierInsertion {
 		lblLN.setBounds(122, 11, 94, 14);
 		contentPane.add(lblLN);
 
+        // input for the cashier's last name
 		JTextField textFieldLN = new JTextField();
 		textFieldLN.setColumns(10);
 		textFieldLN.setBounds(120, 27, 96, 20);
@@ -65,6 +72,7 @@ public class CashierInsertion {
 		lblGender.setBounds(245, 11, 49, 14);
 		contentPane.add(lblGender);
 
+        // check boxes for the cashier's sex
 		JCheckBox chckbxMale = new JCheckBox("Male");
 		chckbxMale.setBounds(290, 7, 54, 23);
 		contentPane.add(chckbxMale);
@@ -77,6 +85,7 @@ public class CashierInsertion {
 		lblAddr.setBounds(10, 58, 96, 14);
 		contentPane.add(lblAddr);
 
+        // input for the cashier's address
 		JTextField textFieldAddress = new JTextField();
 		textFieldAddress.setColumns(10);
 		textFieldAddress.setBounds(10, 73, 96, 20);
@@ -86,6 +95,7 @@ public class CashierInsertion {
 		lblPhone.setBounds(122, 58, 94, 14);
 		contentPane.add(lblPhone);
 
+        // input for the cashier's phone number
 		JTextField textFieldPhone = new JTextField();
 		textFieldPhone.setBounds(120, 73, 96, 20);
 		contentPane.add(textFieldPhone);
@@ -95,16 +105,16 @@ public class CashierInsertion {
 		lblAdmission.setBounds(260, 40, 111, 14);
 		contentPane.add(lblAdmission);
 		
-
+        // choices for the cashier's first day of work
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(360, 37, 124, 20);
 		contentPane.add(dateChooser);
-
 
 		JLabel lblJobType = new JLabel("Job Type");
 		lblJobType.setBounds(10, 140, 96, 14);
 		contentPane.add(lblJobType);
 
+        // input for the cashier's job type
 		JTextField textFieldJobType = new JTextField();
 		textFieldJobType.setBounds(10, 155, 96, 20);
 		contentPane.add(textFieldJobType);
@@ -114,6 +124,7 @@ public class CashierInsertion {
 		lblSupervisorID.setBounds(120, 140, 96, 14);
 		contentPane.add(lblSupervisorID);
 
+        // input for the cashier's supervisor
 		JTextField textFieldSupervisorID = new JTextField();
 		textFieldSupervisorID.setColumns(10);
 		textFieldSupervisorID.setBounds(122, 155, 96, 20);
@@ -125,30 +136,34 @@ public class CashierInsertion {
 				try {
 					genderChecker gendercChecker = new genderChecker(chckbxMale, chckbxFemale);
 					Statement stmt = LogIn.connection.createStatement();
+
+                    // executes the insertion statement
 					ResultSet res = stmt.executeQuery("CALL hms.InsertCashier('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ")");
-					lastStaffID lstIDS = new lastStaffID();					
+
+					lastStaffID lstIDS = new lastStaffID();		
+
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gendercChecker.getGender() + "','" + textFieldAddress.getText() + "',"
 							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"',"+Types.NULL+","+lstIDS.getlastSID()+")");
 					SuccessMessageFrame.create();
 					frame.setVisible(false);	
-	
-					
 				} catch (Exception e1) {
-FailureMessageFrame.create();				}
-
+                    FailureMessageFrame.create();
+                }
 			}
 		});
 		btnADD.setBounds(250, 150, 89, 23);
 		contentPane.add(btnADD);
 	}
 
+    // parses the date retrieved by MySQL into a format readable by JAVA
 	public static String parseDateTime(java.util.Date date) {
 		String[] parts = date.toString().split(" ");
 		return parts[5] +"-"+ parseMonth(parts[1]) + "-" + parts[2] +" " + parts[3] ;
 	}
 
+    // returns the month as a number
 	public static String parseMonth(String month) {
 		if (month.equalsIgnoreCase("jan")) {
 			return "01";

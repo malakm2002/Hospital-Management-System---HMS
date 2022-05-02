@@ -10,10 +10,15 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.LogIn;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
-public class BillInsertion {
-    public static void create() {
 
+public class BillInsertion {
+    /**
+     * Creates the page allowing pateint bill insertions
+     */
+    public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -43,6 +48,7 @@ public class BillInsertion {
 		lblBillStatus.setBounds(10, 11, 96, 14);
 		contentPane.add(lblBillStatus);
 
+        // input for the bill's status
 		JTextField txtFldstatus = new JTextField();
 		txtFldstatus.setBounds(10, 27, 96, 20);
 		contentPane.add(txtFldstatus);
@@ -52,6 +58,7 @@ public class BillInsertion {
 		lblField.setBounds(122, 11, 94, 14);
 		contentPane.add(lblField);
 
+        // input for the bill's field
 		JTextField txtField = new JTextField();
 		txtField.setColumns(10);
 		txtField.setBounds(120, 27, 96, 20);
@@ -61,6 +68,7 @@ public class BillInsertion {
 		lblCharge.setBounds(10, 58, 96, 14);
 		contentPane.add(lblCharge);
 
+        // input for the bill's charge
 		JTextField txtfieldCharge = new JTextField();
 		txtfieldCharge.setColumns(10);
 		txtfieldCharge.setBounds(10, 73, 96, 20);
@@ -70,6 +78,7 @@ public class BillInsertion {
 		lblCashier.setBounds(122, 58, 94, 14);
 		contentPane.add(lblCashier);
 
+        // input for the responsible cashier's ID
 		JTextField txtFieldCashier = new JTextField();
 		txtFieldCashier.setBounds(120, 73, 96, 20);
 		contentPane.add(txtFieldCashier);
@@ -80,15 +89,15 @@ public class BillInsertion {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Statement stmt = LogIn.connection.createStatement();
+
+                    // executes the insert statement
                     ResultSet res = stmt.executeQuery("CALL hms.InsertBill('" + txtFldstatus.getText() + "','"
                             + txtField.getText() + "',"
                             + Integer.parseInt(txtfieldCharge.getText()) +","+Integer.parseInt(txtFieldCashier.getText())+")");
                     SuccessMessageFrame.create();
                     frame.setVisible(false);
-
                 } catch (Exception e1) {
                     FailureMessageFrame.create();
-
                 }
 
             }
@@ -96,5 +105,4 @@ public class BillInsertion {
         btnADD.setBounds(250, 60, 89, 23);
         contentPane.add(btnADD);
     }
-    
 }

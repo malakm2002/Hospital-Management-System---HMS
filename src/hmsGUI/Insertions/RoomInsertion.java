@@ -13,9 +13,13 @@ import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 
 public class RoomInsertion {
+    /**
+     * Creates the page allowing pateint room insertions
+     */
     public static void create() {
-
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -45,6 +49,7 @@ public class RoomInsertion {
         lblRoomType.setBounds(10, 11, 96, 14);
         contentPane.add(lblRoomType);
 
+        // input for the room's type
         JTextField txtFldRoomType = new JTextField();
         txtFldRoomType.setBounds(10, 27, 96, 20);
         contentPane.add(txtFldRoomType);
@@ -54,6 +59,7 @@ public class RoomInsertion {
         lblNurseID.setBounds(122, 11, 94, 14);
         contentPane.add(lblNurseID);
 
+        // input for the nurse's ID
         JTextField textFieldNurseID = new JTextField();
         textFieldNurseID.setColumns(10);
         textFieldNurseID.setBounds(120, 27, 96, 20);
@@ -64,6 +70,7 @@ public class RoomInsertion {
         lbljanitorID.setBounds(260, 11, 55, 14);
         contentPane.add(lbljanitorID);
 
+        // input for the janitor's ID
         JTextField textFieldJanitorID = new JTextField();
         textFieldJanitorID.setColumns(10);
         textFieldJanitorID.setBounds(260, 27, 96, 20);
@@ -74,6 +81,8 @@ public class RoomInsertion {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Statement stmt = LogIn.connection.createStatement();
+
+                    // executes the isnertion
                     ResultSet res = stmt.executeQuery("CALL hms.InsertRoom('" + txtFldRoomType.getText() + "',"
                             + Integer.parseInt(textFieldNurseID.getText()) + ","
                             + Integer.parseInt(textFieldJanitorID.getText()) + ")");
@@ -82,9 +91,7 @@ public class RoomInsertion {
 
                 } catch (Exception e1) {
                     FailureMessageFrame.create();
-
                 }
-
             }
         });
         btnADD.setBounds(250, 60, 89, 23);

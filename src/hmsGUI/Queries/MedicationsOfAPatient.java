@@ -19,8 +19,13 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.LogIn;
 
 public class MedicationsOfAPatient {
+    /**
+     * Creates the page allowing viewing the medications given to a specific patient
+     */
     public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -50,6 +55,7 @@ public class MedicationsOfAPatient {
         lblPatientFirstName.setBounds(20, 20, 111, 14);
         contentPane.add(lblPatientFirstName);
 
+        // input for the patient's first name
         JTextField input1 = new JTextField();
         input1.setBounds(20, 50, 124, 20);
         contentPane.add(input1);
@@ -58,6 +64,7 @@ public class MedicationsOfAPatient {
         lblPatientLastName.setBounds(20, 80, 111, 14);
         contentPane.add(lblPatientLastName);
 
+        // input for the patient's last name
         JTextField input2 = new JTextField();
         input2.setBounds(20, 110, 124, 20);
         contentPane.add(input2);
@@ -79,6 +86,7 @@ public class MedicationsOfAPatient {
                 if (input2.getText() == null) {
                     textArea.setText("Please input the patient's last name");
                 } else {
+                    // displays the results
                     textArea.setText(getMeds(input1.getText(), input2.getText()));
                 }
             }
@@ -96,11 +104,13 @@ public class MedicationsOfAPatient {
         try {
             Statement medicineStmt = LogIn.connection.createStatement();
 
+            // retrieves all the medications of the provided patient
             ResultSet medicineRes = medicineStmt.executeQuery(
                     "SELECT MEDICINE.medicineID, MEDICINE.medicineName, MEDICINE.price, MEDICINE.quantity FROM PATIENTRECORD JOIN TREAT JOIN MEDICINE WHERE PATIENTRECORD.firstName = '"
                             + firstName + "' AND PATIENTRECORD.lastName = '" + lastName
                             + "' AND PATIENTRECORD.patientID = TREAT.patientID AND TREAT.medicineID = MEDICINE.medicineID");
 
+            // returns the result
             while (medicineRes.next()) {
                 result += medicineRes.getString("medicineID") + ", ";
                 result += medicineRes.getString("medicineName") + ", ";

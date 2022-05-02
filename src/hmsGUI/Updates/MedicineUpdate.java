@@ -15,7 +15,11 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.LogIn;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
+
 public class MedicineUpdate {
+    /**
+     * Creates the page allowing medicine updates
+     */
     public static void create() {
         JFrame frame = new JFrame();
         try {
@@ -35,6 +39,7 @@ public class MedicineUpdate {
         lblMedID.setBounds(33, 40, 80, 14);
         contentPane.add(lblMedID);
 
+        // input for the medicine's ID
         JTextField txtMedID = new JTextField();
         txtMedID.setBounds(113, 37, 96, 20);
         contentPane.add(txtMedID);
@@ -44,6 +49,7 @@ public class MedicineUpdate {
         lblMedName.setBounds(33, 74, 80, 14);
         contentPane.add(lblMedName);
 
+        // input for the medicine's name
         JTextField txtMedName = new JTextField();
         txtMedName.setColumns(10);
         txtMedName.setBounds(113, 71, 96, 20);
@@ -53,6 +59,7 @@ public class MedicineUpdate {
         lblPrice.setBounds(33, 110, 49, 14);
         contentPane.add(lblPrice);
 
+        // input for the price
         JTextField txtPrice = new JTextField();
         txtPrice.setBounds(113, 107, 96, 20);
         contentPane.add(txtPrice);
@@ -62,6 +69,7 @@ public class MedicineUpdate {
         lblqty.setBounds(33, 142, 49, 14);
         contentPane.add(lblqty);
 
+        // input for the quantity
         JTextField txtQty = new JTextField();
         txtQty.setColumns(10);
         txtQty.setBounds(113, 139, 96, 20);
@@ -72,18 +80,24 @@ public class MedicineUpdate {
             public void actionPerformed(ActionEvent e) {
                 try {
 
+                    // to contain the SQL query
                     CallableStatement statment;
 
+                    // updates the name if not empty
                     if (!txtMedID.getText().equalsIgnoreCase("") && !txtMedName.getText().equalsIgnoreCase("")) {
                         statment = LogIn.connection.prepareCall("UPDATE Medicine set medicineName = \"" + txtMedName.getText()
                                 + "\" WHERE medicineID = " + txtMedID.getText());
                                 statment.execute();
                     }
+
+                    // updates the price if not empty
                     if (!txtMedID.getText().equalsIgnoreCase("") && !txtPrice.getText().equalsIgnoreCase("")) {
                         statment = LogIn.connection.prepareCall("UPDATE Medicine set price = " + txtPrice.getText()
                         + " WHERE medicineID = " + txtMedID.getText());
                         statment.execute();
                     }
+
+                    // updates the quantity if not empty
                     if(!txtMedID.getText().equalsIgnoreCase("") && !txtQty.getText().equalsIgnoreCase("")){
                         statment = LogIn.connection.prepareCall("UPDATE Medicine set quantity = " + txtQty.getText()
                         + " WHERE medicineID = " + txtMedID.getText());

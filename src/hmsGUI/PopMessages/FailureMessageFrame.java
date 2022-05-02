@@ -7,8 +7,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class FailureMessageFrame {
+    /**
+     * Creates a window that displays an error if an operation (insertion, deletion, update, or query/retrieval) fails
+    */
     public static void create(){
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

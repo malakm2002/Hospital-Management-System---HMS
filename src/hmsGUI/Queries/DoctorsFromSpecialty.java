@@ -19,8 +19,13 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.LogIn;
 
 public class DoctorsFromSpecialty {
+    /**
+     * Creates the page allowing viewing doctors of a specific specialty
+     */
     public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -50,6 +55,7 @@ public class DoctorsFromSpecialty {
         lblspecialty.setBounds(20, 20, 111, 14);
         contentPane.add(lblspecialty);
 
+        // input for the specialty
         JTextField input = new JTextField();
         input.setBounds(80, 20, 124, 20);
         contentPane.add(input);
@@ -68,6 +74,7 @@ public class DoctorsFromSpecialty {
                 if (input.getText() == null) {
                     textArea.setText("Please input a specialty");
                 } else {
+                    // displays the results
                     textArea.setText(getDoctors(input.getText()));
                 }
             }
@@ -85,14 +92,15 @@ public class DoctorsFromSpecialty {
         try {
             Statement doctorStmt = LogIn.connection.createStatement();
 
+            // retrieves the doctors of the provided specialty
             ResultSet doctorRes = doctorStmt.executeQuery("SELECT * FROM STAFFRECORD INNER JOIN DOCTOR ON specialty = '" + specialty + "' WHERE doctorID = staffID");
 
+            // retrieves the results
             while (doctorRes.next()) {
                     result += doctorRes.getString("firstName") + " " + doctorRes.getString("lastName") + ", ";
                     result += doctorRes.getString("gender") + ", ";
                     result += doctorRes.getString("address") + ", ";
                     result += doctorRes.getString("phoneNumber") + "\n";
-                
             }
 
             doctorStmt.close();

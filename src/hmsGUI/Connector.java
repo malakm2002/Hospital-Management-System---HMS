@@ -9,8 +9,8 @@ public class Connector {
     public boolean connected = true;
 	private final static String sqlUrl = "jdbc:mysql://localhost:3306/hms";
 	public Connection connection;
-	public void Connect(String dbUserName, String dbPassword) {
 
+	public void Connect(String dbUserName, String dbPassword) {
         // loading the driver class
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

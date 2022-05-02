@@ -11,8 +11,14 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 public class ManipulationOps {
+    /**
+     * Creates the page containing all the buttons relating to CRUD operations
+     * Through this page, you can navigate to insertions, deletions, updates, and retrievals
+     */
     public static void createFrame() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -38,6 +44,8 @@ public class ManipulationOps {
         label.setOpaque(false);
         frame.getContentPane().setLayout(null);
         frame.setContentPane(label);
+
+        // navigate to the page containing all the insert operations
         JButton btnInsertionPage = new JButton("Insert");
         btnInsertionPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -50,6 +58,7 @@ public class ManipulationOps {
         btnInsertionPage.setBounds(60, 20, 130, 23);
         frame.getContentPane().add(btnInsertionPage);
 
+        // navigate to the page containing all the delete operations
         JButton btnDeletionPage = new JButton("Delete");
         btnDeletionPage.addActionListener(new ActionListener() {
             @Override
@@ -62,6 +71,7 @@ public class ManipulationOps {
         btnDeletionPage.setBounds(13, 65, 130, 23);
         frame.getContentPane().add(btnDeletionPage);
 
+        // navigate to the page containing all the query/retrieval operations
         JButton btnQueriesPage = new JButton("Query");
         btnQueriesPage.addActionListener(new ActionListener() {
             @Override
@@ -74,6 +84,7 @@ public class ManipulationOps {
         btnQueriesPage.setBorderPainted(true);
         frame.getContentPane().add(btnQueriesPage);
 
+        // navigate to the page containing all the update operations
         JButton btnUpdatePage = new JButton("Update");
         btnUpdatePage.addActionListener(new ActionListener() {
             @Override

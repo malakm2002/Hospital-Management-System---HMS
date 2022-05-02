@@ -20,9 +20,13 @@ import com.toedter.calendar.JDateChooser;
 import hmsGUI.LogIn;
 
 public class PatientOnDay {
-
+    /**
+     * Creates the page allowing viewing the patients checked in on a specific date
+     */
     public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -52,6 +56,7 @@ public class PatientOnDay {
         lblAdmission.setBounds(20, 20, 111, 14);
         contentPane.add(lblAdmission);
 
+        // input for the admission date
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setBounds(120, 20, 124, 20);
         contentPane.add(dateChooser);
@@ -70,6 +75,7 @@ public class PatientOnDay {
                 if (dateChooser.getDate() == null) {
                     textArea.setText("Please choose a date");
                 } else {
+                    // displays the results
                     textArea.setText(getPatients(parseDate(dateChooser.getDate())));
                 }
             }
@@ -87,12 +93,14 @@ public class PatientOnDay {
         try {
             Statement staffStmt = LogIn.connection.createStatement();
 
+            // returns a list of patients
             ResultSet staffRes = staffStmt.executeQuery("SELECT * FROM PATIENTRECORD");
 
             String temp;
             while (staffRes.next()) {
                 temp = staffRes.getString("admissionDate");
                 String[] tempList = temp.split(" ");
+                // compares the admission date of the patient and selects only thos that match the chosen date
                 if (tempList[0].compareTo(date) == 0) {
                     result += staffRes.getString("recordID") + ", ";
                     result += staffRes.getString("firstName") + " " + staffRes.getString("lastName") + ", ";
@@ -114,11 +122,13 @@ public class PatientOnDay {
         return result;
     }
 
+    // parses the date retrieved by MySQL ainto a format readable by JAVA
     public static String parseDate(java.util.Date date) {
         String[] parts = date.toString().split(" ");
         return parts[5] + "-" + parseMonth(parts[1]) + "-" + parts[2];
     }
 
+    // returns the month as a number
     public static String parseMonth(String month) {
         if (month.equalsIgnoreCase("jan")) {
             return "01";
