@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import com.mysql.cj.jdbc.CallableStatement;
 
