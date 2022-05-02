@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 
 import hmsGUI.LogIn;
