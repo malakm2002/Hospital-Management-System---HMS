@@ -2,8 +2,6 @@ package hmsGUI;
 
 import java.awt.EventQueue;
 import java.sql.Connection;
-import java.util.*;
-import java.util.TreeMap;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;

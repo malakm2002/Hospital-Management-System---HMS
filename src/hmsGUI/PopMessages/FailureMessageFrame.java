@@ -3,11 +3,9 @@ package hmsGUI.PopMessages;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import hmsGUI.ManipulationOps;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
 
 
 public class FailureMessageFrame {
