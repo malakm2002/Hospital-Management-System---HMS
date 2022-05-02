@@ -14,9 +14,8 @@ import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
 
-public class StaffUpdateRec {
+public class StaffRecUpdate {
     public static void create() {
-        String[] options = { "nurse", "janitor", "cashier", "doctor" };
 
         JFrame frame = new JFrame("Hospital Management System - Operations");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
