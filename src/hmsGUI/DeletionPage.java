@@ -1,5 +1,4 @@
 package hmsGUI;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,8 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-public class ManipulationOps {
-    public static void createFrame() {
+import hmsGUI.Deletions.DeleteOther;
+import hmsGUI.Deletions.DeleteStaff;
+
+public class DeletionPage {
+
+    public static void create() {
         JFrame frame = new JFrame("Hospital Management System - Operations");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
@@ -38,44 +41,24 @@ public class ManipulationOps {
         frame.setContentPane(contentPane);
         frame.getContentPane().setLayout(null);
 
-        JButton btnInsertionPage = new JButton("Insertions");
-        btnInsertionPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                InsertionPage.create();
-
-            }
-        });
-        btnInsertionPage.setBounds(22, 32, 165, 23);
-        contentPane.add(btnInsertionPage);
-
-        JButton btnDeletionPage = new JButton("Deletions");
-        btnDeletionPage.addActionListener(new ActionListener() {
+        JButton btnDeleteOtherStaff = new JButton("Delete staff");
+        btnDeleteOtherStaff.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DeletionPage.create();
+                DeleteStaff.create();
             }
         });
-        btnDeletionPage.setBounds(22, 64, 165, 23);
-        contentPane.add(btnDeletionPage);
+        btnDeleteOtherStaff.setBounds(22, 32, 165, 23);
+        contentPane.add(btnDeleteOtherStaff);
 
-        JButton btnQueriesPage = new JButton("Queries");
-        btnQueriesPage.addActionListener(new ActionListener() {
+        JButton btnDeleteOther = new JButton("Delete other values");
+        btnDeleteOther.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                QueriesPage.create();
+                DeleteOther.create();
             }
         });
-        btnQueriesPage.setBounds(22, 96, 165, 23);
-        contentPane.add(btnQueriesPage);
-
-        JButton btnUpdatePage = new JButton("Updates");
-        btnUpdatePage.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UpdatePage.create();
-            }
-        });
-        btnUpdatePage.setBounds(22, 128, 165, 23);
-        contentPane.add(btnUpdatePage);
-    }
+        btnDeleteOther.setBounds(22, 66, 165, 23);
+        contentPane.add(btnDeleteOther);
+    } 
 }
