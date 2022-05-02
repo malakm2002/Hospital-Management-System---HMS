@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -38,13 +39,16 @@ public class DeletionPage {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 700, 394);
+        frame.setBounds(100, 100, 450, 400);
 
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
         frame.getContentPane().setLayout(null);
 
+        //set background image
+        JLabel label = new JLabel(ManipulationOps.background);
+        label.setBounds(0, 0, 400, 300);
+        label.setOpaque(false);
+        frame.setContentPane(label);
+        
         // navigate to deleting a staff member
         JButton btnDeleteOtherStaff = new JButton("Delete staff");
         btnDeleteOtherStaff.addActionListener(new ActionListener() {
@@ -53,8 +57,9 @@ public class DeletionPage {
                 DeleteStaff.create();
             }
         });
+        btnDeleteOtherStaff.setContentAreaFilled(false);
         btnDeleteOtherStaff.setBounds(22, 32, 165, 23);
-        contentPane.add(btnDeleteOtherStaff);
+        frame.add(btnDeleteOtherStaff);
 
         // navigate to deleting other values (patients, rooms, bills, etc.)
         JButton btnDeleteOther = new JButton("Delete other values");
@@ -64,7 +69,8 @@ public class DeletionPage {
                 DeleteOther.create();
             }
         });
+        btnDeleteOther.setContentAreaFilled(false);
         btnDeleteOther.setBounds(22, 66, 165, 23);
-        contentPane.add(btnDeleteOther);
+        frame.add(btnDeleteOther);
     } 
 }

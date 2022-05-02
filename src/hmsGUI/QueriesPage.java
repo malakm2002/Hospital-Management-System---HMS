@@ -1,10 +1,12 @@
 package hmsGUI;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -45,23 +47,26 @@ public class QueriesPage {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 700, 394);
+        frame.setBounds(100, 100, 400, 400);
 
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        frame.getContentPane().setLayout(null);
+        JLabel label = new JLabel(ManipulationOps.background);
+        label.setBounds(0, 0, 400, 300);
+        label.setOpaque(false);
+        frame.setContentPane(label);
+        
 
         // navigates to viewing patients check in on a specific date
         JButton btnPatientOnDay = new JButton("View patient on date");
+        btnPatientOnDay.setFont(new Font("arial-bold",Font.BOLD,11));
         btnPatientOnDay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PatientOnDay.create();
             }
         });
+        btnPatientOnDay.setContentAreaFilled(false);
         btnPatientOnDay.setBounds(22, 32, 165, 23);
-        contentPane.add(btnPatientOnDay);
+        frame.add(btnPatientOnDay);
 
         // navigates to doctors of a certain specialty
         JButton btnDoctorsFromSPecialty = new JButton("View specialty doctors");
@@ -71,8 +76,11 @@ public class QueriesPage {
                 DoctorsFromSpecialty.create();
             }
         });
+        btnDoctorsFromSPecialty.setFont(new Font("arial-bold",Font.BOLD,11));
+
+        btnDoctorsFromSPecialty.setContentAreaFilled(false);
         btnDoctorsFromSPecialty.setBounds(22, 64, 165, 23);
-        contentPane.add(btnDoctorsFromSPecialty);
+        frame.add(btnDoctorsFromSPecialty);
 
         // navigates to the patients of a specific doctor
         JButton btnPatientsFromDoctor = new JButton("View doctor patients");
@@ -82,8 +90,11 @@ public class QueriesPage {
                 PatientsOfADoctor.create();
             }
         });
+        btnPatientsFromDoctor.setFont(new Font("arial-bold",Font.BOLD,11));
+
+        btnPatientsFromDoctor.setContentAreaFilled(false);
         btnPatientsFromDoctor.setBounds(22, 96, 165, 23);
-        contentPane.add(btnPatientsFromDoctor);
+        frame.add(btnPatientsFromDoctor);
 
         // navigates to viewing the patients of a specific nurse
         JButton btnPatientsFromNurse = new JButton("View nurse patients");
@@ -93,8 +104,11 @@ public class QueriesPage {
                 PatientsOfANurse.create();
             }
         });
+        btnPatientsFromNurse.setFont(new Font("arial-bold",Font.BOLD,11));
+
+        btnPatientsFromNurse.setContentAreaFilled(false);
         btnPatientsFromNurse.setBounds(22, 128, 165, 23);
-        contentPane.add(btnPatientsFromNurse);
+        frame.add(btnPatientsFromNurse);
 
         // navigates to viewing the medicine of a specific patient
         JButton btnMedsFromPatient = new JButton("View patient medications");
@@ -104,8 +118,11 @@ public class QueriesPage {
                 MedicationsOfAPatient.create();
             }
         });
+        btnMedsFromPatient.setFont(new Font("arial-bold",Font.BOLD,11));
+
+        btnMedsFromPatient.setContentAreaFilled(false);
         btnMedsFromPatient.setBounds(22, 160, 165, 23);
-        contentPane.add(btnMedsFromPatient);
+        frame.add(btnMedsFromPatient);
 
         // navigates to viewing if a certain patient has been previously checked in
         JButton btnPatientRecord = new JButton("Check patient existence");
@@ -115,7 +132,9 @@ public class QueriesPage {
                 CheckPatientExistence.create();
             }
         });
+        btnPatientRecord.setFont(new Font("arial-bold",Font.BOLD,11));
+        btnPatientRecord.setContentAreaFilled(false);
         btnPatientRecord.setBounds(22, 192, 165, 23);
-        contentPane.add(btnPatientRecord);
+        frame.add(btnPatientRecord);
     }
 }

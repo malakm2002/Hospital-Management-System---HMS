@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -44,11 +45,13 @@ public class UpdatePage {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 700, 394);
+        frame.setBounds(100, 100, 450, 400);
 
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
+        JLabel label = new JLabel(ManipulationOps.background);
+        label.setBounds(0, 0, 400, 300);
+        label.setOpaque(false);
+        frame.setContentPane(label);
+        
         frame.getContentPane().setLayout(null);
 
         // navigate to staff updates
@@ -59,19 +62,21 @@ public class UpdatePage {
                 StaffRecUpdate.create();
             }
         });
+        btnUpdateNurse.setContentAreaFilled(false);
         btnUpdateNurse.setBounds(22, 234, 165, 23);
-        contentPane.add(btnUpdateNurse);
+        frame.add(btnUpdateNurse);
 
         // navigate to doctor updates
         JButton btnUpdatedocInfo = new JButton("Update Doctor Info");
         btnUpdatedocInfo.setBounds(22, 32, 165, 23);
-        contentPane.add(btnUpdatedocInfo);
+        frame.add(btnUpdatedocInfo);
         btnUpdatedocInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DoctorUpdate.create();
             }
         });
+        btnUpdatedocInfo.setContentAreaFilled(false);
 
         // navigate to patient updates
         JButton btnUpdatePatientInfo = new JButton("Update Patient Info");
@@ -81,8 +86,9 @@ public class UpdatePage {
                 patientRecUpdate.create();
             }
         });
+        btnUpdatePatientInfo.setContentAreaFilled(false);
         btnUpdatePatientInfo.setBounds(22, 66, 165, 23);
-        contentPane.add(btnUpdatePatientInfo);
+        frame.add(btnUpdatePatientInfo);
         
         // navigate to room updates
         JButton btnUpdateRoom = new JButton("Update Room Info");
@@ -92,8 +98,9 @@ public class UpdatePage {
                 RoomUpdate.create();
             }
         });
+        btnUpdateNurse.setContentAreaFilled(false);
         btnUpdateRoom.setBounds(22, 100, 165, 23);
-        contentPane.add(btnUpdateRoom);
+        frame.add(btnUpdateRoom);
 
         // navigate to bill updates
         JButton btnUpdateBill = new JButton("Update Bill Info");
@@ -103,8 +110,9 @@ public class UpdatePage {
                 BillUpdate.create();
             }
         });
+        btnUpdateBill.setContentAreaFilled(false);
         btnUpdateBill.setBounds(22, 134, 165, 23);
-        contentPane.add(btnUpdateBill);
+        frame.add(btnUpdateBill);
         
         // navigate to medicine updates
         JButton btnUpdateMed = new JButton("Update Medicine Info");
@@ -114,8 +122,9 @@ public class UpdatePage {
                 MedicineUpdate.create();
             }
         });
+        btnUpdateMed.setContentAreaFilled(false);
         btnUpdateMed.setBounds(22, 168, 165, 23);
-        contentPane.add(btnUpdateMed);
+        frame.add(btnUpdateMed);
 
         // navigate to treat updates
         JButton btnUpdTreat = new JButton("Update Treat Info");
@@ -125,8 +134,9 @@ public class UpdatePage {
                 TreatUpdate.create();
             }
         });
+        btnUpdTreat.setContentAreaFilled(false);
         btnUpdTreat.setBounds(22, 202, 165, 23);
-        contentPane.add(btnUpdTreat);
+        frame.add(btnUpdTreat);
     }
 
 }
