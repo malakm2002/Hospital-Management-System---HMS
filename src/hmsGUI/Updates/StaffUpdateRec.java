@@ -7,16 +7,14 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import com.mysql.cj.log.Log;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
-import hmsGUI.helpers.lastStaffID;
 
-public class NurseUpdate {
+public class StaffUpdateRec {
     public static void create() {
         String[] options = { "nurse", "janitor", "cashier", "doctor" };
 
@@ -145,40 +143,40 @@ public class NurseUpdate {
                     char gender;
                     if (!textFieldFN.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
-                                .prepareCall("UPDATE staffRecord SET firstName = \"" + textFieldFN.getText() + "\" "
+                                .prepareCall("UPDATE staffInfo SET firstName = \"" + textFieldFN.getText() + "\" "
                                         + "WHERE staffID = " + txtID.getText());
                         statment.execute();
 
                     }
                     if (!textFieldLN.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
-                                .prepareCall("UPDATE staffRecord SET lastName = \"" + textFieldLN.getText() + "\" "
+                                .prepareCall("UPDATE staffInfo SET lastName = \"" + textFieldLN.getText() + "\" "
                                         + "WHERE staffID = " + txtID.getText());
                         statment.execute();
 
                     }
                     if (!textFieldAddress.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
-                                .prepareCall("UPDATE staffRecord SET address = \"" + textFieldAddress.getText() + "\" "
+                                .prepareCall("UPDATE staffInfo SET address = \"" + textFieldAddress.getText() + "\" "
                                         + "WHERE staffID = " + txtID.getText());
                         statment.execute();
 
                     }
                     if (!textFieldPhone.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection
-                                .prepareCall("UPDATE staffRecord SET phoneNumber = " + textFieldPhone.getText()
+                                .prepareCall("UPDATE staffInfo SET phoneNumber = " + textFieldPhone.getText()
                                         + " WHERE staffID = " + txtID.getText());
                         statment.execute();
 
                     }
                     if (!textFieldJobType.getText().equalsIgnoreCase("")) {
-                        statment = (CallableStatement) LogIn.connection.prepareCall("UPDATE staff SET jobtype = \""
+                        statment = (CallableStatement) LogIn.connection.prepareCall("UPDATE staffInfo SET jobtype = \""
                                 + textFieldJobType.getText() + "\" WHERE staffID = " + txtID.getText());
                         statment.execute();
 
                     }
                     if (!textFieldSupervisorID.getText().equalsIgnoreCase("")) {
-                        statment = (CallableStatement) LogIn.connection.prepareCall("UPDATE staff SET supervisorID = "
+                        statment = (CallableStatement) LogIn.connection.prepareCall("UPDATE staffInfo SET supervisorID = "
                                 + textFieldSupervisorID.getText() + " WHERE staffID = " + txtID.getText());
                         statment.execute();
 
@@ -187,7 +185,7 @@ public class NurseUpdate {
                         System.out.print(dateChooser.getDate());
 
                         statment = (CallableStatement) LogIn.connection.prepareCall(
-                                "UPDATE staffRecord SET startDate = '" + parseDate(dateChooser.getDate())
+                                "UPDATE staffInfo SET startDate = '" + parseDate(dateChooser.getDate())
                                         + "' WHERE staffID = " + txtID.getText());
                         statment.execute();
 
@@ -195,14 +193,14 @@ public class NurseUpdate {
                     if (dateChooser_1.getDate() != null) {
                         System.out.print(dateChooser_1.getDate());
                         statment = (CallableStatement) LogIn.connection.prepareCall(
-                                "UPDATE staffRecord SET endDate = '" + parseDate(dateChooser_1.getDate())
+                                "UPDATE staffInfo SET endDate = '" + parseDate(dateChooser_1.getDate())
                                         + "' WHERE staffID = " + txtID.getText());
                         statment.execute();
                     } else {
                         genderChecker genderChecker = new genderChecker(chckbxMale, chckbxFemale);
                         gender = genderChecker.getGender();
                         statment = (CallableStatement) LogIn.connection.prepareCall(
-                                "UPDATE staffRecord SET gender = '" + gender + "' WHERE staffID = " + txtID.getText());
+                                "UPDATE staffInfo SET gender = '" + gender + "' WHERE staffID = " + txtID.getText());
                         statment.execute();
 
                     }
