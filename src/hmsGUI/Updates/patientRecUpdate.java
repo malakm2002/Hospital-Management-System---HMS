@@ -138,7 +138,6 @@ public class patientRecUpdate {
                 try {
 
                     CallableStatement statment;
-                    ResultSet res;
                     char gender;
                     if (!textFieldFN.getText().equalsIgnoreCase("")) {
                         statment = (CallableStatement) LogIn.connection

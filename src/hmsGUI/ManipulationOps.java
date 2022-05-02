@@ -27,6 +27,7 @@ import hmsGUI.Queries.PatientOnDay;
 import hmsGUI.Queries.PatientsOfADoctor;
 import hmsGUI.Queries.PatientsOfANurse;
 import hmsGUI.Updates.DoctorUpdate;
+import hmsGUI.Updates.RoomUpdate;
 import hmsGUI.Updates.StaffRecUpdate;
 import hmsGUI.Updates.patientRecUpdate;
 
@@ -256,6 +257,16 @@ public class ManipulationOps {
         });
         btnUpdatePatientInfo.setBounds(420, 66, 165, 23);
         contentPane.add(btnUpdatePatientInfo);
+        
+        JButton btnUpdateRoom = new JButton("Update Room Info");
+        btnUpdateRoom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RoomUpdate.create();
+            }
+        });
+        btnUpdateRoom.setBounds(420, 100, 165, 23);
+        contentPane.add(btnUpdateRoom);
         
         
     }
