@@ -1,3 +1,4 @@
+-- inserts a record into STAFF and NURSE with staffID = nurseID
 DROP Procedure IF EXISTS InsertNurse;
 DELIMITER %%
 CREATE PROCEDURE InsertNurse (
@@ -10,6 +11,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- inserts a record into STAFF and JANITOR with staffID = janitorID
 DROP Procedure IF EXISTS InsertJanitor;
 DELIMITER %%
 CREATE PROCEDURE InsertJanitor (
@@ -22,6 +24,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- inserts a record into STAFF and CASHIER with staffID = cashierID
 DROP Procedure IF EXISTS InsertCashier;
 DELIMITER %%
 CREATE PROCEDURE InsertCashier (
@@ -34,6 +37,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- inserts a record into STAFF and DOCTOR with staffID = doctorID
 DROP Procedure IF EXISTS InsertDoctor;
 DELIMITER %%
 CREATE PROCEDURE InsertDoctor (
@@ -95,6 +99,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- contains personal information about staff members
 DROP Procedure IF EXISTS InsertStaffRecord;
 DELIMITER %%
 CREATE PROCEDURE InsertStaffRecord (
@@ -111,6 +116,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- contains personal information about patients
 DROP Procedure IF EXISTS InsertPatientRecord;
 DELIMITER %%
 CREATE PROCEDURE InsertPatientRecord (
@@ -120,9 +126,9 @@ CREATE PROCEDURE InsertPatientRecord (
 	IN address VARCHAR(30),
     IN phoneNumber INT,
     IN admissionDate DATETIME,
-     IN dischargeDate DATETIME,
-     IN patientID INT,
-     IN staffID INT)
+	IN dischargeDate DATETIME,
+    IN patientID INT,
+    IN staffID INT)
 BEGIN
 	INSERT INTO PATIENTRECORD VALUES (LAST_INSERT_ID(),firstName,lastName,gender,address,phoneNumber,admissionDate,dischargeDate,patientID, staffID);
 END %%
@@ -133,8 +139,7 @@ DELIMITER %%
 CREATE PROCEDURE InsertTreat (
     IN patientID INT,
 	IN doctorID INT,
-    	IN medicineID INT
-
+	IN medicineID INT
 )
 BEGIN
 	INSERT INTO TREAT VALUES (patientID,doctorID,medicineID);

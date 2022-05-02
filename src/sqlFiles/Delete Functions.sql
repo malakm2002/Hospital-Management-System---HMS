@@ -1,3 +1,4 @@
+-- deletes from the super class STAFF, the subtype NURSE, and the personal infromation from STAFFRECORD
 DROP Procedure IF EXISTS DeleteNurse;
 DELIMITER %%
 CREATE PROCEDURE DeleteNurse (
@@ -12,6 +13,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- deletes from the super class STAFF, the subtype JANITOR, and the personal infromation from STAFFRECORD
 DROP Procedure IF EXISTS DeleteJanitor;
 DELIMITER %%
 CREATE PROCEDURE DeleteJanitor (
@@ -22,11 +24,11 @@ CREATE PROCEDURE DeleteJanitor (
 BEGIN
 	DELETE FROM JANITOR WHERE janitorID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-   DELETE FROM staffRecord WHERE staffID = ID;
-
+    DELETE FROM staffRecord WHERE staffID = ID;
 END %%
 DELIMITER ;
 
+-- deletes from the super class STAFF, the subtype CASHIER, and the personal infromation from STAFFRECORD
 DROP Procedure IF EXISTS DeleteCashier;
 DELIMITER %%
 CREATE PROCEDURE DeleteCashier (
@@ -40,7 +42,7 @@ BEGIN
 END %%
 DELIMITER ;
 
-
+-- deletes from the super class STAFF, the subtype DOCTOR, and the personal infromation from STAFFRECORD
 DROP Procedure IF EXISTS DeleteDoctor;
 DELIMITER %%
 CREATE PROCEDURE DeleteDoctor (
@@ -49,8 +51,7 @@ CREATE PROCEDURE DeleteDoctor (
 BEGIN
 	DELETE FROM DOCTOR WHERE doctorID = ID;
     DELETE FROM STAFF WHERE staffID = ID;
-   DELETE FROM staffRecord WHERE staffID = ID;
-
+    DELETE FROM staffRecord WHERE staffID = ID;
 END %%
 DELIMITER ;
 
@@ -74,6 +75,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- deletes from the class PATIENT and the personal infromation from PATIENTRECORD
 DROP Procedure IF EXISTS DeletePatient;
 DELIMITER %%
 CREATE PROCEDURE DeletePatient (

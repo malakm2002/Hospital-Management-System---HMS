@@ -2,6 +2,7 @@ CREATE SCHEMA IF NOT EXISTS HMS; -- Hospital Management System
 
 USE HMS;
 
+-- Creates the STAFF table, with subtypes NURSE, JANITOR, CASHIER, and DOCTOR
 CREATE TABLE IF NOT EXISTS STAFF (
 	staffID INT NOT NULL AUTO_INCREMENT,
     jobType VARCHAR(50) NOT NULL,
@@ -10,24 +11,28 @@ CREATE TABLE IF NOT EXISTS STAFF (
     FOREIGN KEY (supervisorID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
 
+-- subtype of STAFF with a FK referencing staffID, more information stored in STAFFRECORD
 CREATE TABLE IF NOT EXISTS NURSE (
 	nurseID INT NOT NULL,
     PRIMARY KEY (nurseID),
     FOREIGN KEY (nurseID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
 
+-- subtype of STAFF with a FK referencing staffID, more information stored in STAFFRECORD
 CREATE TABLE IF NOT EXISTS JANITOR (
 	janitorID INT NOT NULL,
     PRIMARY KEY (janitorID),
     FOREIGN KEY (janitorID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
 
+-- subtype of STAFF with a FK referencing staffID, more information stored in STAFFRECORD
 CREATE TABLE IF NOT EXISTS CASHIER (
 	cashierID INT NOT NULL,
     PRIMARY KEY (cashierID),
     FOREIGN KEY (cashierID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
 
+-- subtype of STAFF with a FK referencing staffID, more information stored in STAFFRECORD
 CREATE TABLE IF NOT EXISTS DOCTOR (
 	doctorID INT NOT NULL,
     specialty VARCHAR(50) NOT NULL,
@@ -55,6 +60,7 @@ CREATE TABLE IF NOT EXISTS BILL (
     FOREIGN KEY (cashierID) REFERENCES CASHIER (cashierID) ON DELETE CASCADE
 );
 
+-- contains information about the patient's relationship with the hospital, more information in PATIENTRECORD
 CREATE TABLE IF NOT EXISTS PATIENT (
 	patientID INT NOT NULL AUTO_INCREMENT,
     diagnosis VARCHAR(20) NOT NULL,
@@ -71,6 +77,7 @@ CREATE TABLE IF NOT EXISTS MEDICINE (
     PRIMARY KEY (medicineID)
 );
 
+-- contains personal information about the patient
 CREATE TABLE IF NOT EXISTS PatientRecord (
 	recordID INT NOT NULL AUTO_INCREMENT,
     firstName VARCHAR(20) NOT NULL,
@@ -85,6 +92,7 @@ CREATE TABLE IF NOT EXISTS PatientRecord (
     FOREIGN KEY(patientID) REFERENCES PATIENT(patientID) ON DELETE CASCADE
 );
 
+-- contains personal information about staff members
 CREATE TABLE IF NOT EXISTS StaffRecord (
 	recordID INT NOT NULL AUTO_INCREMENT,
     firstName VARCHAR(20) NOT NULL,
@@ -99,6 +107,7 @@ CREATE TABLE IF NOT EXISTS StaffRecord (
     FOREIGN KEY(staffID) REFERENCES STAFF(staffID) ON DELETE CASCADE
 );
 
+-- ternary relationship that represents treatments
 CREATE TABLE IF NOT EXISTS TREAT (
 	patientID INT NOT NULL,
     doctorID INT NOT NULL,
@@ -108,6 +117,7 @@ CREATE TABLE IF NOT EXISTS TREAT (
     FOREIGN KEY (medicineID) REFERENCES MEDICINE (medicineID) ON DELETE CASCADE
 );
 
+-- inserts a record into STAFF and NURSE with staffID = nurseID
 DROP Procedure IF EXISTS InsertNurse;
 DELIMITER %%
 CREATE PROCEDURE InsertNurse (
@@ -120,6 +130,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- inserts a record into STAFF and JANITOR with staffID = janitorID
 DROP Procedure IF EXISTS InsertJanitor;
 DELIMITER %%
 CREATE PROCEDURE InsertJanitor (
@@ -132,6 +143,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- inserts a record into STAFF and CASHIER with staffID = cashierID
 DROP Procedure IF EXISTS InsertCashier;
 DELIMITER %%
 CREATE PROCEDURE InsertCashier (
@@ -144,6 +156,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- inserts a record into STAFF and DOCTOR with staffID = doctorID
 DROP Procedure IF EXISTS InsertDoctor;
 DELIMITER %%
 CREATE PROCEDURE InsertDoctor (
@@ -205,6 +218,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- contains personal information about staff members
 DROP Procedure IF EXISTS InsertStaffRecord;
 DELIMITER %%
 CREATE PROCEDURE InsertStaffRecord (
@@ -221,6 +235,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- contains personal information about patients
 DROP Procedure IF EXISTS InsertPatientRecord;
 DELIMITER %%
 CREATE PROCEDURE InsertPatientRecord (
@@ -250,7 +265,7 @@ BEGIN
 END %%
 DELIMITER ;
 
-
+-- deletes from the super class STAFF, the subtype NURSE, and the personal infromation from STAFFRECORD
 DROP Procedure IF EXISTS DeleteNurse;
 DELIMITER %%
 CREATE PROCEDURE DeleteNurse (
@@ -263,6 +278,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- deletes from the super class STAFF, the subtype JANITOR, and the personal infromation from STAFFRECORD
 DROP Procedure IF EXISTS DeleteJanitor;
 DELIMITER %%
 CREATE PROCEDURE DeleteJanitor (
@@ -276,6 +292,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- deletes from the super class STAFF, the subtype CASHIER, and the personal infromation from STAFFRECORD
 DROP Procedure IF EXISTS DeleteCashier;
 DELIMITER %%
 CREATE PROCEDURE DeleteCashier (
@@ -289,7 +306,7 @@ BEGIN
 END %%
 DELIMITER ;
 
-
+-- deletes from the super class STAFF, the subtype DOCTOR, and the personal infromation from STAFFRECORD
 DROP Procedure IF EXISTS DeleteDoctor;
 DELIMITER %%
 CREATE PROCEDURE DeleteDoctor (
@@ -323,6 +340,7 @@ BEGIN
 END %%
 DELIMITER ;
 
+-- deletes from the class PATIENT and the personal infromation from PATIENTRECORD
 DROP Procedure IF EXISTS DeletePatient;
 DELIMITER %%
 CREATE PROCEDURE DeletePatient (
@@ -330,6 +348,7 @@ CREATE PROCEDURE DeletePatient (
 )
 BEGIN
 	DELETE FROM PATIENT WHERE patientID = ID;
+    DELETE FROM PATIENTRECORD WHERE patientID = ID;
 END %%
 DELIMITER ;
 
@@ -362,15 +381,23 @@ BEGIN
 	DELETE FROM patientRecord WHERE recordID = ID;
 END %%
 DELIMITER ;
+
 -- Views
+-- combines STAFF (job type and supervisor) with personal information from STAFFRECORD
 CREATE VIEW staffInfo as select * from staff natural join staffrecord;
+
+-- selects only the doctors among the STAFF
 CREATE VIEW doctorInfo as select * from staff join doctor on staffID=doctorID;
+
+-- combines PATIENT (diagnosis and room) with personal information from PATIENTRECORD
 CREATE VIEW patientInfo as select * from patient natural join patientrecord;
+
 -- Population
  INSERT INTO STAFF VALUES -- supervisors
  	(1, 'Dean', null),
-     (2, 'Adminstrator', 1);
+	(2, 'Adminstrator', 1);
 
+-- POPULATE STAFF
 CALL InsertNurse('Cardiac nurse', 1); -- 3
 CALL InsertNurse('Orthopedic nurse', 1); -- 4
 CALL InsertNurse('Optics nurse', 1); -- 5

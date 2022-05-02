@@ -1,3 +1,8 @@
-CREATE VIEW staffInfo as select * from staff natural join staffrecord;
-CREATE VIEW doctorInfo as select * from staff join doctor on staffID=doctorID;
-CREATE VIEW patientInfo as select * from patient natural join patientrecord;
+-- combines STAFF (job type and supervisor) with personal information from STAFFRECORD
+CREATE VIEW staffInfo AS SELECT * FROM staff NATURAL JOIN staffrecord;
+
+-- selects only the doctors among the STAFF
+CREATE VIEW doctorInfo AS SELECT * FROM staff JOIN doctor ON staffID=doctorID;
+
+-- combines PATIENT (diagnosis and room) with personal information from PATIENTRECORD
+CREATE VIEW patientInfo AS SELECT * FROM patient NATURAL JOIN patientrecord;
