@@ -67,8 +67,8 @@ public class UpdatePage {
         frame.add(btnUpdateNurse);
 
         // navigate to doctor updates
-        JButton btnUpdatedocInfo = new JButton("Update Doctor Info");
-        btnUpdatedocInfo.setBounds(22, 32, 165, 23);
+        JButton btnUpdatedocInfo = new JButton("Update Doctor Specialty");
+        btnUpdatedocInfo.setBounds(22, 32, 170, 23);
         frame.add(btnUpdatedocInfo);
         btnUpdatedocInfo.addActionListener(new ActionListener() {
             @Override

@@ -13,6 +13,8 @@ public class ManipulationOps {
     public static ImageIcon background = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/background.jpg");
     public static ImageIcon deletionback = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/deletionback.jpg");
     public static ImageIcon insertionback = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/insertionback.jpg");
+    public static ImageIcon updateback = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/updateback.jpg");
+
 
     /**
      * Creates the page containing all the buttons relating to CRUD operations

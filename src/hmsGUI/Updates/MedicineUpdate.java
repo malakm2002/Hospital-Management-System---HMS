@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 
@@ -29,51 +30,52 @@ public class MedicineUpdate {
         }
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 300, 300);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        JLabel label = new JLabel(ManipulationOps.updateback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
         frame.setVisible(true);
+        frame.setResizable(false);
 
         JLabel lblMedID = new JLabel("Medicine ID");
         lblMedID.setBounds(33, 40, 80, 14);
-        contentPane.add(lblMedID);
+        frame.add(lblMedID);
 
         // input for the medicine's ID
         JTextField txtMedID = new JTextField();
         txtMedID.setBounds(113, 37, 96, 20);
-        contentPane.add(txtMedID);
+        frame.add(txtMedID);
         txtMedID.setColumns(10);
 
         JLabel lblMedName = new JLabel("Name");
         lblMedName.setBounds(33, 74, 80, 14);
-        contentPane.add(lblMedName);
+        frame.add(lblMedName);
 
         // input for the medicine's name
         JTextField txtMedName = new JTextField();
         txtMedName.setColumns(10);
         txtMedName.setBounds(113, 71, 96, 20);
-        contentPane.add(txtMedName);
+        frame.add(txtMedName);
 
         JLabel lblPrice = new JLabel("Price");
         lblPrice.setBounds(33, 110, 49, 14);
-        contentPane.add(lblPrice);
+        frame.add(lblPrice);
 
         // input for the price
         JTextField txtPrice = new JTextField();
         txtPrice.setBounds(113, 107, 96, 20);
-        contentPane.add(txtPrice);
+        frame.add(txtPrice);
         txtPrice.setColumns(10);
 
         JLabel lblqty = new JLabel("Quantity");
         lblqty.setBounds(33, 142, 49, 14);
-        contentPane.add(lblqty);
+        frame.add(lblqty);
 
         // input for the quantity
         JTextField txtQty = new JTextField();
         txtQty.setColumns(10);
         txtQty.setBounds(113, 139, 96, 20);
-        contentPane.add(txtQty);
+        frame.add(txtQty);
 
         JButton btnUpdate = new JButton("Update");
         btnUpdate.addActionListener(new ActionListener() {
@@ -113,6 +115,6 @@ public class MedicineUpdate {
             }
         });
         btnUpdate.setBounds(80, 195, 89, 23);
-        contentPane.add(btnUpdate);
+        frame.add(btnUpdate);
     }
 }

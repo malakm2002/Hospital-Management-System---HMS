@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import com.mysql.cj.jdbc.CallableStatement;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 
@@ -20,31 +21,32 @@ public class DoctorUpdate {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 300, 250);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        JLabel label = new JLabel(ManipulationOps.updateback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
         frame.setVisible(true);
+        frame.setResizable(false);
 
         JLabel lblDoctorID = new JLabel("Doctor ID");
         lblDoctorID.setBounds(36, 53, 76, 14);
-        contentPane.add(lblDoctorID);
+        frame.add(lblDoctorID);
 
         // input for the doctor's ID
         JTextField txtDoctID = new JTextField();
         txtDoctID.setBounds(99, 50, 96, 20);
-        contentPane.add(txtDoctID);
+        frame.add(txtDoctID);
         txtDoctID.setColumns(10);
 
         JLabel lblSpecialty = new JLabel("Specialty");
         lblSpecialty.setBounds(36, 81, 76, 14);
-        contentPane.add(lblSpecialty);
+        frame.add(lblSpecialty);
 
         // input for the doctor's specialty
         JTextField txtSpecialty = new JTextField();
         txtSpecialty.setColumns(10);
         txtSpecialty.setBounds(99, 78, 96, 20);
-        contentPane.add(txtSpecialty);
+        frame.add(txtSpecialty);
 
         // executes the required updates
         JButton btnUpdate = new JButton("Update");
@@ -69,6 +71,6 @@ public class DoctorUpdate {
             }
         });
         btnUpdate.setBounds(79, 124, 89, 23);
-        contentPane.add(btnUpdate);
+        frame.add(btnUpdate);
     }
 }

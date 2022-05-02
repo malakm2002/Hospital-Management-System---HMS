@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
@@ -32,7 +33,7 @@ public class patientRecUpdate {
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -42,109 +43,111 @@ public class patientRecUpdate {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        JLabel label = new JLabel(ManipulationOps.updateback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
 
         JLabel lblID = new JLabel("ID");
         lblID.setBounds(287, 40, 140, 20);
-        contentPane.add(lblID);
+        frame.add(lblID);
 
         JTextField txtID = new JTextField();
         txtID.setBounds(305, 41, 96, 20);
-        contentPane.add(txtID);
+        frame.add(txtID);
 
         JLabel lblFN = new JLabel("First Name*");
         lblFN.setBounds(40, 71, 96, 14);
-        contentPane.add(lblFN);
+        frame.add(lblFN);
 
         JLabel lblLN = new JLabel("Last Name*");
         lblLN.setBounds(152, 71, 94, 14);
-        contentPane.add(lblLN);
+        frame.add(lblLN);
 
         // input for the patient's first name
         JTextField textFieldFN = new JTextField();
         textFieldFN.setBounds(40, 87, 96, 20);
-        contentPane.add(textFieldFN);
+        frame.add(textFieldFN);
         textFieldFN.setColumns(10);
 
         // input for the patient's last name
         JTextField textFieldLN = new JTextField();
         textFieldLN.setColumns(10);
         textFieldLN.setBounds(150, 87, 96, 20);
-        contentPane.add(textFieldLN);
+        frame.add(textFieldLN);
 
         JLabel lblGender = new JLabel("Sex*");
         lblGender.setHorizontalAlignment(SwingConstants.CENTER);
         lblGender.setBounds(275, 71, 49, 14);
-        contentPane.add(lblGender);
+        frame.add(lblGender);
 
         // check boxes for the patient's sex
         JCheckBox chckbxMale = new JCheckBox("Male");
+        chckbxMale.setContentAreaFilled(false);
         chckbxMale.setBounds(320, 67, 54, 23);
-        contentPane.add(chckbxMale);
+        frame.add(chckbxMale);
 
         JCheckBox chckbxFemale = new JCheckBox("Female");
         chckbxFemale.setBounds(380, 67, 72, 23);
-        contentPane.add(chckbxFemale);
+        chckbxFemale.setContentAreaFilled(false);
+        frame.add(chckbxFemale);
 
         JLabel lblAddr = new JLabel("Address*");
         lblAddr.setBounds(40, 108, 96, 14);
-        contentPane.add(lblAddr);
+        frame.add(lblAddr);
 
         // input for the patients address
         JTextField textFieldAddress = new JTextField();
         textFieldAddress.setColumns(10);
         textFieldAddress.setBounds(40, 133, 96, 20);
-        contentPane.add(textFieldAddress);
+        frame.add(textFieldAddress);
 
         JLabel lblPhone = new JLabel("Phone Number*");
         lblPhone.setBounds(152, 118, 104, 14);
-        contentPane.add(lblPhone);
+        frame.add(lblPhone);
 
         // input for the patient's phone number
         JTextField textFieldPhone = new JTextField();
         textFieldPhone.setBounds(150, 133, 96, 20);
-        contentPane.add(textFieldPhone);
+        frame.add(textFieldPhone);
         textFieldPhone.setColumns(10);
 
         JLabel lblAddmissionDate = new JLabel("Admission Date*");
         lblAddmissionDate.setBounds(290, 100, 111, 14);
-        contentPane.add(lblAddmissionDate);
+        frame.add(lblAddmissionDate);
 
         JLabel lblDischargeDate = new JLabel("Discharge Date*");
         lblDischargeDate.setBounds(290, 130, 111, 14);
-        contentPane.add(lblDischargeDate);
+        frame.add(lblDischargeDate);
 
         // choices for the admission and discharge dates
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setBounds(390, 97, 124, 20);
-        contentPane.add(dateChooser);
+        frame.add(dateChooser);
 
         JDateChooser dateChooser_1 = new JDateChooser();
         dateChooser_1.setBounds(390, 135, 124, 20);
-        contentPane.add(dateChooser_1);
+        frame.add(dateChooser_1);
 
         JLabel lblDiag = new JLabel("Diagnosis");
         lblDiag.setBounds(40, 170, 96, 14);
-        contentPane.add(lblDiag);
+        frame.add(lblDiag);
 
         // input for the patient's diagnosis
         JTextField txtDiag = new JTextField();
         txtDiag.setBounds(40, 185, 96, 20);
-        contentPane.add(txtDiag);
+        frame.add(txtDiag);
         txtDiag.setColumns(10);
 
         JLabel lblroomID = new JLabel("Room ID*");
         lblroomID.setBounds(150, 170, 96, 14);
-        contentPane.add(lblroomID);
+        frame.add(lblroomID);
 
         // input for the patient's room ID
         JTextField txtRoomID = new JTextField();
         txtRoomID.setColumns(10);
         txtRoomID.setBounds(152, 185, 96, 20);
-        contentPane.add(txtRoomID);
+        frame.add(txtRoomID);
 
         JButton btnADD = new JButton("Update");
         btnADD.addActionListener(new ActionListener() {
@@ -248,7 +251,7 @@ public class patientRecUpdate {
             }
         });
         btnADD.setBounds(280, 180, 89, 23);
-        contentPane.add(btnADD);
+        frame.add(btnADD);
     }
 
     // parses the date retrieved from MySQL into a format recognized by JAVA
