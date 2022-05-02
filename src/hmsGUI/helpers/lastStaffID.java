@@ -7,6 +7,7 @@ import hmsGUI.LogIn;
 public class lastStaffID {
     private int lastSID;
 
+    // sets lastSID to the ID of the last inserted staff
     public lastStaffID(){
         try {
             String staffID = "";
@@ -20,8 +21,9 @@ public class lastStaffID {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
+    // returns the last inserted staff ID as an int
     public int getlastSID(){
         return lastSID;
     }

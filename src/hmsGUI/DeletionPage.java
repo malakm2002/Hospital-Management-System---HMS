@@ -12,9 +12,13 @@ import hmsGUI.Deletions.DeleteOther;
 import hmsGUI.Deletions.DeleteStaff;
 
 public class DeletionPage {
-
+    /**
+     * Creates the page containing all the buttons relating to delete operations
+     */
     public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+        
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -41,6 +45,7 @@ public class DeletionPage {
         frame.setContentPane(contentPane);
         frame.getContentPane().setLayout(null);
 
+        // navigate to deleting a staff member
         JButton btnDeleteOtherStaff = new JButton("Delete staff");
         btnDeleteOtherStaff.addActionListener(new ActionListener() {
             @Override
@@ -51,6 +56,7 @@ public class DeletionPage {
         btnDeleteOtherStaff.setBounds(22, 32, 165, 23);
         contentPane.add(btnDeleteOtherStaff);
 
+        // navigate to deleting other values (patients, rooms, bills, etc.)
         JButton btnDeleteOther = new JButton("Delete other values");
         btnDeleteOther.addActionListener(new ActionListener() {
             @Override

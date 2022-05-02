@@ -10,9 +10,13 @@ import javax.swing.border.EmptyBorder;
 import hmsGUI.LogIn;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
-public class PatientInsertion {
-    public static void create() {
 
+public class PatientInsertion {
+    /**
+     * Creates the page allowing pateint patient insertions
+     */
+    public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
@@ -43,6 +47,7 @@ public class PatientInsertion {
 		lblDiagnosis.setBounds(10, 11, 96, 14);
 		contentPane.add(lblDiagnosis);
 
+        // input for the diagnosis
 		JTextField txtFldDiag = new JTextField();
 		txtFldDiag.setBounds(10, 27, 96, 20);
 		contentPane.add(txtFldDiag);
@@ -52,6 +57,7 @@ public class PatientInsertion {
 		lblroomID.setBounds(10, 58, 96, 14);
 		contentPane.add(lblroomID);
 
+        // input for the room
 		JTextField txtFldRoomID = new JTextField();
 		txtFldRoomID.setColumns(10);
 		txtFldRoomID.setBounds(10, 73, 96, 20);
@@ -63,17 +69,16 @@ public class PatientInsertion {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Statement stmt = LogIn.connection.createStatement();
+
+                    // executes the insertion
                     ResultSet res = stmt.executeQuery("CALL hms.InsertPatient('" + txtFldDiag.getText() + "',"
                             + Integer.parseInt(txtFldRoomID.getText()) +")");
                     SuccessMessageFrame.create();
                     frame.setVisible(false);
                     System.out.println(this.getClass().toString());
-
                 } catch (Exception e1) {
                     FailureMessageFrame.create();
-
                 }
-
             }
         });
         btnADD.setBounds(122, 27, 89, 23);

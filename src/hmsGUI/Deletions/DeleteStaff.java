@@ -16,10 +16,15 @@ import com.mysql.cj.jdbc.CallableStatement;
 import hmsGUI.LogIn;
 
 public class DeleteStaff {
+    /**
+     * Creates the page allowing staff deletions
+     */
     public static void create() {
+        // title
+        JFrame frame = new JFrame("Hospital Management System - Operations");
+        
         String[] options = { "Nurse", "Janitor", "Cashier", "Doctor" };
 
-        JFrame frame = new JFrame("Hospital Management System - Operations");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -53,6 +58,7 @@ public class DeleteStaff {
         label.setBounds(20, 50, 140, 20);
         contentPane.add(label);
 
+        // input for the staff's ID
         JTextField idInput = new JTextField();
         idInput.setBounds(20, 70, 140, 20);
         contentPane.add(idInput);
@@ -67,6 +73,7 @@ public class DeleteStaff {
             @Override
             public void actionPerformed(ActionEvent e) {
                 delete(idInput.getText(), comboBox.getSelectedItem().toString());
+                // displays the selected item
                 tAreaCurrentTable.setText(getStaffTable(comboBox.getSelectedItem().toString()));
             }
         });
@@ -80,15 +87,19 @@ public class DeleteStaff {
         comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // displayes the selected item
                 tAreaCurrentTable.setText(getStaffTable(comboBox.getSelectedItem().toString()));
             }
         });
 
     }
 
+    // deletes the selected record
     static void delete(String ID, String type) {
         try {
             CallableStatement statement;
+
+            // chooses the required stored procedure
             switch (type) {
                 case "Nurse":
                     statement = (CallableStatement) LogIn.connection.prepareCall("{call DeleteNurse(?)}");
@@ -122,6 +133,7 @@ public class DeleteStaff {
         String accessID = "nurseID";
 
         try {
+            // chooses the required ID for each type of staff
             switch (table) {
                 case "Nurse":
                     accessID = "nurseID";
@@ -140,6 +152,7 @@ public class DeleteStaff {
             Statement tableStmt = LogIn.connection.createStatement();
             Statement staffStmt = LogIn.connection.createStatement();
 
+            // retrieves the required information
             ResultSet tableRes = tableStmt.executeQuery("SELECT * FROM " + table);
             ResultSet staffRes = staffStmt.executeQuery("SELECT * FROM STAFF");
 

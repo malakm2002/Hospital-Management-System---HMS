@@ -14,9 +14,13 @@ import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
 import hmsGUI.helpers.lastStaffID;
-public class DoctorInsertion {
-    public static void create() {
 
+public class DoctorInsertion {
+    /**
+     * Creates the page allowing pateint doctor insertions
+     */
+    public static void create() {
+        // title
 		JFrame frame = new JFrame("Hospital Management System - Operations");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		try {
@@ -47,6 +51,7 @@ public class DoctorInsertion {
 		lblFN.setBounds(10, 11, 96, 14);
 		contentPane.add(lblFN);
 
+        // input for the doctor's first name
 		JTextField textFieldFN = new JTextField();
 		textFieldFN.setBounds(10, 27, 96, 20);
 		contentPane.add(textFieldFN);
@@ -56,6 +61,7 @@ public class DoctorInsertion {
 		lblLN.setBounds(122, 11, 94, 14);
 		contentPane.add(lblLN);
 
+        // input for the doctor's last name
 		JTextField textFieldLN = new JTextField();
 		textFieldLN.setColumns(10);
 		textFieldLN.setBounds(120, 27, 96, 20);
@@ -66,6 +72,7 @@ public class DoctorInsertion {
 		lblGender.setBounds(245, 11, 49, 14);
 		contentPane.add(lblGender);
 
+        // check boxes for the doctor's sex
 		JCheckBox chckbxMale = new JCheckBox("Male");
 		chckbxMale.setBounds(290, 7, 54, 23);
 		contentPane.add(chckbxMale);
@@ -78,6 +85,7 @@ public class DoctorInsertion {
 		lblAddr.setBounds(10, 58, 96, 14);
 		contentPane.add(lblAddr);
 
+        // input for the doctor's address
 		JTextField textFieldAddress = new JTextField();
 		textFieldAddress.setColumns(10);
 		textFieldAddress.setBounds(10, 73, 96, 20);
@@ -87,31 +95,36 @@ public class DoctorInsertion {
 		lblPhone.setBounds(122, 58, 94, 14);
 		contentPane.add(lblPhone);
 
+        // input for the doctor's phone number
 		JTextField textFieldPhone = new JTextField();
 		textFieldPhone.setBounds(120, 73, 96, 20);
 		contentPane.add(textFieldPhone);
 		textFieldPhone.setColumns(10);
 
-		JLabel lblstartDate = new JLabel("start Date*");
+		JLabel lblstartDate = new JLabel("Start Date*");
 		lblstartDate.setBounds(260, 40, 111, 14);
 		contentPane.add(lblstartDate);
 
+        // choices for the doctor's first day of work
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(360, 37, 124, 20);
 		contentPane.add(dateChooser);
 
-
 		JLabel lblJobType = new JLabel("Job Type");
 		lblJobType.setBounds(10, 140, 96, 14);
 		contentPane.add(lblJobType);
+
         JLabel lblSpecialty = new JLabel("Specialty");
 		lblSpecialty.setBounds(10, 180, 96, 14);
 		contentPane.add(lblSpecialty);
+
+        // input for the doctor's specialty
         JTextField textFieldSpecialty = new JTextField();
 		textFieldSpecialty.setBounds(10, 195, 96, 20);
 		contentPane.add(textFieldSpecialty);
 		textFieldSpecialty.setColumns(10);
 
+        // input for the doctor's job type
 		JTextField textFieldJobType = new JTextField();
 		textFieldJobType.setBounds(10, 155, 96, 20);
 		contentPane.add(textFieldJobType);
@@ -121,6 +134,7 @@ public class DoctorInsertion {
 		lblSupervisorID.setBounds(120, 140, 96, 14);
 		contentPane.add(lblSupervisorID);
 
+        // input for the doctor's supervisor
 		JTextField textFieldSupervisorID = new JTextField();
 		textFieldSupervisorID.setColumns(10);
 		textFieldSupervisorID.setBounds(122, 155, 96, 20);
@@ -133,32 +147,34 @@ public class DoctorInsertion {
 					genderChecker gChecker = new genderChecker(chckbxMale, chckbxFemale);
 					char gender = gChecker.getGender();
 					Statement stmt = LogIn.connection.createStatement();
+
+                    // executes the insertion
 					ResultSet res = stmt.executeQuery("CALL hms.InsertDoctor('" + textFieldJobType.getText() + "',"
 							+ Integer.parseInt(textFieldSupervisorID.getText()) + ",'"+textFieldSpecialty.getText()+"')");
-					lastStaffID staffID = new lastStaffID();			
+
+					lastStaffID staffID = new lastStaffID();	
+
 					res = stmt.executeQuery("CALL HMS.InsertStaffRecord('" + textFieldFN.getText() + "','"
 							+ textFieldLN.getText() + "','" + gender + "','" + textFieldAddress.getText() + "',"
 							+ textFieldPhone.getText()+",'"+parseDateTime(dateChooser.getDate())+"',"+Types.NULL+","+staffID.getlastSID()+")");
 					SuccessMessageFrame.create();
-					frame.setVisible(false);	
-	
-					
+					frame.setVisible(false);
 				} catch (Exception e1) {
 					FailureMessageFrame.create();				
-
 				}
-
 			}
 		});
 		btnADD.setBounds(270, 150, 89, 23);
 		contentPane.add(btnADD);
 	}
 
+    // parses the date retrieved by MySQL into a format readable by JAVA
 	public static String parseDateTime(java.util.Date date) {
 		String[] parts = date.toString().split(" ");
 		return parts[5] +"-"+ parseMonth(parts[1]) + "-" + parts[2] +" " + parts[3] ;
 	}
 
+    // returns the month as a number
 	public static String parseMonth(String month) {
 		if (month.equalsIgnoreCase("jan")) {
 			return "01";

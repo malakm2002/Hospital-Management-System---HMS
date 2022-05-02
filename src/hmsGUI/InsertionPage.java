@@ -22,8 +22,13 @@ import hmsGUI.Insertions.RoomInsertion;
 import hmsGUI.Insertions.TreatmentInsertion;
 
 public class InsertionPage {
+    /**
+     * Creates the page containing all the buttons relating to insertion operations
+     */
     public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -50,6 +55,7 @@ public class InsertionPage {
         frame.getContentPane().setLayout(null);
         frame.setContentPane(label);
 
+        // navigate to inserting a new nurse
         JButton btnInsertNurse = new JButton("Insert a new Nurse");
         btnInsertNurse.addActionListener(new ActionListener() {
             @Override
@@ -60,6 +66,7 @@ public class InsertionPage {
         btnInsertNurse.setBounds(22, 32, 165, 23);
         frame.add(btnInsertNurse);
 
+        // navigate to inserting a new janitor
         JButton btnInsertJanitor = new JButton("Insert a new Janitor");
         btnInsertJanitor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -74,16 +81,17 @@ public class InsertionPage {
         btnInsertJanitor.setBounds(22, 66, 165, 23);
         frame.add(btnInsertJanitor);
 
+        // navigate to inserting a new doctor
         JButton btnInsertDoctor = new JButton("Insert a new Doctor");
         btnInsertDoctor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DoctorInsertion.create();
-
             }
         });
         btnInsertDoctor.setBounds(22, 100, 165, 23);
         frame.add(btnInsertDoctor);
 
+        // navigate to inserting a new room
         JButton btnInsertRoom = new JButton("Insert a new Room");
         btnInsertRoom.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -93,6 +101,7 @@ public class InsertionPage {
         btnInsertRoom.setBounds(22, 134, 165, 23);
         frame.add(btnInsertRoom);
 
+        // navigate to inserting a new bill
         JButton btnInsertBill = new JButton("Insert a new Bill");
         btnInsertBill.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -102,6 +111,7 @@ public class InsertionPage {
         btnInsertBill.setBounds(22, 168, 165, 23);
         frame.add(btnInsertBill);
 
+        // navigate to inserting a new patient
         JButton btnInsertPatient = new JButton("Insert a new Patient");
         btnInsertPatient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -111,6 +121,7 @@ public class InsertionPage {
         btnInsertPatient.setBounds(22, 202, 165, 23);
         frame.add(btnInsertPatient);
 
+        // navigate to inserting a new medicine
         JButton btnInsertMedicine = new JButton("Insert a new Medicine");
         btnInsertMedicine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -120,16 +131,17 @@ public class InsertionPage {
         btnInsertMedicine.setBounds(22, 236, 165, 23);
         frame.add(btnInsertMedicine);
 
+        // navigate to inserting a new cashier
         JButton btnInsertRecord = new JButton("Insert a new Cashier");
         btnInsertRecord.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                  CashierInsertion.create();
-
             }
         });
         btnInsertRecord.setBounds(22, 270, 165, 23);
         frame.add(btnInsertRecord);
 
+        // navigate to inserting a new treatment ('treat' table)
         JButton btnInsertTreatment = new JButton("Insert a new Treatment");
         btnInsertTreatment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -138,12 +150,5 @@ public class InsertionPage {
         });
         btnInsertTreatment.setBounds(22, 304, 165, 23);
         frame.add(btnInsertTreatment);
-
-
-
-
-
     }
-
-    
 }

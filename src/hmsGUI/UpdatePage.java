@@ -18,9 +18,13 @@ import hmsGUI.Updates.TreatUpdate;
 import hmsGUI.Updates.patientRecUpdate;
 
 public class UpdatePage {
-
+    /**
+     * Creates the page containing all the buttons relating to update operations
+     */
     public static void create() {
+        // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -47,6 +51,7 @@ public class UpdatePage {
         frame.setContentPane(contentPane);
         frame.getContentPane().setLayout(null);
 
+        // navigate to staff updates
         JButton btnUpdateNurse = new JButton("Update Staff Records");
         btnUpdateNurse.addActionListener(new ActionListener() {
             @Override
@@ -57,6 +62,7 @@ public class UpdatePage {
         btnUpdateNurse.setBounds(22, 234, 165, 23);
         contentPane.add(btnUpdateNurse);
 
+        // navigate to doctor updates
         JButton btnUpdatedocInfo = new JButton("Update Doctor Info");
         btnUpdatedocInfo.setBounds(22, 32, 165, 23);
         contentPane.add(btnUpdatedocInfo);
@@ -66,6 +72,8 @@ public class UpdatePage {
                 DoctorUpdate.create();
             }
         });
+
+        // navigate to patient updates
         JButton btnUpdatePatientInfo = new JButton("Update Patient Info");
         btnUpdatePatientInfo.addActionListener(new ActionListener() {
             @Override
@@ -76,6 +84,7 @@ public class UpdatePage {
         btnUpdatePatientInfo.setBounds(22, 66, 165, 23);
         contentPane.add(btnUpdatePatientInfo);
         
+        // navigate to room updates
         JButton btnUpdateRoom = new JButton("Update Room Info");
         btnUpdateRoom.addActionListener(new ActionListener() {
             @Override
@@ -86,6 +95,7 @@ public class UpdatePage {
         btnUpdateRoom.setBounds(22, 100, 165, 23);
         contentPane.add(btnUpdateRoom);
 
+        // navigate to bill updates
         JButton btnUpdateBill = new JButton("Update Bill Info");
         btnUpdateBill.addActionListener(new ActionListener() {
             @Override
@@ -96,6 +106,7 @@ public class UpdatePage {
         btnUpdateBill.setBounds(22, 134, 165, 23);
         contentPane.add(btnUpdateBill);
         
+        // navigate to medicine updates
         JButton btnUpdateMed = new JButton("Update Medicine Info");
         btnUpdateMed.addActionListener(new ActionListener() {
             @Override
@@ -106,7 +117,8 @@ public class UpdatePage {
         btnUpdateMed.setBounds(22, 168, 165, 23);
         contentPane.add(btnUpdateMed);
 
-        JButton btnUpdTreat = new JButton("Update Medicine Info");
+        // navigate to treat updates
+        JButton btnUpdTreat = new JButton("Update Treat Info");
         btnUpdTreat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,7 +127,6 @@ public class UpdatePage {
         });
         btnUpdTreat.setBounds(22, 202, 165, 23);
         contentPane.add(btnUpdTreat);
-
     }
-    
+
 }
