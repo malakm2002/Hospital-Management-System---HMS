@@ -26,7 +26,12 @@ public class LogIn {
 	private JLabel passwordLabel;
 	private JButton logInbtn;
 	private JPasswordField passwordField;
-public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
+//public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
+public static ImageIcon icon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/src/hospital.jpg");
+public static ImageIcon cloudIcon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/src/cloud.jpg");
+
+
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -55,7 +60,8 @@ public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 
 		contentPane.setLayout(null);
 		contentPane.setBackground(Color.WHITE);
 
-		ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
+		//ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
+		ImageIcon icon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/src/hospital.jpg");
 		JLabel label = new JLabel(icon);
 		label.setBounds(0, 0, 400, 400);
 		contentPane.add(label);
@@ -96,9 +102,9 @@ public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 
 			Connector connector = new Connector();
 			// connector.Connect(usernameField.getText(),
 			// String.valueOf(passwordField.getPassword()));
-			connector.Connect("root", "m@L@K2002");
+			//connector.Connect("root", "m@L@K2002");
 			// connector.Connect("root", "HalfmylifeSQL3!");
-			// connector.Connect("root", "Ivyleague123");
+			connector.Connect("root", "Ivyleague123");
 			if (connector.connected) {
 				LogIn.connection = connector.connection;
 				frame.dispose();

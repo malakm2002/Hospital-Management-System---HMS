@@ -38,6 +38,8 @@ public class ManipulationOps {
         label.setOpaque(false);
         frame.getContentPane().setLayout(null);
         frame.setContentPane(label);
+
+        
         JButton btnInsertionPage = new JButton("Insert");
         btnInsertionPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

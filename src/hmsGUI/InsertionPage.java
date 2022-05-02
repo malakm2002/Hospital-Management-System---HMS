@@ -1,10 +1,12 @@
 package hmsGUI;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -41,12 +43,12 @@ public class InsertionPage {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 700, 394);
-
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
+        frame.setBounds(100, 100, 450, 394);
+        JLabel label = new JLabel(LogIn.cloudIcon);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
         frame.getContentPane().setLayout(null);
+        frame.setContentPane(label);
 
         JButton btnInsertNurse = new JButton("Insert a new Nurse");
         btnInsertNurse.addActionListener(new ActionListener() {
@@ -56,7 +58,7 @@ public class InsertionPage {
             }
         });
         btnInsertNurse.setBounds(22, 32, 165, 23);
-        contentPane.add(btnInsertNurse);
+        frame.add(btnInsertNurse);
 
         JButton btnInsertJanitor = new JButton("Insert a new Janitor");
         btnInsertJanitor.addActionListener(new ActionListener() {
@@ -70,7 +72,7 @@ public class InsertionPage {
             }
         });
         btnInsertJanitor.setBounds(22, 66, 165, 23);
-        contentPane.add(btnInsertJanitor);
+        frame.add(btnInsertJanitor);
 
         JButton btnInsertDoctor = new JButton("Insert a new Doctor");
         btnInsertDoctor.addActionListener(new ActionListener() {
@@ -80,7 +82,7 @@ public class InsertionPage {
             }
         });
         btnInsertDoctor.setBounds(22, 100, 165, 23);
-        contentPane.add(btnInsertDoctor);
+        frame.add(btnInsertDoctor);
 
         JButton btnInsertRoom = new JButton("Insert a new Room");
         btnInsertRoom.addActionListener(new ActionListener() {
@@ -89,7 +91,7 @@ public class InsertionPage {
             }
         });
         btnInsertRoom.setBounds(22, 134, 165, 23);
-        contentPane.add(btnInsertRoom);
+        frame.add(btnInsertRoom);
 
         JButton btnInsertBill = new JButton("Insert a new Bill");
         btnInsertBill.addActionListener(new ActionListener() {
@@ -98,7 +100,7 @@ public class InsertionPage {
             }
         });
         btnInsertBill.setBounds(22, 168, 165, 23);
-        contentPane.add(btnInsertBill);
+        frame.add(btnInsertBill);
 
         JButton btnInsertPatient = new JButton("Insert a new Patient");
         btnInsertPatient.addActionListener(new ActionListener() {
@@ -107,7 +109,7 @@ public class InsertionPage {
             }
         });
         btnInsertPatient.setBounds(22, 202, 165, 23);
-        contentPane.add(btnInsertPatient);
+        frame.add(btnInsertPatient);
 
         JButton btnInsertMedicine = new JButton("Insert a new Medicine");
         btnInsertMedicine.addActionListener(new ActionListener() {
@@ -116,7 +118,7 @@ public class InsertionPage {
             }
         });
         btnInsertMedicine.setBounds(22, 236, 165, 23);
-        contentPane.add(btnInsertMedicine);
+        frame.add(btnInsertMedicine);
 
         JButton btnInsertRecord = new JButton("Insert a new Cashier");
         btnInsertRecord.addActionListener(new ActionListener() {
@@ -126,7 +128,7 @@ public class InsertionPage {
             }
         });
         btnInsertRecord.setBounds(22, 270, 165, 23);
-        contentPane.add(btnInsertRecord);
+        frame.add(btnInsertRecord);
 
         JButton btnInsertTreatment = new JButton("Insert a new Treatment");
         btnInsertTreatment.addActionListener(new ActionListener() {
@@ -135,7 +137,7 @@ public class InsertionPage {
             }
         });
         btnInsertTreatment.setBounds(22, 304, 165, 23);
-        contentPane.add(btnInsertTreatment);
+        frame.add(btnInsertTreatment);
 
 
 
