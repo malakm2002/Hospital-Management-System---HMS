@@ -26,7 +26,7 @@ public class PatientOnDay {
      */
     public static void create() {
         // title
-        JFrame frame = new JFrame("Hospital Management System - Operations");
+        JFrame frame = new JFrame("HMS - Patients on Date");
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
@@ -38,7 +38,7 @@ public class PatientOnDay {
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

@@ -21,7 +21,7 @@ public class BillUpdate {
      * Creates the page allowing bill updates
      */
     public static void create(){
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("HMS - Update Bill");
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

@@ -21,7 +21,7 @@ public class patientRecUpdate {
      */
     public static void create() {
         // title
-        JFrame frame = new JFrame("Hospital Management System - Operations");
+        JFrame frame = new JFrame("HMS - update patient records");
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {

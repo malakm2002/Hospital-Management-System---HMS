@@ -18,7 +18,7 @@ public class DoctorUpdate {
      * Creates the page allowing doctor updates
      */
     public static void create() {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("HMS - Update doctor specialty");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 300, 250);
         JLabel label = new JLabel(ManipulationOps.updateback);

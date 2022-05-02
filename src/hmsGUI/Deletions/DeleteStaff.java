@@ -22,7 +22,7 @@ public class DeleteStaff {
      */
     public static void create() {
         // title
-        JFrame frame = new JFrame("Hospital Management System - Operations");
+        JFrame frame = new JFrame("HMS - Delete Staff Records");
         
         String[] options = { "Nurse", "Janitor", "Cashier", "Doctor" };
 

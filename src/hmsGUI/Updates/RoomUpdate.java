@@ -22,7 +22,7 @@ public class RoomUpdate {
      * Creates the page allowing room updates
      */
     public static void create() {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("HMS - Update room ");
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

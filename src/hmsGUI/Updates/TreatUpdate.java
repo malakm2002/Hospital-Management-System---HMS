@@ -21,7 +21,7 @@ public class TreatUpdate {
      * Creates the page allowing pateint record updates
      */
     public static void create() {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("HMS - update treatment");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 450, 300);
         JLabel label = new JLabel(ManipulationOps.updateback);

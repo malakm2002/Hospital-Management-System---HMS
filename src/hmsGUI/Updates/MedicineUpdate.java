@@ -22,7 +22,7 @@ public class MedicineUpdate {
      * Creates the page allowing medicine updates
      */
     public static void create() {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("HMS - Update Medicine");
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
