@@ -25,7 +25,7 @@ public class LogIn {
 	private JLabel passwordLabel;
 	private JButton logInbtn;
 	private JPasswordField passwordField;
-public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
+public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hmsGUI/hospital.jpg");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
