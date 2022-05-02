@@ -3,14 +3,14 @@ package hmsGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 
 public class ManipulationOps {
+    public static ImageIcon background = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/background.jpg");
     /**
      * Creates the page containing all the buttons relating to CRUD operations
      * Through this page, you can navigate to insertions, deletions, updates, and retrievals
@@ -38,11 +38,12 @@ public class ManipulationOps {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 450, 394);
+        frame.getContentPane().setLayout(null);
+        frame.setBounds(100, 100, 450, 400);
+
         JLabel label = new JLabel(LogIn.icon);
         label.setBounds(0, 0, 700, 400);
         label.setOpaque(false);
-        frame.getContentPane().setLayout(null);
         frame.setContentPane(label);
 
         // navigate to the page containing all the insert operations

@@ -39,21 +39,22 @@ public class InsertionPage {
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+        frame.setBounds(100, 100, 450, 400);
+        frame.getContentPane().setBackground(Color.white);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 450, 394);
-        JLabel label = new JLabel(LogIn.cloudIcon);
-        label.setBounds(0, 0, 700, 400);
+        JLabel label = new JLabel(ManipulationOps.background);
+        label.setBounds(0, 0, 400, 300);
         label.setOpaque(false);
-        frame.getContentPane().setLayout(null);
         frame.setContentPane(label);
+        
 
         // navigate to inserting a new nurse
         JButton btnInsertNurse = new JButton("Insert a new Nurse");
@@ -64,6 +65,7 @@ public class InsertionPage {
             }
         });
         btnInsertNurse.setBounds(22, 32, 165, 23);
+        btnInsertNurse.setContentAreaFilled(false);
         frame.add(btnInsertNurse);
 
         // navigate to inserting a new janitor
@@ -78,6 +80,7 @@ public class InsertionPage {
 
             }
         });
+        btnInsertJanitor.setContentAreaFilled(false);
         btnInsertJanitor.setBounds(22, 66, 165, 23);
         frame.add(btnInsertJanitor);
 
@@ -88,6 +91,7 @@ public class InsertionPage {
                 DoctorInsertion.create();
             }
         });
+        btnInsertDoctor.setContentAreaFilled(false);
         btnInsertDoctor.setBounds(22, 100, 165, 23);
         frame.add(btnInsertDoctor);
 
@@ -98,6 +102,7 @@ public class InsertionPage {
                 RoomInsertion.create();
             }
         });
+        btnInsertRoom.setContentAreaFilled(false);
         btnInsertRoom.setBounds(22, 134, 165, 23);
         frame.add(btnInsertRoom);
 
@@ -108,6 +113,7 @@ public class InsertionPage {
                 BillInsertion.create();
             }
         });
+        btnInsertBill.setContentAreaFilled(false);
         btnInsertBill.setBounds(22, 168, 165, 23);
         frame.add(btnInsertBill);
 
@@ -118,6 +124,7 @@ public class InsertionPage {
                 PatientInsertion.create();
             }
         });
+        btnInsertPatient.setContentAreaFilled(false);
         btnInsertPatient.setBounds(22, 202, 165, 23);
         frame.add(btnInsertPatient);
 
@@ -128,18 +135,20 @@ public class InsertionPage {
                 MedicineInsertion.create();
             }
         });
+        btnInsertMedicine.setContentAreaFilled(false);
         btnInsertMedicine.setBounds(22, 236, 165, 23);
         frame.add(btnInsertMedicine);
 
         // navigate to inserting a new cashier
-        JButton btnInsertRecord = new JButton("Insert a new Cashier");
-        btnInsertRecord.addActionListener(new ActionListener() {
+        JButton btnInsertCashier = new JButton("Insert a new Cashier");
+        btnInsertCashier.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                  CashierInsertion.create();
             }
         });
-        btnInsertRecord.setBounds(22, 270, 165, 23);
-        frame.add(btnInsertRecord);
+        btnInsertCashier.setContentAreaFilled(false);
+        btnInsertCashier.setBounds(22, 270, 165, 23);
+        frame.add(btnInsertCashier);
 
         // navigate to inserting a new treatment ('treat' table)
         JButton btnInsertTreatment = new JButton("Insert a new Treatment");
@@ -148,7 +157,9 @@ public class InsertionPage {
                 TreatmentInsertion.create();
             }
         });
+        btnInsertTreatment.setContentAreaFilled(false);
         btnInsertTreatment.setBounds(22, 304, 165, 23);
         frame.add(btnInsertTreatment);
+
     }
 }

@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import hmsGUI.PopMessages.ConnectionErrorFrame;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -26,9 +27,7 @@ public class LogIn {
 	private JLabel passwordLabel;
 	private JButton logInbtn;
 	private JPasswordField passwordField;
-//public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
-public static ImageIcon icon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/src/hospital.jpg");
-public static ImageIcon cloudIcon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/src/cloud.jpg");
+public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -61,9 +60,8 @@ public static ImageIcon cloudIcon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/sr
 
 	
         // retrieves the image on the side
-		ImageIcon icon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/src/hospital.jpg");
-		//ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
-		JLabel label = new JLabel(icon);
+		//ImageIcon icon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/src/hospital.jpg");
+		JLabel label = new JLabel(LogIn.icon);
 		label.setBounds(0, 0, 400, 400);
 		contentPane.add(label);
 		
@@ -105,11 +103,11 @@ public static ImageIcon cloudIcon = new ImageIcon("C:/Sergio/AUB/CMPS 277/HMS/sr
 			Connector connector = new Connector();
 			// connector.Connect(usernameField.getText(),
 			// String.valueOf(passwordField.getPassword()));
-			//connector.Connect("root", "m@L@K2002");
+			connector.Connect("root", "m@L@K2002");
 			// connector.Connect("root", "HalfmylifeSQL3!");
 			//connector.Connect("root", "Ivyleague123");
             // creates a connection with the local databse using the provided credentials
-			connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+			//connector.Connect(usernameField.getText(), String.valueOf(passwordField.getPassword()));
 
 			if (connector.connected) {
 				LogIn.connection = connector.connection;
