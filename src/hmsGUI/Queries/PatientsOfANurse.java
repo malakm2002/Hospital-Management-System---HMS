@@ -17,6 +17,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 
 public class PatientsOfANurse {
     /**
@@ -46,36 +47,36 @@ public class PatientsOfANurse {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        JLabel label = new JLabel(ManipulationOps.queryback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
 
         JLabel lblDoctorFirstName = new JLabel("Nurse's First Name:");
         lblDoctorFirstName.setBounds(20, 20, 111, 14);
-        contentPane.add(lblDoctorFirstName);
+        frame.add(lblDoctorFirstName);
 
         // input for the nurse's first name
         JTextField input1 = new JTextField();
         input1.setBounds(20, 50, 124, 20);
-        contentPane.add(input1);
+        frame.add(input1);
 
         JLabel lblDoctorLastName = new JLabel("Nurse's Last Name:");
         lblDoctorLastName.setBounds(20, 80, 111, 14);
-        contentPane.add(lblDoctorLastName);
+        frame.add(lblDoctorLastName);
 
         // input for the nurse's last name
         JTextField input2 = new JTextField();
         input2.setBounds(20, 110, 124, 20);
-        contentPane.add(input2);
+        frame.add(input2);
 
         JButton button = new JButton("Find");
         button.setBounds(20, 140, 100, 30);
-        contentPane.add(button);
+        frame.add(button);
 
         JTextArea textArea = new JTextArea();
         textArea.setLineWrap(true);
-        contentPane.add(textArea);
+        frame.add(textArea);
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -96,7 +97,7 @@ public class PatientsOfANurse {
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         scrollPane.setBounds(220, 20, 340, 180);
-        contentPane.add(scrollPane);
+        frame.add(scrollPane);
     }
 
     static String getPatients(String firstName, String lastName) {

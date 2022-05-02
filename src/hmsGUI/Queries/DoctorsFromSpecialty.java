@@ -17,6 +17,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 
 public class DoctorsFromSpecialty {
     /**
@@ -46,27 +47,26 @@ public class DoctorsFromSpecialty {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
-
+        JLabel label = new JLabel(ManipulationOps.queryback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
         JLabel lblspecialty = new JLabel("Specialty:");
         lblspecialty.setBounds(20, 20, 111, 14);
-        contentPane.add(lblspecialty);
+        frame.add(lblspecialty);
 
         // input for the specialty
         JTextField input = new JTextField();
         input.setBounds(80, 20, 124, 20);
-        contentPane.add(input);
+        frame.add(input);
 
         JButton button = new JButton("Find");
         button.setBounds(20, 50, 100, 30);
-        contentPane.add(button);
+        frame.add(button);
 
         JTextArea textArea = new JTextArea();
         textArea.setLineWrap(true);
-        contentPane.add(textArea);
+        frame.add(textArea);
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -83,7 +83,7 @@ public class DoctorsFromSpecialty {
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         scrollPane.setBounds(220, 20, 340, 180);
-        contentPane.add(scrollPane);
+        frame.add(scrollPane);
     }
 
     static String getDoctors(String specialty) {

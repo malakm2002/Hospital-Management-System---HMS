@@ -17,6 +17,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 
 public class MedicationsOfAPatient {
     /**
@@ -46,36 +47,35 @@ public class MedicationsOfAPatient {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
-
+        JLabel label = new JLabel(ManipulationOps.queryback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
         JLabel lblPatientFirstName = new JLabel("Patient's First Name:");
         lblPatientFirstName.setBounds(20, 20, 111, 14);
-        contentPane.add(lblPatientFirstName);
+        frame.add(lblPatientFirstName);
 
         // input for the patient's first name
         JTextField input1 = new JTextField();
         input1.setBounds(20, 50, 124, 20);
-        contentPane.add(input1);
+        frame.add(input1);
 
         JLabel lblPatientLastName = new JLabel("Patient's Last Name:");
         lblPatientLastName.setBounds(20, 80, 111, 14);
-        contentPane.add(lblPatientLastName);
+        frame.add(lblPatientLastName);
 
         // input for the patient's last name
         JTextField input2 = new JTextField();
         input2.setBounds(20, 110, 124, 20);
-        contentPane.add(input2);
+        frame.add(input2);
 
         JButton button = new JButton("Find");
         button.setBounds(20, 140, 100, 30);
-        contentPane.add(button);
+        frame.add(button);
 
         JTextArea textArea = new JTextArea();
         textArea.setLineWrap(true);
-        contentPane.add(textArea);
+        frame.add(textArea);
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -95,7 +95,7 @@ public class MedicationsOfAPatient {
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         scrollPane.setBounds(220, 20, 340, 180);
-        contentPane.add(scrollPane);
+        frame.add(scrollPane);
     }
 
     static String getMeds(String firstName, String lastName) {

@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 
 public class PatientOnDay {
     /**
@@ -47,27 +48,26 @@ public class PatientOnDay {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
-
+        JLabel label = new JLabel(ManipulationOps.queryback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
         JLabel lblAdmission = new JLabel("Admission Date");
         lblAdmission.setBounds(20, 20, 111, 14);
-        contentPane.add(lblAdmission);
+        frame.add(lblAdmission);
 
         // input for the admission date
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setBounds(120, 20, 124, 20);
-        contentPane.add(dateChooser);
+        frame.add(dateChooser);
 
         JButton button = new JButton("Find");
         button.setBounds(20, 50, 100, 30);
-        contentPane.add(button);
+        frame.add(button);
 
         JTextArea textArea = new JTextArea();
         textArea.setLineWrap(true);
-        contentPane.add(textArea);
+        frame.add(textArea);
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -84,7 +84,7 @@ public class PatientOnDay {
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         scrollPane.setBounds(260, 20, 300, 180);
-        contentPane.add(scrollPane);
+        frame.add(scrollPane);
     }
 
     static String getPatients(String date) {

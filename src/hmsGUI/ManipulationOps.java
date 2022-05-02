@@ -14,6 +14,7 @@ public class ManipulationOps {
     public static ImageIcon deletionback = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/deletionback.jpg");
     public static ImageIcon insertionback = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/insertionback.jpg");
     public static ImageIcon updateback = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/updateback.jpg");
+    public static ImageIcon queryback = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/queryback.jpg");
 
 
     /**
