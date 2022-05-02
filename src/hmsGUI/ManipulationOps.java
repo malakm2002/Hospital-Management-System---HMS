@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -31,51 +32,55 @@ public class ManipulationOps {
         }
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 700, 394);
-
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
+        frame.setBounds(100, 100, 450, 394);
+        JLabel label = new JLabel(LogIn.icon);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
         frame.getContentPane().setLayout(null);
-
-        JButton btnInsertionPage = new JButton("Insertions");
+        frame.setContentPane(label);
+        JButton btnInsertionPage = new JButton("Insert");
         btnInsertionPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 InsertionPage.create();
 
             }
         });
-        btnInsertionPage.setBounds(22, 32, 165, 23);
-        contentPane.add(btnInsertionPage);
+        btnInsertionPage.setContentAreaFilled(false);
+        btnInsertionPage.setBounds(60, 20, 130, 23);
+        frame.getContentPane().add(btnInsertionPage);
 
-        JButton btnDeletionPage = new JButton("Deletions");
+        JButton btnDeletionPage = new JButton("Delete");
         btnDeletionPage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DeletionPage.create();
             }
         });
-        btnDeletionPage.setBounds(22, 64, 165, 23);
-        contentPane.add(btnDeletionPage);
+        btnDeletionPage.setContentAreaFilled(false);
+        btnDeletionPage.setBounds(13, 65, 130, 23);
+        frame.getContentPane().add(btnDeletionPage);
 
-        JButton btnQueriesPage = new JButton("Queries");
+        JButton btnQueriesPage = new JButton("Query");
         btnQueriesPage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 QueriesPage.create();
             }
         });
-        btnQueriesPage.setBounds(22, 96, 165, 23);
-        contentPane.add(btnQueriesPage);
+        btnQueriesPage.setBounds(230, 13, 130, 23);
+        btnQueriesPage.setContentAreaFilled(false);
+        frame.getContentPane().add(btnQueriesPage);
 
-        JButton btnUpdatePage = new JButton("Updates");
+        JButton btnUpdatePage = new JButton("Update");
         btnUpdatePage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UpdatePage.create();
             }
         });
-        btnUpdatePage.setBounds(22, 128, 165, 23);
-        contentPane.add(btnUpdatePage);
+        btnUpdatePage.setBounds(285, 68, 130, 23);
+        frame.getContentPane().add(btnUpdatePage);
+        btnUpdatePage.setContentAreaFilled(false);
+        btnUpdatePage.setBorderPainted(true);
     }
 }
