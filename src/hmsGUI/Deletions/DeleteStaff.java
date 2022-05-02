@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import com.mysql.cj.jdbc.CallableStatement;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 
 public class DeleteStaff {
     /**
@@ -45,27 +46,27 @@ public class DeleteStaff {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        JLabel label = new JLabel(ManipulationOps.background);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
 
         JComboBox<String> comboBox = new JComboBox<>(options);
         comboBox.setBounds(20, 20, 140, 20);
-        contentPane.add(comboBox);
+        frame.add(comboBox);
 
-        JLabel label = new JLabel("Enter ID:");
-        label.setBounds(20, 50, 140, 20);
-        contentPane.add(label);
+        JLabel lableID = new JLabel("Enter ID:");
+        lableID.setBounds(20, 50, 140, 20);
+        frame.add(lableID);
 
         // input for the staff's ID
         JTextField idInput = new JTextField();
         idInput.setBounds(20, 70, 140, 20);
-        contentPane.add(idInput);
+        frame.add(idInput);
 
         JButton jButton = new JButton("Delete");
         jButton.setBounds(20, 110, 90, 20);
-        contentPane.add(jButton);
+        frame.add(jButton);
 
         JTextArea tAreaCurrentTable = new JTextArea(getStaffTable(comboBox.getSelectedItem().toString()));
         tAreaCurrentTable.setLineWrap(true);
@@ -77,13 +78,13 @@ public class DeleteStaff {
                 tAreaCurrentTable.setText(getStaffTable(comboBox.getSelectedItem().toString()));
             }
         });
-        contentPane.add(tAreaCurrentTable);
+        frame.add(tAreaCurrentTable);
 
 
         JScrollPane scrollPane = new JScrollPane(tAreaCurrentTable);
 
-        scrollPane.setBounds(180, 20, 150, 150);
-        contentPane.add(scrollPane);
+        scrollPane.setBounds(180, 20, 250, 150);
+        frame.add(scrollPane);
         comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

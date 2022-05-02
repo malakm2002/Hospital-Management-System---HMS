@@ -24,7 +24,7 @@ public class UpdatePage {
      */
     public static void create() {
         // title
-        JFrame frame = new JFrame("Hospital Management System - Operations");
+        JFrame frame = new JFrame("HMS - Update Operations");
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
@@ -98,7 +98,7 @@ public class UpdatePage {
                 RoomUpdate.create();
             }
         });
-        btnUpdateNurse.setContentAreaFilled(false);
+        btnUpdateRoom.setContentAreaFilled(false);
         btnUpdateRoom.setBounds(22, 100, 165, 23);
         frame.add(btnUpdateRoom);
 
