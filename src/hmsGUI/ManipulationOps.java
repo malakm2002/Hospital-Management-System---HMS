@@ -46,6 +46,7 @@ public class ManipulationOps {
             }
         });
         btnInsertionPage.setContentAreaFilled(false);
+        btnInsertionPage.setBorderPainted(true);
         btnInsertionPage.setBounds(60, 20, 130, 23);
         frame.getContentPane().add(btnInsertionPage);
 
@@ -57,6 +58,7 @@ public class ManipulationOps {
             }
         });
         btnDeletionPage.setContentAreaFilled(false);
+        btnDeletionPage.setBorderPainted(true);
         btnDeletionPage.setBounds(13, 65, 130, 23);
         frame.getContentPane().add(btnDeletionPage);
 
@@ -69,6 +71,7 @@ public class ManipulationOps {
         });
         btnQueriesPage.setBounds(230, 13, 130, 23);
         btnQueriesPage.setContentAreaFilled(false);
+        btnQueriesPage.setBorderPainted(true);
         frame.getContentPane().add(btnQueriesPage);
 
         JButton btnUpdatePage = new JButton("Update");

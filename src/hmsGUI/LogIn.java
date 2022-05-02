@@ -3,6 +3,7 @@ package hmsGUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.sql.Connection;
 
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ public class LogIn {
 	private JLabel passwordLabel;
 	private JButton logInbtn;
 	private JPasswordField passwordField;
-public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hmsGUI/hospital.jpg");
+public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 2022/CMPS 277/projectDemo/HMS/src/hospital.jpg");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -59,8 +60,18 @@ public static ImageIcon icon = new ImageIcon("C:/Users/Malak/Desktop/AUB/Spring 
 		label.setBounds(0, 0, 400, 400);
 		contentPane.add(label);
 		
-		JLabel label1 = new JLabel();
-		label1.setBounds(0, 400, 645, 100);label1.setOpaque(true);
+		JLabel welcomemsg = new JLabel();
+		welcomemsg.setText("Welcome to ");
+		welcomemsg.setFont(new Font("Broadway",Font.BOLD,30));
+		welcomemsg.setBounds(450, 0, 200, 100);
+		contentPane.add(welcomemsg);
+
+		JLabel welcomemsg1 = new JLabel();
+		welcomemsg1.setText("HMS ");
+		welcomemsg1.setFont(new Font("Broadway",Font.BOLD,30));
+		welcomemsg1.setBounds(500, 50, 200, 100);
+		contentPane.add(welcomemsg1);
+
 		usernameLabel = new JLabel("Username");
 		usernameLabel.setBounds(420, 200, 100, 14);
 		contentPane.add(usernameLabel);
