@@ -2,6 +2,7 @@ CREATE SCHEMA IF NOT EXISTS HMS; -- Hospital Management System
 
 USE HMS;
 
+-- Creates the STAFF table, with subtypes NURSE, JANITOR, CASHIER, and DOCTOR
 CREATE TABLE IF NOT EXISTS STAFF (
 	staffID INT NOT NULL AUTO_INCREMENT,
     jobType VARCHAR(50) NOT NULL,
@@ -10,30 +11,35 @@ CREATE TABLE IF NOT EXISTS STAFF (
     FOREIGN KEY (supervisorID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
 
+-- subtype of STAFF with a FK referencing staffID, more information stored in STAFFRECORD
 CREATE TABLE IF NOT EXISTS NURSE (
 	nurseID INT NOT NULL,
     PRIMARY KEY (nurseID),
     FOREIGN KEY (nurseID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
 
+-- subtype of STAFF with a FK referencing staffID, more information stored in STAFFRECORD
 CREATE TABLE IF NOT EXISTS JANITOR (
 	janitorID INT NOT NULL,
     PRIMARY KEY (janitorID),
     FOREIGN KEY (janitorID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
 
+-- subtype of STAFF with a FK referencing staffID, more information stored in STAFFRECORD
 CREATE TABLE IF NOT EXISTS CASHIER (
 	cashierID INT NOT NULL,
     PRIMARY KEY (cashierID),
     FOREIGN KEY (cashierID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
 
+-- subtype of STAFF with a FK referencing staffID, more information stored in STAFFRECORD
 CREATE TABLE IF NOT EXISTS DOCTOR (
 	doctorID INT NOT NULL,
     specialty VARCHAR(50) NOT NULL,
     PRIMARY KEY (doctorID),
     FOREIGN KEY (doctorID) REFERENCES STAFF (staffID) ON DELETE CASCADE
 );
+
 
 CREATE TABLE IF NOT EXISTS ROOM (
 	roomID INT NOT NULL AUTO_INCREMENT,
@@ -55,6 +61,7 @@ CREATE TABLE IF NOT EXISTS BILL (
     FOREIGN KEY (cashierID) REFERENCES CASHIER (cashierID) ON DELETE CASCADE
 );
 
+-- contains information about the patient's relationship with the hospital, more information in PATIENTRECORD
 CREATE TABLE IF NOT EXISTS PATIENT (
 	patientID INT NOT NULL AUTO_INCREMENT,
     diagnosis VARCHAR(20) NOT NULL,
@@ -71,6 +78,7 @@ CREATE TABLE IF NOT EXISTS MEDICINE (
     PRIMARY KEY (medicineID)
 );
 
+-- contains personal information about the patient
 CREATE TABLE IF NOT EXISTS PatientRecord (
 	recordID INT NOT NULL AUTO_INCREMENT,
     firstName VARCHAR(20) NOT NULL,
@@ -85,6 +93,7 @@ CREATE TABLE IF NOT EXISTS PatientRecord (
     FOREIGN KEY(patientID) REFERENCES PATIENT(patientID) ON DELETE CASCADE
 );
 
+-- contains personal information about staff members
 CREATE TABLE IF NOT EXISTS StaffRecord (
 	recordID INT NOT NULL AUTO_INCREMENT,
     firstName VARCHAR(20) NOT NULL,
@@ -98,6 +107,8 @@ CREATE TABLE IF NOT EXISTS StaffRecord (
     PRIMARY KEY (recordID),
     FOREIGN KEY(staffID) REFERENCES STAFF(staffID) ON DELETE CASCADE
 );
+
+-- ternary relationship that represents treatments
 CREATE TABLE IF NOT EXISTS TREAT (
 	patientID INT NOT NULL,
     doctorID INT NOT NULL,
