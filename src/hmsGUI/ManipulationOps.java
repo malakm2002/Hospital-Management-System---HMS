@@ -25,7 +25,6 @@ public class ManipulationOps {
         // title
         JFrame frame = new JFrame("Hospital Management System - Operations");
 
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -36,14 +35,12 @@ public class ManipulationOps {
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         frame.setBounds(100, 100, 450, 400);
 

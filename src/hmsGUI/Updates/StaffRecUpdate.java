@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import hmsGUI.LogIn;
+import hmsGUI.ManipulationOps;
 import hmsGUI.PopMessages.FailureMessageFrame;
 import hmsGUI.PopMessages.SuccessMessageFrame;
 import hmsGUI.helpers.genderChecker;
@@ -42,109 +43,109 @@ public class StaffRecUpdate {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(null);
+        JLabel label = new JLabel(ManipulationOps.updateback);
+        label.setBounds(0, 0, 700, 400);
+        label.setOpaque(false);
+        frame.setContentPane(label);
 
         JLabel lblID = new JLabel("ID");
         lblID.setBounds(287, 40, 140, 20);
-        contentPane.add(lblID);
+        frame.add(lblID);
 
         JTextField txtID = new JTextField();
         txtID.setBounds(305, 41, 96, 20);
-        contentPane.add(txtID);
+        frame.add(txtID);
 
         JLabel lblFN = new JLabel("First Name*");
         lblFN.setBounds(40, 71, 96, 14);
-        contentPane.add(lblFN);
+        frame.add(lblFN);
         
         JLabel lblLN = new JLabel("Last Name*");
         lblLN.setBounds(152, 71, 94, 14);
-        contentPane.add(lblLN);
+        frame.add(lblLN);
 
         // input for the staff's first name
         JTextField textFieldFN = new JTextField();
         textFieldFN.setBounds(40, 87, 96, 20);
-        contentPane.add(textFieldFN);
+        frame.add(textFieldFN);
         textFieldFN.setColumns(10);
 
         // input for the staff's last name
         JTextField textFieldLN = new JTextField();
         textFieldLN.setColumns(10);
         textFieldLN.setBounds(150, 87, 96, 20);
-        contentPane.add(textFieldLN);
+        frame.add(textFieldLN);
 
         JLabel lblGender = new JLabel("Sex*");
         lblGender.setHorizontalAlignment(SwingConstants.CENTER);
         lblGender.setBounds(275, 71, 49, 14);
-        contentPane.add(lblGender);
+        frame.add(lblGender);
 
         // check boxes for the staff's sex
         JCheckBox chckbxMale = new JCheckBox("Male");
         chckbxMale.setBounds(320, 67, 54, 23);
-        contentPane.add(chckbxMale);
+        frame.add(chckbxMale);
 
         JCheckBox chckbxFemale = new JCheckBox("Female");
         chckbxFemale.setBounds(380, 67, 72, 23);
-        contentPane.add(chckbxFemale);
+        frame.add(chckbxFemale);
 
         JLabel lblAddr = new JLabel("Address*");
         lblAddr.setBounds(40, 108, 96, 14);
-        contentPane.add(lblAddr);
+        frame.add(lblAddr);
 
         // input for the staff's address
         JTextField textFieldAddress = new JTextField();
         textFieldAddress.setColumns(10);
         textFieldAddress.setBounds(40, 133, 96, 20);
-        contentPane.add(textFieldAddress);
+        frame.add(textFieldAddress);
 
         JLabel lblPhone = new JLabel("Phone Number*");
         lblPhone.setBounds(152, 118, 104, 14);
-        contentPane.add(lblPhone);
+        frame.add(lblPhone);
 
         // input for the staff's phone number
         JTextField textFieldPhone = new JTextField();
         textFieldPhone.setBounds(150, 133, 96, 20);
-        contentPane.add(textFieldPhone);
+        frame.add(textFieldPhone);
         textFieldPhone.setColumns(10);
 
         JLabel lblstartDate = new JLabel("Start Date*");
         lblstartDate.setBounds(290, 100, 111, 14);
-        contentPane.add(lblstartDate);
+        frame.add(lblstartDate);
 
         JLabel lblendDate = new JLabel("End Date*");
         lblendDate.setBounds(290, 130, 111, 14);
-        contentPane.add(lblendDate);
+        frame.add(lblendDate);
 
         // choices for the staff's first day and last day of work
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setBounds(390, 97, 124, 20);
-        contentPane.add(dateChooser);
+        frame.add(dateChooser);
 
         JDateChooser dateChooser_1 = new JDateChooser();
         dateChooser_1.setBounds(390, 135, 124, 20);
-        contentPane.add(dateChooser_1);
+        frame.add(dateChooser_1);
 
         JLabel lblJobType = new JLabel("Job Type");
         lblJobType.setBounds(40, 170, 96, 14);
-        contentPane.add(lblJobType);
+        frame.add(lblJobType);
 
         // input for the staff's job type
         JTextField textFieldJobType = new JTextField();
         textFieldJobType.setBounds(40, 185, 96, 20);
-        contentPane.add(textFieldJobType);
+        frame.add(textFieldJobType);
         textFieldJobType.setColumns(10);
 
         JLabel lblSupervisorID = new JLabel("Supervisor ID*");
         lblSupervisorID.setBounds(150, 170, 96, 14);
-        contentPane.add(lblSupervisorID);
+        frame.add(lblSupervisorID);
 
         // input for the staff's supervisor
         JTextField textFieldSupervisorID = new JTextField();
         textFieldSupervisorID.setColumns(10);
         textFieldSupervisorID.setBounds(152, 185, 96, 20);
-        contentPane.add(textFieldSupervisorID);
+        frame.add(textFieldSupervisorID);
 
         JButton btnADD = new JButton("Update");
         btnADD.addActionListener(new ActionListener() {
@@ -242,7 +243,7 @@ public class StaffRecUpdate {
             }
         });
         btnADD.setBounds(280, 180, 89, 23);
-        contentPane.add(btnADD);
+        frame.add(btnADD);
     }
 
     // parses the date retrieved by SQL into a format recognized by JAVA

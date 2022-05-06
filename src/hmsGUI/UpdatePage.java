@@ -55,16 +55,7 @@ public class UpdatePage {
         frame.getContentPane().setLayout(null);
 
         // navigate to staff updates
-        JButton btnUpdateNurse = new JButton("Update Staff Records");
-        btnUpdateNurse.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                StaffRecUpdate.create();
-            }
-        });
-        btnUpdateNurse.setContentAreaFilled(false);
-        btnUpdateNurse.setBounds(22, 234, 165, 23);
-        frame.add(btnUpdateNurse);
+    
 
         // navigate to doctor updates
         JButton btnUpdatedocInfo = new JButton("Update Doctor Specialty");
@@ -126,12 +117,12 @@ public class UpdatePage {
         btnUpdateMed.setBounds(22, 168, 165, 23);
         frame.add(btnUpdateMed);
 
-        // navigate to treat updates
-        JButton btnUpdTreat = new JButton("Update Treat Info");
+        // navigate to staff updates
+        JButton btnUpdTreat = new JButton("Update Staff Records");
         btnUpdTreat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TreatUpdate.create();
+                StaffRecUpdate.create();
             }
         });
         btnUpdTreat.setContentAreaFilled(false);

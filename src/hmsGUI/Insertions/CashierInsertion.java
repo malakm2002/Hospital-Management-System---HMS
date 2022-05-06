@@ -22,7 +22,6 @@ public class CashierInsertion {
         // title
 		JFrame frame = new JFrame("HMS - Cashier Insertion");
 
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -33,14 +32,12 @@ public class CashierInsertion {
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
 		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 455, 260);
 		JLabel label = new JLabel(ManipulationOps.insertionback);
         label.setBounds(0, 0, 700, 400);

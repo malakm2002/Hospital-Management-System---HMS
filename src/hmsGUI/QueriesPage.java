@@ -28,7 +28,6 @@ public class QueriesPage {
         // title
         JFrame frame = new JFrame("HMS - Query Operations");
 
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

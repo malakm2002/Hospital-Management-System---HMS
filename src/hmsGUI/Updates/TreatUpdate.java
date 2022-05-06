@@ -22,7 +22,6 @@ public class TreatUpdate {
      */
     public static void create() {
         JFrame frame = new JFrame("HMS - update treatment");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 450, 300);
         JLabel label = new JLabel(ManipulationOps.updateback);
         label.setBounds(0, 0, 700, 400);
@@ -75,7 +74,7 @@ public class TreatUpdate {
                                 + "where patientID = " + txtPatient.getText());
                         statement.execute();
                     } 
-
+                 
                     // updates the patient's medicine if not empty
                     else{
                         if (!txtPatient.getText().equalsIgnoreCase("") && !txtMed.getText().equalsIgnoreCase("")) {
@@ -88,6 +87,7 @@ public class TreatUpdate {
                     SuccessMessageFrame.create();
                     frame.setVisible(false);
                 } catch (Exception ex) {
+                    ex.printStackTrace();
                     FailureMessageFrame.create();
                 }
             }

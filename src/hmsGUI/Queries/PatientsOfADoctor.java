@@ -107,7 +107,7 @@ public class PatientsOfADoctor {
             Statement patientStmt = LogIn.connection.createStatement();
 
             // retrieves the patients of a doctor according to the provided ID
-            ResultSet patientRes = patientStmt.executeQuery("SELECT patientRecord.firstName, patientRecord.lastName, patientRecord.gender, patientRecord.address, patientRecord.phoneNumber, patientRecord.admissionDate, patientRecord.dischargeDate FROM staffRecord INNER JOIN patientRecord ON staffRecord.staffID = patientRecord.staffID WHERE staffRecord.firstName = '" + firstName + "' AND staffRecord.lastName = '" + lastName + "'");
+            ResultSet patientRes = patientStmt.executeQuery("SELECT patientRecord.firstName, patientRecord.lastName, patientRecord.gender, patientRecord.address, patientRecord.phoneNumber, patientRecord.admissionDate, patientRecord.dischargeDate FROM staffRecord INNER JOIN patientRecord ON staffRecord.staffID = patientRecord.patientID WHERE staffRecord.firstName = '" + firstName + "' AND staffRecord.lastName = '" + lastName + "'");
 
             while (patientRes.next()) {
                 result += patientRes.getString("firstName") + ", ";
