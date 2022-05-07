@@ -44,19 +44,11 @@ public class PatientInsertion {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 600, 260);
-        JLabel label = new JLabel(ManipulationOps.insertionback);
+        JLabel label = new JLabel(ManipulationOps.updateback);
         label.setBounds(0, 0, 700, 400);
         label.setOpaque(false);
         frame.setContentPane(label);
 
-        
-        JLabel lblID = new JLabel("ID");
-        lblID.setBounds(287, 40, 140, 20);
-        frame.add(lblID);
-
-        JTextField txtID = new JTextField();
-        txtID.setBounds(305, 41, 96, 20);
-        frame.add(txtID);
 
         JLabel lblFN = new JLabel("First Name*");
         lblFN.setBounds(40, 71, 96, 14);
