@@ -87,7 +87,7 @@ public class PatientInsertion {
         frame.add(chckbxFemale);
 
         JLabel lblAddr = new JLabel("Address*");
-        lblAddr.setBounds(40, 108, 96, 14);
+        lblAddr.setBounds(40, 118, 96, 14);
         frame.add(lblAddr);
 
         // input for the patients address
@@ -110,18 +110,12 @@ public class PatientInsertion {
         lblAddmissionDate.setBounds(290, 100, 111, 14);
         frame.add(lblAddmissionDate);
 
-        JLabel lblDischargeDate = new JLabel("Discharge Date*");
-        lblDischargeDate.setBounds(290, 130, 111, 14);
-        frame.add(lblDischargeDate);
 
         // choices for the admission and discharge dates
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setBounds(390, 97, 124, 20);
         frame.add(dateChooser);
 
-        JDateChooser dateChooser_1 = new JDateChooser();
-        dateChooser_1.setBounds(390, 135, 124, 20);
-        frame.add(dateChooser_1);
 
         JLabel lblDiag = new JLabel("Diagnosis");
         lblDiag.setBounds(40, 170, 96, 14);
@@ -147,22 +141,23 @@ public class PatientInsertion {
         btnADD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Statement stmt = LogIn.connection.createStatement();
+                    Statement stmt1 = LogIn.connection.createStatement();
+
                     genderChecker gChecker = new genderChecker(chckbxMale, chckbxFemale);
                     lastPatientID lastPatientID = new lastPatientID();
                     // executes the insertion
-                    ResultSet res = stmt.executeQuery("CALL hms.InsertPatient('" + txtDiag.getText() + "',"
+                    ResultSet res = stmt1.executeQuery("CALL hms.InsertPatient('" + txtDiag.getText() + "',"
                             + Integer.parseInt(txtRoomID.getText()) + ")");
-
-                    res = stmt.executeQuery("CALL hms.InsertPatientRecord('" + textFieldFN.getText() + "','"
+                    ResultSet res2 = stmt1.executeQuery("CALL hms.InsertPatientRecord('" + textFieldFN.getText() + "','"
                             + textFieldFN.getText() + "','" + gChecker.getGender() + "','" + textFieldAddress.getText()
-                            + "'," + textFieldPhone.getText() + ",'" + parseDateTime(dateChooser.getDate()) + "','"
-                            + parseDateTime(dateChooser_1.getDate()) + "'," + lastPatientID.getlastPID() + ")");
-
+                            + "'," + textFieldPhone.getText() + ",'" + parseDateTime(dateChooser.getDate()) + "',"
+                            + Types.NULL + "," + lastPatientID.getlastPID() + ")");
+                   
+                    
                     SuccessMessageFrame.create();
                     frame.setVisible(false);
-                    System.out.println(this.getClass().toString());
                 } catch (Exception e1) {
+                    e1.printStackTrace();
                     FailureMessageFrame.create();
                 }
             }

@@ -14,7 +14,7 @@ public class lastPatientID {
             ResultSet res1 = stmt.executeQuery(
 							"SELECT patientID from HMS.patient WHERE patientID =(SELECT MAX(patientID) FROM PATIENT )");
 					while (res1.next()) {
-						patientID += res1.getString("staffID");
+						patientID += res1.getString("patientID");
 					}	
                     lastPID = Integer.parseInt(patientID);
         } catch (SQLException e) {
